@@ -1,0 +1,26 @@
+{
+  "name": "auth0-sample-app",
+  "version": "0.0.1",
+  "description": "Auth0 sample application",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": "",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "passport": "~0.1.15",
+    "passport-oauth": "~0.1.12",
+    "jade": "~0.27.7",
+    "express": "~3.0.3",
+    "connect": "~2.7.0",
+    "passport-auth0": "~0.0.5",
+    "auth0": "~0.1.2"
+
+  },
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  }
+}

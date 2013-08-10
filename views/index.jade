@@ -1,0 +1,17 @@
+!!! 5
+html
+  head
+    title Auth0 Example Application
+    link(type='text/css', rel='stylesheet', href='/css/site.css')
+  body
+    header
+      h1
+        | Auth0 Test Application
+    .main
+      section
+        h2 auth0 test application!
+        p This is an test application for the Auth0 platform.
+        p Login for :
+
+        script(id='auth0', src='https://sdk.auth0.com/auth0.js#client=' + clientId + '&response_type=token&scope=openid')
+        button(onclick='window.Auth0.signIn({onestep: true})') Login

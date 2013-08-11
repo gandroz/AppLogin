@@ -8,6 +8,8 @@ var app = express();
 var port = 3000;
 
 app.set('view engine', 'jade');
+app.set('view options', {layout: true});
+app.set('views', __dirname + '/views');
 
 app.configure(function () {
   this.use(express.cookieParser());

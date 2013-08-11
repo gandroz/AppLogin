@@ -3,15 +3,33 @@ html
   head
     title Auth0 Example Application
     link(type='text/css', rel='stylesheet', href='/css/site.css')
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css')
+    script(src='//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js');
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
   body
-    header
-      h1
-        | Auth0 Test Application
-    .main
-      section
-        h2 auth0 test application!
-        p This is an test application for the Auth0 platform.
-        p Login for :
-
-        script(id='auth0', src='https://sdk.auth0.com/auth0.js#client=' + clientId + '&response_type=token&scope=openid')
-        button(onclick='window.Auth0.signIn({onestep: true})') Login
+    div.navbar.navbar-inverse.navbar-fixed-top
+       div.navbar-inner
+         div.container
+            button.btn.btn-navbar(type='button', data-toggle='collapse', data-target='.nav-collapse')
+               span.icon-bar
+               span.icon-bar
+               span.icon-bar
+            a.brand(href='#') Bitstarter
+            div.nav-collapse.collapse
+              ul.nav
+                li.active 
+                  a(href='#') Home
+                li 
+                  a(href='#about') About
+                li 
+                  a(href='#Contact') Contact
+    
+    div.container
+       div.span6.offset3
+          h1 Test Application
+       div.span12
+          h2 auth0 test application!
+          p This is an test application for the Auth0 platform.
+          p Login for :
+          script(id='auth0', src='https://sdk.auth0.com/auth0.js#client=' + clientId + '&response_type=token&scope=openid')
+          button.btn.btn-success(type='button', onclick='window.Auth0.signIn({onestep: true})') Login

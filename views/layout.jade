@@ -1,11 +1,12 @@
 !!! 5
 html
    head
-    title Login Test Application
-    link(type='text/css', rel='stylesheet', href='/css/site.css')
-    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css')
-    script(src='//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js');
-    script(src='//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+    title Login Test Application    
+    
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(type='text/css', rel='stylesheet', href='/css/site.css')        
+    script(src='/js/bootstrap.js');
+    
   body
     div.navbar.navbar-inverse.navbar-fixed-top
        div.navbar-inner
@@ -14,14 +15,16 @@ html
                span.icon-bar
                span.icon-bar
                span.icon-bar
-            a.brand(href='#') Login Test Application
+            a.brand(href='/') Login Test Application
             div.nav-collapse.collapse
               ul.nav
-                li.active 
-                  a(href='#') Home
-                li 
-                  a(href='#about') About
-                li 
-                  a(href='#Contact') Contact
+                -var obj = { 'home':'Home', 'about':'About', 'contact':'Contact' }
+                -each val, key in obj
+                  -if (id == key)
+                    li.active
+                      a(href='#{key}') #{val}
+                  -else            
+                    li
+                      a(href='#{key}') #{val}
      div.container             
         block content

@@ -5,7 +5,7 @@ var express = require('express');
 //var passport = require('passport');
 //var strategy = require('./lib/setup-passport');
 var app = express();
-var port = 3000;
+var port = 8080;
 
 app.set('view engine', 'jade');
 app.set('view options', {layout: true});

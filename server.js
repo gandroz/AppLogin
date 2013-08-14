@@ -65,6 +65,6 @@ app.get('/failure', function (req, res) {
   res.send('user didn\'t grant permissions');
 });
 
-app.listen(port, function () {
+app.listen(process.env.PORT || port, function () {
   console.log('listening in http://localhost:' + port);
 });

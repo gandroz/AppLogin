@@ -23,6 +23,9 @@ app.configure(function () {
 });
 
 app.get('/', function (req, res) {
+	var ip_address = req.headers['x-forwarded-for']||req.connection.remoteAddress;
+	console.log('Login from '+ip_address);
+	
     res.render("index", {
     	clientId: 'dy9ftINKZSRP5ysJiuE9s1UQu7AanMyP',
     	title: 'Home', 
@@ -47,6 +50,14 @@ app.get('/contact', function (req, res) {
     res.render("contact", {
     	title: 'Contact', 
     	id: 'contact',
+        user: JSON.stringify(req.user, 0, 2)
+    });
+});
+
+app.get('/carousel', function (req, res) {
+    res.render("carousel", {
+    	title: 'Carousel', 
+    	id: 'carousel',
         user: JSON.stringify(req.user, 0, 2)
     });
 });

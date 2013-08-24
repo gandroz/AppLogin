@@ -4,6 +4,10 @@ var passport = require('passport'),
 exports.index = function(req, res) {
 	  res.render('index', { user: req.user });
 	};
+	
+exports.home = function(req, res) {
+	res.redirect('/');
+	};
 
 exports.account = function(req, res) {
   res.render("account", {

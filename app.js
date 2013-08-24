@@ -27,6 +27,7 @@ app.configure(function() {
 
 // Basic pages
 app.get('/', node_routes.index);
+app.get('/home', node_routes.home);
 
 // User pages
 app.get('/account', pass.ensureAuthenticated, node_routes.account);

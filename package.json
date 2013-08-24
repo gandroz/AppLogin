@@ -1,20 +1,16 @@
 {
-  "name": "AppLogin",
-  "version": "0.0.1",
-  "description": "Login Application Sample",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": "",
-  "author": "",
-  "license": "MIT",
+  "name": "passport-local-examples-login",
+  "version": "0.0.0",
   "dependencies": {
-    "jade": "~0.27.7",
-    "express": "~3.0.3"
+    "express": "~3.1.0",
+    "ejs": "~0.8.3",
+    "passport": "~0.1.15",
+    "passport-local": "~0.1.6",
+    "mongoose": "~3.5.5",
+    "mongodb":"1.1.11",
+    "bcrypt": "~0.7.3"
   },
-  "engines": {
-    "node": "0.8.x",
-    "npm": "1.1.x"
+  "devDependencies": {
+    "grunt": "~0.4.1"
   }
 }

@@ -1,56 +1,9 @@
 extends layout
 
 block content
-  div.container-fluid
-   div.row-fluid
-     div.span3
-          div.well.sidebar-nav
-            ul.nav.nav-list
-              li.well.nav-header Sidebar
-              li.active
-                a(href='#') Link
-              li
-                a(href='#') Link
-              li
-                a(href='#') Link
-              li
-                a(href='#') Link
-              li.well.nav-header Sidebar
-              li
-                a(href='#') Link
-              li
-                a(href='#') Link
-     div.span9
-         div.row-fluid
-           div.hero-unit
-             h1 Login Test Application
-             p Ceci est un exemple d'application ultra-simple juste pour m'amuser avec Boostrap
-             a.btn.btn-primary.btn-large(href='about') Learn more>>
-         div.row-fluid       
-           h2.well.well-small Salut ThieuThieu!
-           p Comme tu peux le voir, je suis motivé lol
-               | J'aimerais m'essayer à construire un site internet de recherche/post de petits boulots.
-               | Je n'ai aucune idée si ça peut fonctionner, mais au moins j'aurais beaucoup appris concernant
-               | le design de site oueb.
-           p En ce moment, j'utilise nodejs comme serveur, ça me permet en quelques lignes de code de router
-               | et faire plein de choses assez facilement. Il existe un super API pour gérer les login avec Google+,
-               | Github, Facebook, Twitter etc. mais ça ne me plait pas trop car c'est payant au-delà d'un certain
-               | nombre d'utilisateurs. Par contre, il existe d'autres modules nodejs qui permettent la même chose
-               | mais avec un peu plus de travail a priori.
-           p Pour revenir à nos moutons, j'utilise donc nodejs, avec le module express (pour le layout et le routing
-               | plus facile, la config de l'application...), le module de templating jade (permet d'écrire pas mal plus
-               | facilement une page html par simple indentation et code) et enfin le framework Twitter Bootstrap qui
-               | est ultra-pratique pour ne pas se taper tout le CSS avec plein de super belles choses tout fait. Il
-               | existe déjà de nombreux sites internet qui utilisent ce framework.
-           p = "Login for (test passage de variable :" + clientId + "):"
-               //script(id='auth0', src='https://sdk.auth0.com/auth0.js#client=' + clientId + '&response_type=token&scope=openid')
-               //button.btn.btn-success(type='button', onclick='window.Auth0.signIn({onestep: true})') Login
-           div.row-fluid
-             div.span3.offset1
-               a.btn.btn-success(href='contact') Example d'hyperlien en forme de bouton
-           div.row-fluid
-             div.span3.offset3
-               button.btn.btn-danger(type='button', onclick='window.location = "about"') Example de bouton   
-             
-             
-             
+   div.container-fluid
+      if !user
+         h2 Welcome! Please login.
+      else
+         h2 
+           = 'Hello : ' +  user.username

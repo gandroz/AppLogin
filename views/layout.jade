@@ -20,7 +20,7 @@ html
             a.brand(href='/') Login Test Application
             div.nav-collapse.collapse
               ul.nav
-                -var obj = { 'home':'Home', 'about':'About', 'contact':'Contact', 'carousel':'Carousel' }
+                -var obj = { 'home':'Home', 'about':'About', 'contact':'Contact', 'account':'Account' }
                 -each val, key in obj
                   -if (id == key)
                     li.active
@@ -28,5 +28,11 @@ html
                   -else            
                     li
                       a(href='#{key}') #{val}
+            if !user        
+               div.btn-toolbar.pull-right
+                  a.btn.btn-primary(href='login', type='button') Log in
+                  a.btn.btn-primary(href='register', type='button') Register
+            else
+               a.btn.btn-primary.pull-right(href='logout', type='button') Log out         
       
     block content

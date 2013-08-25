@@ -93,6 +93,16 @@ font-size: 11px;
 color: #ccccff;
 }
 
+  .nav-header {
+     font-size : 14px;
+     line-height: 10px;
+  }
+  
+  .btn-toolbar {
+     margin-top: 0px;
+     margin-bottom: 0px;  
+  }
+
 .navbar .nav > .active > a,
 .navbar .nav > .active > a:hover,
 .navbar .nav > .active > a:focus {
@@ -177,3 +187,11 @@ color: #ccccff;
         margin-bottom: 15px;
         padding: 7px 9px;
       }
+      
+   .container-fluid {
+        padding: 10px 10px 10px;
+   }   
+   
+   .well {
+      min-height : 10px;
+   }

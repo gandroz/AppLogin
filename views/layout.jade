@@ -20,14 +20,17 @@ html
             a.brand(href='/') Login Test Application
             div.nav-collapse.collapse
               ul.nav
-                -var obj = { 'home':'Home', 'about':'About', 'contact':'Contact', 'account':'Account' }
-                -each val, key in obj
-                  -if (id == key)
-                    li.active
-                      a(href='#{key}') #{val}
-                  -else            
-                    li
-                      a(href='#{key}') #{val}
+                 if !user
+                    -var obj = { 'home':'Home', 'about':'About', 'contact':'Contact' }
+                 else
+                    -var obj = { 'home':'Home', 'about':'About', 'contact':'Contact', 'account':'Account' }
+                 each val, key in obj
+                    if (id == key)
+                      li.active
+                        a(href='#{key}') #{val}
+                    else            
+                      li
+                        a(href='#{key}') #{val}
             if !user        
                div.btn-toolbar.pull-right
                   a.btn.btn-primary(href='login', type='button') Log in

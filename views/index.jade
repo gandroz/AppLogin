@@ -2,8 +2,32 @@ extends layout
 
 block content
    div.container-fluid
-      if !user
-         h2 Welcome! Please login.
-      else
-         h2 
-           = 'Hello : ' +  user.username
+        div.row-fluid
+           div.span3
+              div.well.sidebar-nav
+                ul.nav.nav-list
+                  li.well.nav-header Sidebar
+                  li.active 
+                     a(href="#") Link
+                  li 
+                     a(href="#") Link
+                  li 
+                     a(href="#") Link
+                  li.well.nav-header Sidebar
+                  li 
+                     a(href="#") Link
+                  li 
+                     a(href="#") Link
+           div.span9
+              div.row-fluid
+                 div.hero-unit
+                    h1 Login Test Application
+                    p This is a sample login application with nodeJS, powered with bootstrap
+                    a.btn.btn-primary.btn-large(href="about") Learn more
+                 if !user
+                    h2.well.well-small
+                       | Welcome! Please login.
+                 else
+                    h2.well.well-small
+                       = 'Welcome back ' +  user.username
+                       

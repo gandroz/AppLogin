@@ -9,12 +9,19 @@ exports.home = function(req, res) {
 	res.redirect('/');
 	};
 
-exports.account = function(req, res) {
-  res.render("account", {
-	  title: 'Account',
-	  id: 'account',
-      user: req.user
-  });
+exports.getprofile = function(req, res) {
+	var user = req.user;
+	db.profileModel.findOne({ username: user.username }, function(err, profile) {
+	    if (err) { 
+	    	res.redirect('/'); 
+	    }	    
+	    res.render("profile", {
+	  	  title: 'Profile',
+	  	  id: 'profile',
+	  	  profile: profile,
+	  	  user: req.user
+	    });
+	});  
 };
 
 exports.getlogin = function(req, res) {
@@ -77,23 +84,54 @@ exports.logout = function(req, res) {
 };
 
 exports.getregister = function(req, res) {
-    res.render('register', { });
+    res.render('register');
 };
 
 exports.postregister = function(req, res) {
 	var user = new db.userModel({ username: req.body.username, email: req.body.email, password: req.body.password });
+	var profile = new db.profileModel({ username: req.body.username, email: req.body.email, age: null, address: null, city: null, zipcode: null });
 	user.save(function(err) {
 		if(err) {
 			console.log(err);
 	    } 
 		else {
 			console.log('user: ' + user.username + " saved.");
-			req.logIn(user, function(err) {
-			      if (err) { return next(err); }
-			      return res.redirect('/');
-			});
+			profile.save(function(err) {
+    			if(err) {
+    				console.log(err);
+    		    } 
+    			else {
+    				console.log('profile for user: ' + profile.username + " saved.");
+    				req.logIn(user, function(err) {
+    				      if (err) { return next(err); }
+    				      return res.redirect('/');
+    				});
+    			}
+    		});			
 		}
 	});
 };
 
+exports.postprofile = function(req, res, next) {	
+	passport.authenticate('local', function(err, user, info) {
+	    if (err) { return next(err); }
+	    if (!user) {
+	      req.session.messages =  [info.message];
+	      console.log(info.message);
+	      return res.redirect('/login');
+	    }
+	      var profile = new db.userModel({ username: req.body.username, email: req.body.email, 
+              age: req.body.username, address: req.body.username, 
+              city: req.body.username, zipcode: req.body.username });
+	      profile.save(function(err) {
+	    	  if(err) {
+	    		  console.log(err);
+	          }
+	    	  else {
+	    		  console.log('profile for user: ' + profile.username + " updated.");
+	    	  }
+	      });
+	      return res.redirect('/');
+	})(req, res, next);
+};
 

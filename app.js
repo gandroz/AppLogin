@@ -5,7 +5,7 @@ var express = require('express')
   , pass = require('./config/pass')
   , passport = require('passport')
   , node_routes = require('./routes/routes')
-  ,port = process.env.PORT || 8080;
+  , port = process.env.PORT || 8080;
   
 // configure Express
 app.configure(function() {
@@ -30,7 +30,8 @@ app.get('/', node_routes.index);
 app.get('/home', node_routes.home);
 
 // User pages
-app.get('/account', pass.ensureAuthenticated, node_routes.account);
+app.get('/profile', pass.ensureAuthenticated, node_routes.getprofile);
+app.post('/profile', node_routes.postprofile);
 app.get('/login', node_routes.getlogin);
 app.post('/login', node_routes.postlogin);
 app.get('/logout', node_routes.logout);

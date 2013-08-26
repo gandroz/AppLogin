@@ -181,6 +181,7 @@ color: #ccccff;
         margin-bottom: 10px;
       }
       .form-signin input[type="text"],
+      .form-signin input[type="email"],
       .form-signin input[type="password"] {
         font-size: 16px;
         height: auto;
@@ -195,3 +196,14 @@ color: #ccccff;
    .well {
       min-height : 10px;
    }
+   
+   .form-horizontal .control-label {
+  float: left;
+  width: 100px;
+  padding-top: 5px;
+  text-align: right;
+}
+
+.form-horizontal .controls {
+margin-left: 120px;
+}

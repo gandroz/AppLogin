@@ -52,7 +52,7 @@ app.get('/home', node_routes.home);
 
 // User pages
 app.get('/profile', pass.ensureAuthenticated, profile_routes.load);
-app.post('/profile', profile_routes.update);
+app.post('/profile', pass.ensureAuthenticated, profile_routes.update);
 app.get('/login', node_routes.login);
 app.post('/login', user_routes.login);
 app.get('/logout', user_routes.logout);
@@ -60,8 +60,8 @@ app.get('/about', node_routes.about);
 app.get('/contact', node_routes.contact);
 app.get('/register', node_routes.register);
 app.post('/register', user_routes.register);
-app.get('/jobs', node_routes.jobs);
-app.post('/jobs', jobOffers_routes.create);
+app.get('/jobs', pass.ensureAuthenticated, node_routes.jobs);
+app.post('/jobs', pass.ensureAuthenticated, jobOffers_routes.create);
 
 
 app.listen(port, function() {

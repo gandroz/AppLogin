@@ -43,6 +43,9 @@ app.configure(function() {
 	this.use(passport.session());
 	this.use(this.router);
 	this.use(express.static(__dirname + '/public'));
+	this.use(function(req,res){
+	    res.status(404).send('This requested page does not exist... yet');
+	});
 });
 
 
@@ -53,6 +56,8 @@ app.get('/home', node_routes.home);
 // User pages
 app.get('/profile', pass.ensureAuthenticated, profile_routes.load);
 app.post('/profile', pass.ensureAuthenticated, profile_routes.update);
+app.get('/offers', pass.ensureAuthenticated, profile_routes.offers);
+app.get('/submissions', pass.ensureAuthenticated, profile_routes.submissions);
 app.get('/login', node_routes.login);
 app.post('/login', user_routes.login);
 app.get('/logout', user_routes.logout);

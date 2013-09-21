@@ -1,0 +1,15 @@
+extends profile
+
+block contentProfile   
+   div.row-fluid      
+      script(src="/js/jobOfferCtrl.js")      
+      div(ng-controller="jobOfferCtrl")  
+         div.accordion.span8.offset1#accordion2
+            div.accordion-group(ng-repeat="item in items")
+               div.accordion-heading
+                  a.accordion-toogle(data-toggle="collapse", data-parent="#accordion2", href="#collapse{{$index + 1}}") {{item.Title}}
+               div.accordion-body.collapse(id="collapse{{$index + 1}}")
+                  div.accordion-inner
+                     p {{item.Description}}
+                     p {{item.Author}}
+                     a.btn.btn-primary.btn-large(href="about") Learn more            

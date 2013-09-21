@@ -1,51 +1,22 @@
 extends layout
 
 block content
+   script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js")
+   script(src="/js/navBarCtrl.js")
    div.container-fluid
-      div.span3
+      div.row-fluid(ng-app)
+         div.span3(ng-controller="navBarCtrl")
            div.well.sidebar-nav
              ul.nav.nav-list
-               li.well.nav-header Sidebar
-               li.active 
-                  a(href="#") Link
-               li 
-                  a(href="#") Link
-               li 
-                  a(href="#") Link
-               li.well.nav-header Sidebar
-               li 
-                  a(href="#") Link
-               li 
-                  a(href="#") Link
-      div.span9
-         div.row-fluid
-            form.form-horizontal.span10.offset1(method='post', action='/profile')
-               h2.well.well-small
-                 = 'My Profile (' +  user.username + ')'
-               div.control-group
-                  label.control-label(for='username') Username: 
-                  div.controls
-                     input.input-block-level.span10#username(type='text', name='username', value=profile.username) 
-               div.control-group
-                  label.control-label(for='email') Email: 
-                  div.controls
-                     input.input-block-level.span10#email(type='email', name='email', value=profile.email)
-               div.control-group
-                  label.control-label(for='age') Age: 
-                  div.controls
-                     input.input-block-level.span10#age(type='text', name='age', value=profile.age)
-               div.control-group
-                  label.control-label(for='address') Address: 
-                  div.controls
-                     input.input-block-level.span10#address(type='text', name='address', value=profile.address)
-               div.control-group
-                  label.control-label(for='city') City: 
-                  div.controls
-                     input.input-block-level.span10#city(type='text', name='city', value=profile.city)
-               div.control-group
-                  label.control-label(for='zipcode') Zip-Code: 
-                  div.controls
-                     input.input-block-level.span10#zipcode(type='text', name='zipcode', value=profile.zipcode)                    
-               div.btn-toolbar
-                  button.btn.btn-small.btn-primary(type='submit') Save
-                  button.btn.btn-small(type='button', onClick="window.location='/';") Cancel
+               li.well.nav-header 
+                  = 'My Profile (' +  user.username + ')'
+               li(ng-class="{ active: isActive('/profile')}") 
+                  a(href="/profile") Update profile
+               li.divider
+               li.well.nav-header My Jobs
+               li(ng-class="{ active: isActive('/offers')}") 
+                  a(href="/offers") Offers
+               li(ng-class="{ active: isActive('/submissions')}") 
+                  a(href="/submissions") Submissions
+         div.span9            
+            block contentProfile               

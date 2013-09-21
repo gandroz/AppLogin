@@ -26,7 +26,37 @@ exports.load = function(req, res) {
 	    if (err) { 
 	    	res.redirect('/'); 
 	    }	    
-	    res.render("profile", {
+	    res.render("profileUpdate", {
+	  	  title: 'Profile',
+	  	  id: 'profile',
+	  	  profile: profile,
+	  	  user: req.user
+	    });
+	});  
+};
+
+exports.offers = function(req, res) {
+	var user = req.user;
+	Profile.findOne({ username: user.username }, function(err, profile) {
+	    if (err) { 
+	    	res.redirect('/'); 
+	    }	    
+	    res.render("jobOffers", {
+	  	  title: 'Profile',
+	  	  id: 'profile',
+	  	  profile: profile,
+	  	  user: req.user
+	    });
+	});  
+};
+
+exports.submissions = function(req, res) {
+	var user = req.user;
+	Profile.findOne({ username: user.username }, function(err, profile) {
+	    if (err) { 
+	    	res.redirect('/'); 
+	    }	    
+	    res.render("jobSubmissions", {
 	  	  title: 'Profile',
 	  	  id: 'profile',
 	  	  profile: profile,

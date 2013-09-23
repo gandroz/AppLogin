@@ -1,15 +1,16 @@
 extends profile
 
 block contentProfile   
-   div.row-fluid      
-      script(src="/js/jobOfferCtrl.js")      
+   script(src="/js/controllers/jobOfferCtrl.js") 
+   div.row-fluid(style="margin-bottom:20px")
+      a.btn.btn-primary.btn-large(href="/job") Post New Offer
+   div.row-fluid 
       div(ng-controller="jobOfferCtrl")  
          div.accordion.span8.offset1#accordion2
-            div.accordion-group(ng-repeat="item in items")
+            div.accordion-group(ng-repeat="item in data.items")
                div.accordion-heading
-                  a.accordion-toogle(data-toggle="collapse", data-parent="#accordion2", href="#collapse{{$index + 1}}") {{item.Title}}
+                  a.accordion-toogle(data-toggle="collapse", data-parent="#accordion2", href="#collapse{{$index + 1}}") {{item.title}}
                div.accordion-body.collapse(id="collapse{{$index + 1}}")
                   div.accordion-inner
-                     p {{item.Description}}
-                     p {{item.Author}}
-                     a.btn.btn-primary.btn-large(href="about") Learn more            
+                     p {{item.description}}
+                     p {{item.author}}         

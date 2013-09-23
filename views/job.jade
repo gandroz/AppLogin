@@ -1,0 +1,12 @@
+extends profile
+
+block contentProfile
+   div.row-fluid 
+      div.offset1.span4
+         form.form-signin(method='post', , action='/job')
+            h2.form-signin-heading Enter a new job offer
+            input.input-block-level(type='text', name='title', placeholder='Title')
+            textarea.input-block-level(rows = 10, name='description', placeholder='Job description')
+            input.input-block-level(type='text', name='salary', placeholder='Proposed salary')
+            input.input-block-level(type='text', name='dueDate', placeholder='DueDate')
+            button.btn.btn-large.btn-primary(type='submit') Create

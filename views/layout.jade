@@ -23,7 +23,7 @@ html
                  if !user
                     -var obj = { 'home':'Home', 'about':'About', 'contact':'Contact' }
                  else
-                    -var obj = { 'home':'Home', 'about':'About', 'contact':'Contact', 'profile':'Profile', 'jobs' : 'Jobs' }
+                    -var obj = { 'home':'Home', 'about':'About', 'contact':'Contact', 'profile':'Profile' }
                  each val, key in obj
                     if (id == key)
                       li.active

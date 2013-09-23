@@ -56,8 +56,8 @@ app.get('/home', node_routes.home);
 // User pages
 app.get('/profile', pass.ensureAuthenticated, profile_routes.load);
 app.post('/profile', pass.ensureAuthenticated, profile_routes.update);
-app.get('/offers', pass.ensureAuthenticated, profile_routes.offers);
-app.get('/submissions', pass.ensureAuthenticated, profile_routes.submissions);
+app.get('/offers', pass.ensureAuthenticated, jobOffers_routes.offers);
+app.get('/submissions', pass.ensureAuthenticated, jobOffers_routes.submissions);
 app.get('/login', node_routes.login);
 app.post('/login', user_routes.login);
 app.get('/logout', user_routes.logout);
@@ -65,8 +65,10 @@ app.get('/about', node_routes.about);
 app.get('/contact', node_routes.contact);
 app.get('/register', node_routes.register);
 app.post('/register', user_routes.register);
-app.get('/jobs', pass.ensureAuthenticated, node_routes.jobs);
-app.post('/jobs', pass.ensureAuthenticated, jobOffers_routes.create);
+app.get('/job', pass.ensureAuthenticated, jobOffers_routes.jobs);
+app.post('/job', pass.ensureAuthenticated, jobOffers_routes.create);
+app.get('/job/:title', pass.ensureAuthenticated, jobOffers_routes.offersByTitle);
+app.get('/api/alljobs', pass.ensureAuthenticated, jobOffers_routes.offersAPI);
 
 
 app.listen(port, function() {

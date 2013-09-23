@@ -33,11 +33,3 @@ exports.contact = function (req, res) {
 exports.register = function(req, res) {
     res.render('register');
 };
-
-exports.jobs = function (req, res) {
-    res.render("jobs", {
-    	title: 'Jobs', 
-    	id: 'jobs',
-        user: req.user
-    });
-};

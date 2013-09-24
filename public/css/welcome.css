@@ -1,0 +1,60 @@
+body {
+   font-family: "ProximaNovaBold", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif;
+   line-height: 10px;
+   font-size: 14px;
+}
+
+h1 {
+   color: rgba(245,245,245,0.85);
+}
+
+.navbar .brand {
+   line-height: 90px;
+   padding-top: 0;
+   padding-bottom: 0;
+   color: rgba(255,255,255,0.15);
+   text-shadow: -1px -1px rgba(0,0,0,0.4);
+   font-family: "ProximaNovaBold", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif;
+   font-weight: bold;
+   font-size: 40px;
+}
+
+.preambule {
+   padding-top: 60px;
+   background-color: #353535;
+   color: rgba(255,255,255,0.3);
+}
+
+.controlButtons {
+   padding: 20px 200px 0px; //top&bottom + right&left
+}
+
+.controlButtons a {
+   width: 150px;   
+   font-size: 24px;
+}
+
+.login {
+   margin-top: 80px;
+}
+
+.login a {
+    background-color: hsl(0, 0%, 79%) !important;
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e8e8e8", endColorstr="#c9c9c9");
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#e8e8e8), to(#c9c9c9));
+    background-image: -moz-linear-gradient(top, #e8e8e8, #c9c9c9);
+    background-image: -ms-linear-gradient(top, #e8e8e8, #c9c9c9);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e8e8e8), color-stop(100%, #c9c9c9));
+    background-image: -webkit-linear-gradient(top, #e8e8e8, #c9c9c9);
+    background-image: -o-linear-gradient(top, #e8e8e8, #c9c9c9);
+    background-image: linear-gradient(#e8e8e8, #c9c9c9);
+    border-color: #c9c9c9 #c9c9c9 hsl(0, 0%, 76%);
+    color: #333 !important;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.19);
+    -webkit-font-smoothing: antialiased;
+}
+
+.signup {
+   font-weight: bold;
+}

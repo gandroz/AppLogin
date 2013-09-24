@@ -1,7 +1,7 @@
 !!! 5
 html
    head
-    title Login Test Application    
+    title P'tites Jobs  
     
     link(rel='stylesheet', href='/css/bootstrap.css')
     link(rel='stylesheet', href='/css/bootstrap-responsive.css')
@@ -17,13 +17,13 @@ html
                span.icon-bar
                span.icon-bar
                span.icon-bar
-            a.brand(href='/') Login Test Application
+            a.brand(href='/') P'tites Jobs
             div.nav-collapse.collapse
               ul.nav
                  if !user
-                    -var obj = { 'home':'Home', 'about':'About', 'contact':'Contact' }
+                    -var obj = { 'home':'Home' }
                  else
-                    -var obj = { 'home':'Home', 'about':'About', 'contact':'Contact', 'profile':'Profile' }
+                    -var obj = { 'home':'Home', 'profile':'Profile' }
                  each val, key in obj
                     if (id == key)
                       li.active

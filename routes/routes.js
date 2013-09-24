@@ -1,4 +1,8 @@
-exports.index = function(req, res) {
+exports.welcome = function(req, res) {
+	res.render("welcome");
+};
+
+exports.home = function(req, res) {
 	  res.render("index", {
 	  	  title: 'Home',
 	  	  id: 'home',
@@ -6,15 +10,15 @@ exports.index = function(req, res) {
 	    });
 	};
 	
-exports.home = function(req, res) {
-	res.redirect('/');
+exports.index = function(req, res) {
+	res.redirect('/home');
 	};
 
 exports.login = function(req, res) {
   res.render('login');
 };
 
-exports.about = function (req, res) {
+/*exports.about = function (req, res) {
     res.render("about", {
     	title: 'About', 
     	id: 'about',
@@ -28,7 +32,7 @@ exports.contact = function (req, res) {
     	id: 'contact',
         user: req.user
     });
-};
+};*/
 
 exports.register = function(req, res) {
     res.render('register');

@@ -37,7 +37,7 @@ exports.login = function(req, res, next) {
     req.logIn(user, function(err) {
       if (err) { return next(err); }
       console.log('User ' + user.username + ' has logged in.');
-      return res.redirect('/');
+      return res.redirect('/home');
     });
   })(req, res, next);
 };
@@ -46,7 +46,7 @@ exports.logout = function(req, res) {
 	var name = req.user.username;
 	req.logout();
 	console.log('User ' + name + ' has logged out.');
-	res.redirect('/');
+	res.redirect('/home');
 };
 
 exports.register = function(req, res) {
@@ -72,7 +72,7 @@ exports.register = function(req, res) {
     				console.log('Profile for user: ' + profile.username + " saved.");
     				req.logIn(user, function(err) {
     				      if (err) { return next(err); }
-    				      return res.redirect('/');
+    				      return res.redirect('/home');
     				});
     			}
     		});			

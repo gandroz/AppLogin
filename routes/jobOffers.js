@@ -13,7 +13,7 @@ exports.jobs = function (req, res) {
 	var user = req.user;
 	Profile.findOne({ username: user.username }, function(err, profile) {
 	    if (err) { 
-	    	res.redirect('/'); 
+	    	res.redirect('/home'); 
 	    }	    
 	    res.render("job", {
 	  	  title: 'Profile',
@@ -34,7 +34,7 @@ exports.create = function(req, res) {
 	job.save(function(err) {
 		if(err) {
 			console.log(err);
-			res.redirect('/');
+			res.redirect('/home');
 	    } 
 		else {
 			console.log('New job for user: ' + user.username + " has been posted.");	
@@ -47,7 +47,7 @@ exports.offers = function(req, res) {
 	var user = req.user;
 	Profile.findOne({ username: user.username }, function(err, profile) {
 	    if (err) { 
-	    	res.redirect('/'); 
+	    	res.redirect('/home'); 
 	    }	    
 	    res.render("jobOffers", {
 	  	  title: 'Profile',
@@ -72,7 +72,7 @@ exports.offersAPI = function(req, res) {
 	var user = req.user;    
 	Job.find({ user: user }, function(err, jobs) {
 	    if (err) { 
-	    	res.redirect('/'); 
+	    	res.redirect('/home'); 
 	    }	    
 	    res.send(JSON.stringify(jobs));
 	});
@@ -82,7 +82,7 @@ exports.submissions = function(req, res) {
 	var user = req.user;
 	Profile.findOne({ username: user.username }, function(err, profile) {
 	    if (err) { 
-	    	res.redirect('/'); 
+	    	res.redirect('/home'); 
 	    }	    
 	    res.render("jobSubmissions", {
 	  	  title: 'Profile',

@@ -50,7 +50,8 @@ app.configure(function() {
 
 
 // Basic pages
-app.get('/', node_routes.index);
+app.get('/', node_routes.welcome);
+app.get('/index', node_routes.index);
 app.get('/home', node_routes.home);
 
 // User pages
@@ -61,8 +62,8 @@ app.get('/submissions', pass.ensureAuthenticated, jobOffers_routes.submissions);
 app.get('/login', node_routes.login);
 app.post('/login', user_routes.login);
 app.get('/logout', user_routes.logout);
-app.get('/about', node_routes.about);
-app.get('/contact', node_routes.contact);
+//app.get('/about', node_routes.about);
+//app.get('/contact', node_routes.contact);
 app.get('/register', node_routes.register);
 app.post('/register', user_routes.register);
 app.get('/job', pass.ensureAuthenticated, jobOffers_routes.jobs);

@@ -11,11 +11,11 @@ exports.update = function(req, res){
 	Profile.update({'username':profile.username},profile,{safe:true}, function(err, result){
 		if(err) {
 			console.log('Error updating profile. ' + err);
-			res.redirect('/');
+			res.redirect('/home');
 		}
 		else{
 			console.log('' + result + ' profile updated for user: ' + profile.username);
-			res.redirect('/');
+			res.redirect('/home');
 		}			
 	});
 };
@@ -24,7 +24,7 @@ exports.load = function(req, res) {
 	var user = req.user;
 	Profile.findOne({ username: user.username }, function(err, profile) {
 	    if (err) { 
-	    	res.redirect('/'); 
+	    	res.redirect('/home'); 
 	    }	    
 	    res.render("profileUpdate", {
 	  	  title: 'Profile',

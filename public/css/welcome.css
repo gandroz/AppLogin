@@ -58,3 +58,82 @@ h1 {
 .signup {
    font-weight: bold;
 }
+
+/* carousel */
+p.lead{
+padding-top: 1.5%;
+font-size: 24px;
+line-height: 30px;
+}
+
+   .carousel {
+      margin-bottom: 0px;
+      margin-top: -20px;
+    }
+
+    .carousel .container {
+      position: relative;
+      z-index: 9;
+    }
+
+    .carousel-control {
+      height: 80px;
+      margin-top: 0;
+      top: 40%;
+      font-size: 120px;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+      background-color: transparent;
+      color: #000000;
+      border: 0;
+      z-index: 10;
+      visibility: hidden;
+    }
+    
+    .carousel:hover .carousel-control {
+      visibility: visible;
+    }
+
+    .carousel .item {
+      height: 200px;
+    }
+    
+    .carousel-inner {
+      background-color: transparent;
+      border:solid;
+    }
+    
+    .carousel-jobItem {
+      position: static;
+      max-width: 80%;
+      padding: 10px 5%;
+    }
+    
+    .carousel-jobItem h1 {
+       line-height: 14px;
+       font-size: 18px;
+     }
+     
+     .carousel-jobItem p {
+       line-height: 14px;
+       font-size: 14px;
+     }
+    
+    .carousel-jobItem h1,
+    .carousel-jobItem .lead {
+      margin: 0;
+      line-height: 1.25;
+      color: #000000;
+    }
+    .carousel-jobItem .btn {
+      position: absolute;
+      top: 150px;
+    }
+    .carousel-indicators {
+       top: 180px;       
+    }
+    .carousel-indicators .active {
+       background-color: #769CDF;
+    }
+    .carousel-indicators li {
+       background-color: rgba(255, 255, 255, 0.75);
+    }

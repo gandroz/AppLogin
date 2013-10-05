@@ -127,42 +127,52 @@ color: #ccccff;
     .carousel-control {
       height: 80px;
       margin-top: 0;
+      top: 45%;
       font-size: 120px;
       text-shadow: 0 1px 1px rgba(0,0,0,.4);
       background-color: transparent;
+      color: #000000;
       border: 0;
       z-index: 10;
+      visibility: hidden;
+    }
+    
+    .carousel:hover .carousel-control {
+      visibility: visible;
     }
 
     .carousel .item {
-      height: 500px;
-    }
-    .carousel img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      height: 500px;
-    }
-
-    .carousel-caption {
-      background-color: transparent;
-      position: static;
-      max-width: 550px;
-      padding: 0 20px;
-      margin-top: 200px;
-    }
-    .carousel-caption h1,
-    .carousel-caption .lead {
-      margin: 0;
-      line-height: 1.25;
-      color: #fff;
-      text-shadow: 0 1px 1px rgba(0,0,0,.4);
-    }
-    .carousel-caption .btn {
-      margin-top: 10px;
+      height: 300px;
     }
     
+    .carousel-inner {
+      background-color: #c6d2d6;
+    }
+    .carousel-jobItem {
+      position: static;
+      max-width: 80%;
+      padding: 40px 5%;
+    }
+    .carousel-jobItem h1,
+    .carousel-jobItem .lead {
+      margin: 0;
+      line-height: 1.25;
+      color: #000000;
+    }
+    .carousel-jobItem .btn {
+      position: absolute;
+      top: 220px;
+    }
+    .carousel-indicators {
+       top: 280px;       
+    }
+    .carousel-indicators .active {
+       background-color: #769CDF;
+    }
+    .carousel-indicators li {
+       background-color: rgba(255, 255, 255, 0.75);
+    }
+        
     .form-signin {
         max-width: 300px;
         padding: 19px 29px 29px;

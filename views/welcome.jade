@@ -16,16 +16,36 @@ html
             a.brand(href='/') P'tites Jobs
      div.preambule
         div.container
-           div.row
-              div.span12
-                 h1 Facile Rapide
-                 h2 Le site pour te trouver une jobine!
-              div.span12
-                 div.row                 
+           div.row                 
                     div.span6
-                       div.row.controlButtons.login
-                          a.btn.btn-large(href='login', type='button') Log In
-                       div.row.controlButtons
-                          a.btn.btn-primary.btn-large.signup(href='register', type='button') Sign Up
+                       h1 Facile Rapide
+                       h2 Le site pour te trouver une jobine!
+                       if !user
+                          div.row.controlButtons.login
+                             a.btn.btn-large(href='login', type='button') Log In
+                          div.row.controlButtons
+                             a.btn.btn-primary.btn-large.signup(href='register', type='button') Sign Up
+                       else
+                          div.row.controlButtons.login
+                             a.btn.btn-large(href='home', type='button') Enter
                     div.span6
+                       script(src="/js/angular.min.js")
+                       script(src="/js/angular-resource.min.js")
+                       script(src="/js/app/app.js")
+                       script(src="/js/controllers/lastJobOffersCtrl.js") 
+                       div.row-fluid(ng-app="myApp", ng-controller="lastJobOffersCtrl")
+                          #myCarousel.carousel.slide
+                             div.carousel-inner
+                                div.item(ng-repeat="item in data.items", ng-class="{'active': $index == 0}")
+                                   div.container.carousel-jobItem
+                                         h1 {{item.title}}
+                                         p.lead {{item.description}}
+                                         p.lead {{item.user.username}}
+                                         a.btn.btn-primary(href='#') Sign up today
+                             a.left.carousel-control(href='#myCarousel', data-slide='prev')&lsaquo;
+                             a.right.carousel-control(href='#myCarousel', data-slide='next')&rsaquo;
+                             div
+                                ol.carousel-indicators
+                                   li(ng-repeat="item in data.items", data-target='#myCarousel', data-slice-to="{{$index}}", ng-class="{'active': $index == 0}")
+                          script(src='/js/carouselController.js');
                        img(src="/img/job-seeking.png")

@@ -1,5 +1,7 @@
 exports.welcome = function(req, res) {
-	res.render("welcome");
+	res.render("welcome", {
+		user: req.user
+	});
 };
 
 exports.home = function(req, res) {

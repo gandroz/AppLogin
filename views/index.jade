@@ -19,15 +19,22 @@ block content
                   li 
                      a(href="#") Link
            div.span9
-              div.row-fluid
-                 div.hero-unit
-                    h1 Login Test Application
-                    p This is a sample login application with nodeJS, powered with bootstrap
-                    a.btn.btn-primary.btn-large(href="about") Learn more
-                 if !user
-                    h2.well.well-small
-                       | Welcome! Please login.
-                 else
-                    h2.well.well-small
-                       = 'Welcome back ' +  user.username
-                       
+              script(src="/js/angular.min.js")
+              script(src="/js/angular-resource.min.js")
+              script(src="/js/app/app.js")
+              script(src="/js/controllers/lastJobOffersCtrl.js") 
+              div.row-fluid(ng-app="myApp", ng-controller="lastJobOffersCtrl")
+                 #myCarousel.carousel.slide
+                    div.carousel-inner
+                       div.item(ng-repeat="item in data.items", ng-class="{'active': $index == 0}")
+                          div.container.carousel-jobItem
+                                h1 {{item.title}}
+                                p.lead {{item.description}}
+                                p.lead {{item.author}}
+                                a.btn.btn-large.btn-primary(href='#') Sign up today
+                    a.left.carousel-control(href='#myCarousel', data-slide='prev')&lsaquo;
+                    a.right.carousel-control(href='#myCarousel', data-slide='next')&rsaquo;
+                    div
+                       ol.carousel-indicators
+                          li(ng-repeat="item in data.items", data-target='#myCarousel', data-slice-to="{{$index}}", ng-class="{'active': $index == 0}")
+                 script(src='/js/carouselController.js');

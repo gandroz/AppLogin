@@ -92,3 +92,12 @@ exports.submissions = function(req, res) {
 	    });
 	});  
 };
+
+exports.sevenLastOffersAPI = function(req, res) {
+	Job.find({}).sort({postedDate: -1}).limit(7).exec(function(err, jobs) { 
+		if(err) {
+			console.log('Unable to retrieve last seven job offers.');
+		}
+		res.send(JSON.stringify(jobs));
+	});
+};

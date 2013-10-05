@@ -70,6 +70,7 @@ app.get('/job', pass.ensureAuthenticated, jobOffers_routes.jobs);
 app.post('/job', pass.ensureAuthenticated, jobOffers_routes.create);
 app.get('/job/:title', pass.ensureAuthenticated, jobOffers_routes.offersByTitle);
 app.get('/api/alljobs', pass.ensureAuthenticated, jobOffers_routes.offersAPI);
+app.get('/api/lastSevenJobs', jobOffers_routes.sevenLastOffersAPI);
 
 
 app.listen(port, function() {

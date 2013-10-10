@@ -1,0 +1,1 @@
+var jobApp = angular.module('jobApp', ['ngResource']);

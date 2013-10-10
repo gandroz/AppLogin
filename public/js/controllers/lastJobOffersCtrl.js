@@ -3,6 +3,5 @@ function lastJobOffersCtrl($scope, $resource)  {
        $scope.data = {};
 	   Jobs.query(function(res){
 		   $scope.data.items = res;
-		   $scope.$broadcast('dataLoaded');
 	   });
 }

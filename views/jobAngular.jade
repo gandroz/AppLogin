@@ -1,0 +1,17 @@
+!!! 5
+html(lang='en')
+  head
+    title pageTitle
+    base(href='/jobAngular')
+  body(ng-app="jobApp")
+    section.content
+      section.container(data-ng-controller="JobsController")
+        section(data-ng-view)
+        script(type='text/javascript', src='/js/jquery-2.0.3.js')
+        script(type='text/javascript', src='/js/bootstrap.js')
+        script(type='text/javascript', src='/js/angular.min.js')
+        script(type='text/javascript', src='/js/angular-resource.min.js')
+        script(type='text/javascript', src='/js/app.js')
+        script(type='text/javascript', src='/js/config.js')
+        script(type='text/javascript', src='/js/services/jobs.js')
+        script(type='text/javascript', src='/js/controllers/jobs.js')

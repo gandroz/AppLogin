@@ -30,7 +30,8 @@ exports.create = function(req, res) {
 		                title: req.body.title,
 		                description: req.body.description,
 		                salary: req.body.salary,
-		                dueDate: new Date(req.body.dueDate)});
+		                dueDate: new Date(req.body.dueDate),
+		                category: req.body.category});
 	job.save(function(err) {
 		if(err) {
 			console.log(err);
@@ -38,8 +39,19 @@ exports.create = function(req, res) {
 	    } 
 		else {
 			console.log('New job for user: ' + user.username + " has been posted.");	
-			res.redirect('/offers');
+			//res.redirect('/offers');
+			res.send(JSON.stringify(job));
 		}
+	});
+};
+
+exports.remove = function(req,res) {
+	var jobId = req.params.jobId;
+	Job.findByIdAndRemove(jobId, function(err) {
+	    if (err) { 
+	    	res.redirect('/home'); 
+	    }	
+	    res.redirect('/offers');
 	});
 };
 
@@ -68,7 +80,7 @@ exports.offersByTitle = function(req, res) {
 	res.send(JSON.stringify(job));
 };
 
-exports.offersAPI = function(req, res) {
+exports.allMyPostedJobsAPI = function(req, res) {
 	var user = req.user;    
 	Job.find({ user: user }, function(err, jobs) {
 	    if (err) { 
@@ -95,6 +107,15 @@ exports.submissions = function(req, res) {
 
 exports.sevenLastOffersAPI = function(req, res) {
 	Job.find({}).sort({postedDate: -1}).limit(7).exec(function(err, jobs) { 
+		if(err) {
+			console.log('Unable to retrieve last seven job offers.');
+		}
+		res.send(JSON.stringify(jobs));
+	});
+};
+
+exports.allOffersAPI = function(req, res) {
+	Job.find({}).sort({postedDate: -1}).exec(function(err, jobs) { 
 		if(err) {
 			console.log('Unable to retrieve last seven job offers.');
 		}

@@ -5,11 +5,13 @@ block contentProfile
    div.row-fluid(style="margin-bottom:20px")
       a.btn.btn-primary.btn-large(href="/job") Post New Offer
    div.row-fluid 
-      div(ng-controller="jobOfferCtrl")  
+      div(ng-controller="myJobOfferListCtrl", ng-init="init()")  
          div.accordion.span8.offset1#accordion2
             div.accordion-group(ng-repeat="item in data.items")
                div.accordion-heading
                   a.accordion-toogle(data-toggle="collapse", data-parent="#accordion2", href="#collapse{{$index + 1}}") {{item.title}}
+                  p
+                     a(href="/api/delete/{{item._id}}") X
                div.accordion-body.collapse(id="collapse{{$index + 1}}")
                   div.accordion-inner
                      p {{item.description}}

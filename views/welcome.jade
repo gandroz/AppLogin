@@ -31,9 +31,9 @@ html
                     div.span6
                        script(src="/js/angular.min.js")
                        script(src="/js/angular-resource.min.js")
-                       script(src="/js/app/app.js")
+                       script(src="/js/app/appWelcome.js")
                        script(src="/js/controllers/lastJobOffersCtrl.js") 
-                       div.row-fluid(ng-app="myApp", ng-controller="lastJobOffersCtrl")
+                       div.row-fluid(ng-app="appWelcome", ng-controller="lastJobOffersCtrl")
                           #myCarousel.carousel.slide
                              div.carousel-inner
                                 div.item(ng-repeat="item in data.items", ng-class="{'active': $index == 0}")
@@ -41,7 +41,8 @@ html
                                          h1 {{item.title}}
                                          p.lead {{item.description}}
                                          p.lead {{item.user.username}}
-                                         a.btn.btn-primary(href='#') Sign up today
+                                         if user
+                                            a.btn.btn-primary(href='#') Apply
                              a.left.carousel-control(href='#myCarousel', data-slide='prev')&lsaquo;
                              a.right.carousel-control(href='#myCarousel', data-slide='next')&rsaquo;
                              div

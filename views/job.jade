@@ -1,12 +1,20 @@
 extends profile
 
 block contentProfile
-   div.row-fluid 
+   script(src="/js/controllers/jobOfferCtrl.js")
+   div.row-fluid(ng-controller="myJobOfferListCtrl")
       div.offset1.span4
-         form.form-signin(method='post', , action='/job')
+         form.form-signin
             h2.form-signin-heading Enter a new job offer
-            input.input-block-level(type='text', name='title', placeholder='Title')
-            textarea.input-block-level(rows = 10, name='description', placeholder='Job description')
-            input.input-block-level(type='text', name='salary', placeholder='Proposed salary')
-            input.input-block-level(type='text', name='dueDate', placeholder='DueDate')
-            button.btn.btn-large.btn-primary(type='submit') Create
+            input.input-block-level(type='text', name='job.title', placeholder='Title', ng:model="job.title")
+            textarea.input-block-level(rows = 10, name='job.description', placeholder='Job description', ng:model="job.description")
+            input.input-block-level(type='text', name='job.salary', placeholder='Proposed salary', ng:model="job.salary")
+            input.input-block-level(type='text', name='job.dueDate', placeholder='DueDate', ng:model="job.dueDate")
+            select.input-block-level.optional(name='job.category', ng:model="job.category")
+               option Babysitting
+               option Construction
+               option Home help
+               option Homework assistance
+            p
+               button.btn.btn-large.btn-primary(type='submit', ng:click="save()") Create
+               button.btn.btn-large(type='submit', ng:click="cancel()") Cancel

@@ -98,8 +98,8 @@ line-height: 30px;
     }
     
     .carousel-inner {
-      background-color: transparent;
-      border:solid;
+      background-color: rgb(85,85,85);
+      border: 1px solid;
       height: 200px;
     }
     

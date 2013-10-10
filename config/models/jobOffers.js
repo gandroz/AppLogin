@@ -6,12 +6,13 @@ var mongoose = require('mongoose')
 
 //Profile schema
 var jobOfferSchema = new Schema({
-	user: { type : Schema.ObjectId, ref : 'User' },
+	user: { type : Schema.ObjectId, ref : 'User', required: true },
 	title: { type: String, required: true, unique: true },
 	description: { type: String, required: true },
 	salary: { type: Number },
-	dueDate: { type: Date, required: true },
-	postedDate: { type: Date, default: Date.now }
+	dueDate: { type: Date },
+	postedDate: { type: Date, default: Date.now },
+	category: { type: String, required: true }
 });
 
 // Export profile model

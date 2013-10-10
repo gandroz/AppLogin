@@ -13,6 +13,8 @@ var profileSchema = new Schema({
 	address: { type: String },
 	city: { type: String },
 	zipcode: { type: String },
+	telephone: { type: String },
+	cellular: { type: String },
 });
 
 // Export profile model

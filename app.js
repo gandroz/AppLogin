@@ -1,4 +1,12 @@
 // Example from https://github.com/jaredhanson/passport-local/tree/master/examples/express3-mongoose
+
+/*
+ * Pour ajouter des changements : git add .
+ * Pour commiter les changements : git commit -m "message"
+ * Pour pousser sur github : git push dev dev
+ * Pour pousser sur heroku : git push dev-heroku dev:master
+ */
+
 var express = require('express')
   , app = express()
   , mongoose = require('mongoose')

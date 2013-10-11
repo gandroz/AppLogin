@@ -75,26 +75,6 @@ app.del('/api/allMyPostedJobs/:jobId', pass.ensureAuthenticated, jobOffers_route
 app.get('/api/lastSevenJobs', jobOffers_routes.sevenLastOffersAPI);
 app.get('/api/allJobs', pass.ensureAuthenticated, jobOffers_routes.allOffersAPI);
 
-/*
- * New for angular
- * REST API
- */
-var job = require('./routes/jobs');
-app.post('/jobs/create',job.create);
-//app.del('/jobs/:jobId',job.remove);
-app.get('/jobs/:title',job.jobByTitle);
-app.get('/jobs/mine',job.allMine);
-app.get('/jobs/last',job.sevenLastOffers);
-app.get('/jobs',job.all);
-/*
- * Routing
- */
-app.get('/jobAngular',function(req,res) {res.render("jobAngular");});
-app.get('/partials/:name', function(req,res) {
-	var name = req.params.name;
-	res.render("partials/" + name);
-});
-
 
 app.listen(port, function() {
   console.log('Express server listening on port: ' + port);

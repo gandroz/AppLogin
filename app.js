@@ -3,8 +3,10 @@
 /*
  * Pour ajouter des changements : git add .
  * Pour commiter les changements : git commit -m "message"
- * Pour pousser sur github : git push dev dev
- * Pour pousser sur heroku : git push dev-heroku dev:master
+ * Pour pousser les commit :
+ *         git push [remote name] local_branch:remote_branch
+ * Pour pousser sur github (de dev à dev) : git push GitHub dev:dev
+ * Pour pousser sur heroku (de dev à master) : git push dev-heroku dev:master
  */
 
 var express = require('express')

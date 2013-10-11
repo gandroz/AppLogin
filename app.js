@@ -75,6 +75,9 @@ app.del('/api/allMyPostedJobs/:jobId', pass.ensureAuthenticated, jobOffers_route
 app.get('/api/lastSevenJobs', jobOffers_routes.sevenLastOffersAPI);
 app.get('/api/allJobs', pass.ensureAuthenticated, jobOffers_routes.allOffersAPI);
 
+/*
+ * Just to test commit to Git from cloud9
+ */
 
 app.listen(port, function() {
   console.log('Express server listening on port: ' + port);

@@ -47,11 +47,16 @@ exports.create = function(req, res) {
 
 exports.remove = function(req,res) {
 	var jobId = req.params.jobId;
-	Job.findByIdAndRemove(jobId, function(err) {
-	    if (err) { 
+	Job.findByIdAndRemove(jobId, function(err, job) {
+	    if (err) {
+	    	console.log('An error hase occured while trying to delete job with Id: ' + jobId);
 	    	res.redirect('/home'); 
-	    }	
-	    res.redirect('/offers');
+	    }
+	    else {
+	        //res.redirect('/offers');
+	        console.log('Job with Id ' + jobId + ' has well been removed from DB');
+	        res.send(JSON.stringify(job));
+	    }
 	});
 };
 

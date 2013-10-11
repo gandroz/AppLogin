@@ -10,8 +10,7 @@ block contentProfile
             div.accordion-group(ng-repeat="item in data.items")
                div.accordion-heading
                   a.accordion-toogle(data-toggle="collapse", data-parent="#accordion2", href="#collapse{{$index + 1}}") {{item.title}}
-                  p
-                     a(href="/api/delete/{{item._id}}") X
+                  button.btn.btn-danger.pull-right(ng:click="remove(item)") X
                div.accordion-body.collapse(id="collapse{{$index + 1}}")
                   div.accordion-inner
                      p {{item.description}}

@@ -19,8 +19,8 @@ block content
                   li 
                      a(href="#") Link
            div.span9
-              script(src="/js/angular.min.js")
-              script(src="/js/angular-resource.min.js")
+              script(src="/js/lib/angular.min.js")
+              script(src="/js/lib/angular-resource.min.js")
               script(src="/js/app/app.js")
               script(src="/js/controllers/lastJobOffersCtrl.js") 
               div.row-fluid(ng-app="myApp", ng-controller="lastJobOffersCtrl")
@@ -37,4 +37,4 @@ block content
                     div
                        ol.carousel-indicators
                           li(ng-repeat="item in data.items", data-target='#myCarousel', data-slice-to="{{$index}}", ng-class="{'active': $index == 0}")
-                 script(src='/js/carouselController.js');
+                 script(src='/js/lib/carouselController.js');

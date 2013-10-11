@@ -71,7 +71,7 @@ app.post('/job', pass.ensureAuthenticated, jobOffers_routes.create);
 app.get('/job/:title', pass.ensureAuthenticated, jobOffers_routes.offersByTitle);
 app.get('/api/allMyPostedJobs', pass.ensureAuthenticated, jobOffers_routes.allMyPostedJobsAPI);
 app.post('/api/allMyPostedJobs', pass.ensureAuthenticated, jobOffers_routes.create);
-app.get('/api/delete/:jobId', pass.ensureAuthenticated, jobOffers_routes.remove);
+app.del('/api/allMyPostedJobs/:jobId', pass.ensureAuthenticated, jobOffers_routes.remove);
 app.get('/api/lastSevenJobs', jobOffers_routes.sevenLastOffersAPI);
 app.get('/api/allJobs', pass.ensureAuthenticated, jobOffers_routes.allOffersAPI);
 

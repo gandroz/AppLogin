@@ -1,4 +1,4 @@
-function myJobOfferListCtrl($scope, $location, myJobs) {
+function myJobOfferListCtrl($scope, $log, $location, $window, myJobs) {
 	$scope.data = {};
 	
 	$scope.init = function(){
@@ -7,17 +7,27 @@ function myJobOfferListCtrl($scope, $location, myJobs) {
 			});
 		};
     
-    $scope.save = function() {
+    $scope.create = function() {
     	var newJob = new myJobs($scope.job);
-    	newJob.$save(function(err) {
-    		if(err)
-    			console.log('Impossible to create new job');
+    	newJob.$create(function(job) {
+    		if(!job)
+    			$log.log('Impossible to create new job');
     		else {
-    			console.log('Ready to redirect');
-    			$location.path('/offers');
+    			$window.location.href = '/offers';
     		}
     	});    	
-    };    
+    };
+    
+    $scope.cancel = function() {
+    	$window.location.href = '/offers';
+    };
+    
+    $scope.remove = function(job) {
+    	var id = job._id;
+    	job.$remove({jobId: id}, function(){
+    		$window.location.href = '/offers';
+    	});
+    };
 }
 
 function jobOfferListCtrl($scope, Jobs)  {

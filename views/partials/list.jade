@@ -1,9 +1,0 @@
-section(data-ng-init="find()")
-  h2.
-    Liste exhaustive des jobs
-  ul
-    li(data-ng-repeat="job in jobs")
-      span {{job.author}}
-      h2 
-        a(data-ng-href="/jobAngular/viewjob/{{job.title}}") {{job.title}}
-      div {{job.description}}

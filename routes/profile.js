@@ -26,6 +26,21 @@ exports.load = function(req, res) {
 	    if (err) { 
 	    	res.redirect('/home'); 
 	    }	    
+	    res.render("profile", {
+	  	  title: 'Profile',
+	  	  id: 'profile',
+	  	  profile: profile,
+	  	  user: req.user
+	    });
+	});  
+};
+
+exports.loadProfile = function(req, res) {
+	var user = req.user;
+	Profile.findOne({ username: user.username }, function(err, profile) {
+	    if (err) { 
+	    	res.redirect('/home'); 
+	    }	    
 	    res.render("profileUpdate", {
 	  	  title: 'Profile',
 	  	  id: 'profile',

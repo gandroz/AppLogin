@@ -46,7 +46,7 @@ exports.logout = function(req, res) {
 	var name = req.user.username;
 	req.logout();
 	console.log('User ' + name + ' has logged out.');
-	res.redirect('/home');
+	res.redirect('/');
 };
 
 exports.register = function(req, res) {

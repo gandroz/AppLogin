@@ -67,6 +67,9 @@ app.get('/home', node_routes.home);
 // User pages
 app.get('/profile', pass.ensureAuthenticated, profile_routes.load);
 app.post('/profile', pass.ensureAuthenticated, profile_routes.update);
+
+app.get('/profileUpdate', pass.ensureAuthenticated, profile_routes.loadProfile);
+
 app.get('/offers', pass.ensureAuthenticated, jobOffers_routes.offers);
 app.get('/submissions', pass.ensureAuthenticated, jobOffers_routes.submissions);
 app.get('/login', node_routes.login);

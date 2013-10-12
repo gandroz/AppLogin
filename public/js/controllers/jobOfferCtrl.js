@@ -1,4 +1,4 @@
-function myJobOfferListCtrl($scope, $log, $location, $window, myJobs) {
+function myJobOfferListCtrl($scope, $log, $location, $window, $route,  myJobs) {
 	$scope.data = {};
 	
 	$scope.init = function(){
@@ -13,19 +13,19 @@ function myJobOfferListCtrl($scope, $log, $location, $window, myJobs) {
     		if(!job)
     			$log.log('Impossible to create new job');
     		else {
-    			$window.location.href = '/offers';
+    			$location.path('/offers');
     		}
     	});    	
     };
     
     $scope.cancel = function() {
-    	$window.location.href = '/offers';
+    	$location.path('/offers');
     };
     
     $scope.remove = function(job) {
     	var id = job._id;
     	job.$remove({jobId: id}, function(){
-    		$window.location.href = '/offers';
+    		$route.reload();
     	});
     };
 }

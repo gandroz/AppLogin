@@ -173,8 +173,15 @@ color: #ccccff;
        background-color: rgba(255, 255, 255, 0.75);
     }
         
-    .form-signin {
-        max-width: 300px;
+    .form-login{
+       max-width: 300px;
+    }
+    
+    .form-job{
+       max-width: 600px;
+    }    
+        
+    .form-signin {        
         padding: 19px 29px 29px;
         margin: 0 auto 20px;
         background-color: #fff;

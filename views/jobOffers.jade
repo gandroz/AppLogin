@@ -1,8 +1,4 @@
-extends profile
-
-block contentProfile   
-   script(src="/js/controllers/jobOfferCtrl.js") 
-   div.row-fluid(style="margin-bottom:20px")
+div.row-fluid(style="margin-bottom:20px")
       a.btn.btn-primary.btn-large(href="/job") Post New Offer
    div.row-fluid 
       div(ng-controller="myJobOfferListCtrl", ng-init="init()")  
@@ -15,3 +11,4 @@ block contentProfile
                   div.accordion-inner
                      p {{item.description}}
                      p {{item.author}}         
+                     script(src="/js/controllers/jobOfferCtrl.js") 

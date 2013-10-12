@@ -1,7 +1,4 @@
-extends profile
-
-block contentProfile
-   div.row-fluid
+div.row-fluid
       form.form-horizontal.span10.offset1(method='post', action='/profile')
                   h2.well.well-small
                     = 'My Profile (' +  user.username + ')'

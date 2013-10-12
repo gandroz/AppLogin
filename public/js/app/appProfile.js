@@ -5,6 +5,30 @@
 var myApp = angular.module('appProfile', ['ngResource']);
 
 /*
+ * Config
+ */
+myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$locationProvider){
+	$routeProvider
+	   .when('/profile', {
+		   templateUrl: '/profileUpdate'
+	   })
+	   .when('/offers', {
+		   controller: 'myJobOfferListCtrl',
+		   templateUrl: '/offers'
+	   })
+	   .when('/job', {
+		   controller: 'myJobOfferListCtrl',
+		   templateUrl: '/job'
+	   })
+	   .when('/submissions', {
+		   controller: 'myJobOfferListCtrl',
+		   templateUrl: '/submissions'
+	   })
+	   .otherwise({redirectTo: '/'});
+	$locationProvider.html5Mode(true);
+}]);
+
+/*
  * Services
  */
 myApp.factory('myJobs',['$resource', function($resource) {

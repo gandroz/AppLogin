@@ -5,8 +5,8 @@ block content
    script(src="/js/lib/angular-resource.min.js")
    script(src="/js/app/appProfile.js")
    script(src="/js/controllers/navBarCtrl.js")
-   div.container-fluid
-      div.row-fluid(ng-app="appProfile")
+   div.container-fluid(ng-app="appProfile")
+      div.row-fluid
          div.span3(ng-controller="navBarCtrl")
            div.well.sidebar-nav
              ul.nav.nav-list
@@ -20,5 +20,4 @@ block content
                   a(href="/offers") Offers                  
                li(ng-class="{ active: isActive('/submissions')}") 
                   a(href="/submissions") Submissions
-         div.span9            
-            block contentProfile               
+         div.span9(ng-view)                        

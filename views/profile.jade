@@ -5,13 +5,14 @@ block content
    script(src="/js/lib/angular-resource.min.js")
    script(src="/js/app/appProfile.js")
    script(src="/js/controllers/navBarCtrl.js")
-   div.container-fluid(ng-app="appProfile")
+   script(src="/js/controllers/profileCtrl.js")
+   div.container-fluid(ng-app="appProfile", ng-controller="profileCtrl", ng-init="init()")
       div.row-fluid
          div.span3(ng-controller="navBarCtrl")
            div.well.sidebar-nav
              ul.nav.nav-list
-               li.well.nav-header 
-                  = 'My Profile (' +  user.username + ')'
+               li.well.nav-header.
+                  My Profile ({{data.profile.username}})
                li(ng-class="{ active: isActive('/profile')}") 
                   a(href="/profile") Update profile
                li.divider

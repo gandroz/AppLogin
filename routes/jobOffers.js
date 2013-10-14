@@ -8,21 +8,9 @@ var mongoose = require('mongoose')
   , dbProfile = require('../config/models/profile')
   , Profile = dbProfile.profileModel;
   
-
-exports.jobs = function (req, res) {
-	var user = req.user;
-	Profile.findOne({ username: user.username }, function(err, profile) {
-	    if (err) { 
-	    	res.redirect('/home'); 
-	    }	    
-	    res.render("job", {
-	  	  title: 'Profile',
-	  	  id: 'profile',
-	  	  profile: profile,
-	  	  user: req.user
-	    });
-	});
-};
+/*
+ * REST API
+ */
 
 exports.create = function(req, res) {
 	var user = req.user;
@@ -60,32 +48,17 @@ exports.remove = function(req,res) {
 	});
 };
 
-exports.offers = function(req, res) {
-	var user = req.user;
-	Profile.findOne({ username: user.username }, function(err, profile) {
+exports.jobById = function(req, res) {
+	var id = req.params.jobId;
+	Job.find({ _id: id }, function(err, job) {
 	    if (err) { 
 	    	res.redirect('/home'); 
 	    }	    
-	    res.render("jobOffers", {
-	  	  title: 'Profile',
-	  	  id: 'profile',
-	  	  profile: profile,
-	  	  user: req.user
-	    });
-	});  
+	    res.send(JSON.stringify(job));
+	});
 };
 
-exports.offersByTitle = function(req, res) {
-	var user = req.user;
-	var job = new Job({ user: user, 
-        title: "title",
-        description: "description",
-        salary: "salary",
-        dueDate: Date.now});
-	res.send(JSON.stringify(job));
-};
-
-exports.allMyPostedJobsAPI = function(req, res) {
+exports.allMyJobs = function(req, res) {
 	var user = req.user;    
 	Job.find({ user: user }, function(err, jobs) {
 	    if (err) { 
@@ -95,22 +68,7 @@ exports.allMyPostedJobsAPI = function(req, res) {
 	});
 };
 
-exports.submissions = function(req, res) {
-	var user = req.user;
-	Profile.findOne({ username: user.username }, function(err, profile) {
-	    if (err) { 
-	    	res.redirect('/home'); 
-	    }	    
-	    res.render("jobSubmissions", {
-	  	  title: 'Profile',
-	  	  id: 'profile',
-	  	  profile: profile,
-	  	  user: req.user
-	    });
-	});  
-};
-
-exports.sevenLastOffersAPI = function(req, res) {
+exports.sevenLastJobs = function(req, res) {
 	Job.find({}).sort({postedDate: -1}).limit(7).exec(function(err, jobs) { 
 		if(err) {
 			console.log('Unable to retrieve last seven job offers.');
@@ -119,7 +77,7 @@ exports.sevenLastOffersAPI = function(req, res) {
 	});
 };
 
-exports.allOffersAPI = function(req, res) {
+exports.all = function(req, res) {
 	Job.find({}).sort({postedDate: -1}).exec(function(err, jobs) { 
 		if(err) {
 			console.log('Unable to retrieve last seven job offers.');

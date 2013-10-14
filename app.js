@@ -61,36 +61,39 @@ app.configure(function() {
 
 // Basic pages
 app.get('/', node_routes.welcome);
-app.get('/index', node_routes.index);
-app.get('/home', node_routes.home);
+app.get('/index', pass.ensureAuthenticated, node_routes.index);
+app.get('/home', pass.ensureAuthenticated, node_routes.home);
 
-// User pages
-app.get('/profile', pass.ensureAuthenticated, profile_routes.load);
-app.post('/profile', pass.ensureAuthenticated, profile_routes.update);
-
-app.get('/profileUpdate', pass.ensureAuthenticated, profile_routes.loadProfile);
-
-app.get('/offers', pass.ensureAuthenticated, jobOffers_routes.offers);
-app.get('/submissions', pass.ensureAuthenticated, jobOffers_routes.submissions);
+/*
+ * Login/out pages
+ */
 app.get('/login', node_routes.login);
 app.post('/login', user_routes.login);
 app.get('/logout', user_routes.logout);
-//app.get('/about', node_routes.about);
-//app.get('/contact', node_routes.contact);
 app.get('/register', node_routes.register);
 app.post('/register', user_routes.register);
-app.get('/job', pass.ensureAuthenticated, jobOffers_routes.jobs);
-app.post('/job', pass.ensureAuthenticated, jobOffers_routes.create);
-app.get('/job/:title', pass.ensureAuthenticated, jobOffers_routes.offersByTitle);
-app.get('/api/allMyPostedJobs', pass.ensureAuthenticated, jobOffers_routes.allMyPostedJobsAPI);
-app.post('/api/allMyPostedJobs', pass.ensureAuthenticated, jobOffers_routes.create);
-app.del('/api/allMyPostedJobs/:jobId', pass.ensureAuthenticated, jobOffers_routes.remove);
-app.get('/api/lastSevenJobs', jobOffers_routes.sevenLastOffersAPI);
-app.get('/api/allJobs', pass.ensureAuthenticated, jobOffers_routes.allOffersAPI);
 
 /*
- * Just to test commit to Git from cloud9
+ * Profile pages
  */
+app.get('/profile', pass.ensureAuthenticated, profile_routes.profile);
+app.get('/profileUpdate', pass.ensureAuthenticated, profile_routes.profileUpdate);
+app.post('/profileUpdate', pass.ensureAuthenticated, profile_routes.update);
+app.get('/offers', pass.ensureAuthenticated, profile_routes.offers);
+app.get('/jobs', pass.ensureAuthenticated, profile_routes.jobs);
+app.get('/submissions', pass.ensureAuthenticated, profile_routes.submissions);
+app.get('/api/profile', pass.ensureAuthenticated, profile_routes.profileAPI);
+app.post('/api/profile', pass.ensureAuthenticated, profile_routes.updateAPI);
+
+/*
+ * API REST
+ */
+app.get('/api/myJobs', pass.ensureAuthenticated, jobOffers_routes.allMyJobs);
+app.get('/api/myJobs/:jobId', pass.ensureAuthenticated, jobOffers_routes.jobById);
+app.post('/api/myJobs', pass.ensureAuthenticated, jobOffers_routes.create);
+app.del('/api/myJobs/:jobId', pass.ensureAuthenticated, jobOffers_routes.remove);
+app.get('/api/lastSevenJobs', jobOffers_routes.sevenLastJobs);
+app.get('/api/jobs', pass.ensureAuthenticated, jobOffers_routes.all);
 
 app.listen(port, function() {
   console.log('Express server listening on port: ' + port);

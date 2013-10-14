@@ -1,31 +1,32 @@
 div.row-fluid
-      form.form-horizontal.span10.offset1(method='post', action='/profile')
-                  h2.well.well-small
-                    = 'My Profile (' +  user.username + ')'
+      form.form-horizontal.span10.offset1(ng-init="init()")
+                  h2.well.well-small.
+                     My Profile ({{data.profile.username}})
                   div.control-group
                      label.control-label(for='username') Username: 
                      div.controls
-                        input.input-block-level.span10#username(type='text', name='username', value=profile.username) 
+                        input.input-block-level.span10#username(type='text', name='username', ng-model="data.profile.username") 
                   div.control-group
                      label.control-label(for='email') Email: 
                      div.controls
-                        input.input-block-level.span10#email(type='email', name='email', value=profile.email)
+                        input.input-block-level.span10#email(type='email', name='email', ng-model="data.profile.email")
                   div.control-group
                      label.control-label(for='age') Age: 
                      div.controls
-                        input.input-block-level.span10#age(type='text', name='age', value=profile.age)
+                        input.input-block-level.span10#age(type='text', name='age', ng-model="data.profile.age")
                   div.control-group
                      label.control-label(for='address') Address: 
                      div.controls
-                        input.input-block-level.span10#address(type='text', name='address', value=profile.address)
+                        input.input-block-level.span10#address(type='text', name='address', ng-model="data.profile.address")
                   div.control-group
                      label.control-label(for='city') City: 
                      div.controls
-                        input.input-block-level.span10#city(type='text', name='city', value=profile.city)
+                        input.input-block-level.span10#city(type='text', name='city', ng-model="data.profile.city")
                   div.control-group
                      label.control-label(for='zipcode') Zip-Code: 
                      div.controls
-                        input.input-block-level.span10#zipcode(type='text', name='zipcode', value=profile.zipcode)                    
+                        input.input-block-level.span10#zipcode(type='text', name='zipcode', ng-model="data.profile.zipcode")                    
                   div.btn-toolbar
-                     button.btn.btn-small.btn-primary(type='submit') Save
+                     button.btn.btn-small.btn-primary(ng-click="update()") Save
                      button.btn.btn-small(type='button', onClick="window.location='/';") Cancel
+                     {{data.updateStatus}}

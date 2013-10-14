@@ -10,15 +10,16 @@ var myApp = angular.module('appProfile', ['ngResource']);
 myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$locationProvider){
 	$routeProvider
 	   .when('/profile', {
+		   controller: 'profileCtrl',
 		   templateUrl: '/profileUpdate'
 	   })
 	   .when('/offers', {
 		   controller: 'myJobOfferListCtrl',
 		   templateUrl: '/offers'
 	   })
-	   .when('/job', {
+	   .when('/jobs', {
 		   controller: 'myJobOfferListCtrl',
-		   templateUrl: '/job'
+		   templateUrl: '/jobs'
 	   })
 	   .when('/submissions', {
 		   controller: 'myJobOfferListCtrl',
@@ -32,7 +33,7 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
  * Services
  */
 myApp.factory('myJobs',['$resource', function($resource) {
-	return $resource('/api/allMyPostedJobs/:jobId',
+	return $resource('/api/myJobs/:jobId',
 			{ jobId: '@jobId' },
 			{
 				/*
@@ -56,12 +57,22 @@ myApp.factory('myJobs',['$resource', function($resource) {
 }]);
 
 myApp.factory('Jobs',['$resource', function($resource) {
-	return $resource('/api/allOffersAPI',
+	return $resource('/api/jobs',
 			{},
 			{
 				query:{
-					'method': 'GET', 
-					'params': {}, 
+					method: 'GET', 
+					params: {}, 
 					isArray: true}
+			});
+}]);
+
+myApp.factory('Profile',['$resource', function($resource) {
+	return $resource('/api/profile',
+			{},
+			{
+				query:{
+					method: 'GET',
+					isArray: false}
 			});
 }]);

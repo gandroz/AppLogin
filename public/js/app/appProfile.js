@@ -76,3 +76,22 @@ myApp.factory('Profile',['$resource', function($resource) {
 					isArray: false}
 			});
 }]);
+
+myApp.directive('datepicker', function() {
+	  return {
+		restrict: 'C',   
+	    require: 'ngModel',
+	    link: function(scope, el, attr, ngModelCtrl) {
+	    	$(function(){
+	    		el.datepicker({
+	    			dateFormat:'dd MM yy',
+	    			inline: true,
+	    			onSelect: function(dateText, inst) {
+	    				ngModelCtrl.$setViewValue(dateText);
+	    				scope.$apply();
+	    			}
+	          });
+	        });
+	      }
+	    };
+	  });

@@ -15,6 +15,7 @@ var mongoose = require('mongoose')
 exports.create = function(req, res) {
 	var user = req.user;
 	var job = new Job({ user: user, 
+		                author: user.username,
 		                title: req.body.title,
 		                description: req.body.description,
 		                salary: req.body.salary,

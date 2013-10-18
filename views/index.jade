@@ -18,7 +18,7 @@ block content
                      a(href="#") Link
                   li 
                      a(href="#") Link
-           div.span9
+           div.span9              
               script(src="/js/lib/angular.min.js")
               script(src="/js/lib/angular-resource.min.js")
               script(src="/js/app/appWelcome.js")
@@ -28,10 +28,11 @@ block content
                     div.carousel-inner
                        div.item(ng-repeat="item in data.items", ng-class="{'active': $index == 0}")
                           div.container.carousel-jobItem
+                             div.jobDescription
                                 h1 {{item.title}}
                                 p.lead {{item.description}}
-                                p.lead {{item.author}}
-                                a.btn.btn-large.btn-primary(href='#') Apply
+                                p.lead.pull-right {{item.author}}
+                             a.btn.btn-large.btn-primary(href='#') Apply
                     a.left.carousel-control(href='#myCarousel', data-slide='prev')&lsaquo;
                     a.right.carousel-control(href='#myCarousel', data-slide='next')&rsaquo;
                     div

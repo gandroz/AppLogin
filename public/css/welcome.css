@@ -138,3 +138,8 @@ line-height: 30px;
     .carousel-indicators li {
        background-color: rgba(255, 255, 255, 0.75);
     }
+    
+    .jobDescription {
+   max-height: 110px;
+   overflow: hidden;
+}

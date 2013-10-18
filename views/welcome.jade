@@ -38,15 +38,16 @@ html
                              div.carousel-inner
                                 div.item(ng-repeat="item in data.items", ng-class="{'active': $index == 0}")
                                    div.container.carousel-jobItem
+                                      div.jobDescription
                                          h1 {{item.title}}
                                          p.lead {{item.description}}
                                          p.lead {{item.user.username}}
-                                         if user
-                                            a.btn.btn-primary(href='#') Apply
+                                      if user
+                                         a.btn.btn-primary(href='#') Apply
                              a.left.carousel-control(href='#myCarousel', data-slide='prev')&lsaquo;
                              a.right.carousel-control(href='#myCarousel', data-slide='next')&rsaquo;
                              div
                                 ol.carousel-indicators
                                    li(ng-repeat="item in data.items", data-target='#myCarousel', data-slice-to="{{$index}}", ng-class="{'active': $index == 0}")
                           script(src='/js/lib/carouselController.js');
-                       img(src="/img/job-seeking.png")
+                       img(src="/images/job-seeking.png")

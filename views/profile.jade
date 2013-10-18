@@ -1,11 +1,6 @@
 extends layout
 
-block content
-   script(src="/js/lib/angular.min.js")
-   script(src="/js/lib/angular-resource.min.js")
-   script(src="/js/app/appProfile.js")
-   script(src="/js/controllers/navBarCtrl.js")
-   script(src="/js/controllers/profileCtrl.js")
+block content   
    div.container-fluid(ng-app="appProfile", ng-controller="profileCtrl", ng-init="init()")
       div.row-fluid
          div.span3(ng-controller="navBarCtrl")

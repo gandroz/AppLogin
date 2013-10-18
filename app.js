@@ -18,10 +18,9 @@ var express = require('express')
   , port = process.env.PORT || 8080;
 
 //Database connect
-var uristring = 
-  process.env.MONGOLAB_URI || 
-  process.env.MONGOHQ_URL || 
-  'mongodb://localhost/AppLoginDB';
+var usernameHQ = process.env.UserNameMongoHQ;
+var pwd = process.env.PassWordMongoHQ;
+var uristring = 'mongodb://' + usernameHQ + ':' + pwd + '@emma.mongohq.com:10090/AppJobDB';
 
 var mongoOptions = { db: { safe: true }};
 
@@ -29,7 +28,7 @@ mongoose.connect(uristring, mongoOptions, function (err, res) {
   if (err) { 
     console.log ('ERROR connecting to: ' + uristring + '. ' + err);
   } else {
-    console.log ('Successfully connected to: ' + uristring);
+    console.log ('Successfully connected to MongoHQ');
   }
 });
 

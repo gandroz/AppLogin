@@ -10,5 +10,7 @@ div.row-fluid(style="margin-bottom:20px")
                div.accordion-body.collapse(id="collapse{{$index + 1}}")
                   div.accordion-inner
                      p {{item.description}}
+                     hr
                      p {{item.author}}         
+                     p {{item.dueDate | date:'d MMMM yyyy'}}
                      script(src="/js/controllers/jobOfferCtrl.js") 

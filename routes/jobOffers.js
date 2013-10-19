@@ -69,6 +69,13 @@ exports.allMyJobs = function(req, res) {
 	});
 };
 
+exports.countAll = function(req, res) {
+	Job.count(function(err,c){
+		var count = {"count": c};
+		res.send(JSON.stringify(count));
+	});	
+};
+
 exports.sevenLastJobs = function(req, res) {
 	Job.find({}).sort({postedDate: -1}).limit(7).exec(function(err, jobs) { 
 		if(err) {

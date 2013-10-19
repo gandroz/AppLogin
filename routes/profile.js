@@ -21,7 +21,7 @@ exports.jobs = function (req, res) {
 	    	res.redirect('/home'); 
 	    }	    
 	    res.render("jobs", {
-	  	  title: 'Profile',
+	  	  title: 'Dashboard',
 	  	  id: 'profile',
 	  	  profile: profile,
 	  	  user: req.user
@@ -36,7 +36,7 @@ exports.offers = function(req, res) {
 	    	res.redirect('/home'); 
 	    }	    
 	    res.render("jobOffers", {
-	  	  title: 'Profile',
+	  	  title: 'Dashboard',
 	  	  id: 'profile',
 	  	  profile: profile,
 	  	  user: req.user
@@ -51,19 +51,13 @@ exports.submissions = function(req, res) {
 	    	res.redirect('/home'); 
 	    }	    
 	    res.render("jobSubmissions", {
-	  	  title: 'Profile',
+	  	  title: 'Dashboard',
 	  	  id: 'profile',
 	  	  profile: profile,
 	  	  user: req.user
 	    });
 	});  
 };
-
-
-
-
-
-
 
 
 exports.update = function(req, res){
@@ -87,7 +81,7 @@ exports.profile = function(req, res) {
 	    	res.redirect('/home'); 
 	    }	    
 	    res.render("profile", {
-	  	  title: 'Profile',
+	  	  title: 'Dashboard',
 	  	  id: 'profile',
 	  	  profile: profile,
 	  	  user: req.user
@@ -97,6 +91,21 @@ exports.profile = function(req, res) {
 
 exports.profileUpdate = function(req, res) {		    
 	    res.render("profileUpdate");
+};
+
+exports.dashboard = function(req, res) {
+	var user = req.user;
+	Profile.findOne({ username: user.username }, function(err, profile) {
+	    if (err) { 
+	    	res.redirect('/home'); 
+	    }	    
+	    res.render("dashboard", {
+	  	  title: 'Dashboard',
+	  	  id: 'profile',
+	  	  profile: profile,
+	  	  user: req.user
+	    });
+	});  
 };
 
 

@@ -13,9 +13,12 @@ html
     script(src="/js/lib/angular.min.js")
     script(src="/js/lib/angular-resource.min.js")
     script(src="/js/app/appProfile.js")
+    script(src="/js/app/appWelcome.js")
+    script(src="/js/app/appBacklog.js")
     script(src="/js/controllers/navBarCtrl.js")
-    script(src="/js/controllers/profileCtrl.js")
+    script(src="/js/controllers/backlogCtrl.js")
     script(src="/js/controllers/jobOfferCtrl.js")
+    script(src="/js/controllers/lastJobOffersCtrl.js")               
     
   body
     div.navbar.navbar-inverse.navbar-fixed-top
@@ -31,7 +34,7 @@ html
                  if !user
                     -var obj = { 'home':'Home' }
                  else
-                    -var obj = { 'home':'Home', 'profile':'Profile' }
+                    -var obj = { 'home':'Home', 'profile':'Dashboard' }
                  each val, key in obj
                     if (id == key)
                       li.active

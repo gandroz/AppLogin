@@ -1,11 +1,27 @@
-function myJobOfferListCtrl($scope, $log, $location, $window, $route,  myJobs) {
+function myJobOfferListCtrl($scope, $log, $location, $window, $route,  myJobs, Jobs, CountJob, LastSevenJobs, Profile) {
 	$scope.data = {};
 	
 	$scope.init = function(){
 		myJobs.query(function(res){
-			$scope.data.items = res;
-			});
-		};
+			$scope.data.myJobs = res;
+		});
+		
+		CountJob.getCount(function(res){
+			$scope.count = res.count;
+		});
+		
+		/*Jobs.query(function(res){
+		   $scope.data.items = res;
+	    });*/
+		
+		LastSevenJobs.query(function(res){
+		   $scope.data.lastJobs = res;
+	    });
+		
+		Profile.query(function(res){
+			$scope.data.profile = res;
+		});
+	};
     
     $scope.create = function() {
     	var newJob = new myJobs($scope.job);
@@ -28,11 +44,14 @@ function myJobOfferListCtrl($scope, $log, $location, $window, $route,  myJobs) {
     		$route.reload();
     	});
     };
-}
-
-function jobOfferListCtrl($scope, Jobs)  {
-	$scope.data = {};
-	Jobs.query(function(res){
-		$scope.data.items = res;
-	});
+    
+    $scope.updateProfile = function() {
+		var updatedProfile = $scope.data.profile;
+		updatedProfile.$save(function(profile){
+			if(!profile)
+				$log.log('Error during profile update');
+			else
+				$route.reload();
+		});
+	};
 }

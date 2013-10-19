@@ -1,19 +1,21 @@
 extends layout
 
 block content   
-   div.container-fluid(ng-app="appProfile", ng-controller="profileCtrl", ng-init="init()")
+   div.container-fluid(ng-app="appProfile", ng-controller="myJobOfferListCtrl", ng-init="init()")
       div.row-fluid
          div.span3(ng-controller="navBarCtrl")
            div.well.sidebar-nav
              ul.nav.nav-list
                li.well.nav-header.
                   My Profile ({{data.profile.username}})
-               li(ng-class="{ active: isActive('/profile')}") 
-                  a(href="/profile") Update profile
+               li(ng-class="{ active: isActive('dashboard')}") 
+                  a(href="/dashboard") Dashboard   
+               li(ng-class="{ active: isActive('Update')}") 
+                  a(href="/profUpdate") Update profile
                li.divider
                li.well.nav-header My Jobs
-               li(ng-class="{ active: isActive('/offers')}") 
+               li(ng-class="{ active: isActive('offers')}") 
                   a(href="/offers") Offers                  
-               li(ng-class="{ active: isActive('/submissions')}") 
+               li(ng-class="{ active: isActive('submissions')}") 
                   a(href="/submissions") Submissions
          div.span9(ng-view)                        

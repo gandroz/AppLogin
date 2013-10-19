@@ -1,0 +1,27 @@
+div.row-fluid(ng-init="init()")
+   #myCarousel.carousel.slide
+      div.carousel-inner
+         div.item(ng-repeat="item in data.lastJobs", ng-class="{'active': $index == 0}")
+            div.container.carousel-jobItem
+               div.jobDescription
+                  h1 {{item.title}}
+                  p.lead {{item.description}}
+                  p.lead.pull-right {{item.author}}
+               a.btn.btn-large.btn-primary(href='#') Apply
+      a.left.carousel-control(href='#myCarousel', data-slide='prev')&lsaquo;
+      a.right.carousel-control(href='#myCarousel', data-slide='next')&rsaquo;
+      div
+         ol.carousel-indicators
+            li(ng-repeat="item in data.lastJobs", data-target='#myCarousel', data-slice-to="{{$index}}", ng-class="{'active': $index == 0}")
+            script(src='/js/lib/carouselController.js');
+   div.accordion.span8.offset1#accordion2
+      div.accordion-group(ng-repeat="item in data.myJobs")
+         div.accordion-heading
+            a.accordion-toogle(data-toggle="collapse", data-parent="#accordion2", href="#collapse{{$index + 1}}") {{item.title}}
+            button.btn.btn-danger.pull-right(ng:click="remove(item)") X
+         div.accordion-body.collapse(id="collapse{{$index + 1}}")
+            div.accordion-inner
+               p {{item.description}}
+               hr
+               p {{item.author}}         
+               p {{item.dueDate | date:'d MMMM yyyy'}}

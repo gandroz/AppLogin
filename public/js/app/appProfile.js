@@ -9,9 +9,17 @@ var myApp = angular.module('appProfile', ['ngResource']);
  */
 myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$locationProvider){
 	$routeProvider
+	   .when('/profUpdate', {
+		   controller: 'myJobOfferListCtrl',
+		   templateUrl: '/profUpdate'
+	   })
 	   .when('/profile', {
-		   controller: 'profileCtrl',
-		   templateUrl: '/profileUpdate'
+		   controller: 'myJobOfferListCtrl',
+		   templateUrl: '/dashboard'
+	   })
+	   .when('/dashboard', {
+		   controller: 'myJobOfferListCtrl',
+		   templateUrl: '/dashboard'
 	   })
 	   .when('/offers', {
 		   controller: 'myJobOfferListCtrl',
@@ -74,6 +82,26 @@ myApp.factory('Profile',['$resource', function($resource) {
 				query:{
 					method: 'GET',
 					isArray: false}
+			});
+}]);
+
+myApp.factory('CountJob',['$resource', function($resource) {
+	return $resource('/api/count',
+			{},
+			{
+				getCount:{
+					method: 'GET',
+					isArray: false}
+			});
+}]);
+
+myApp.factory('LastSevenJobs',['$resource', function($resource) {
+	return $resource('/api/lastSevenJobs',
+			{},
+			{
+				query:{
+					method: 'GET',
+					isArray: true}
 			});
 }]);
 

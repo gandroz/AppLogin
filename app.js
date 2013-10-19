@@ -35,7 +35,8 @@ mongoose.connect(uristring, mongoOptions, function (err, res) {
 //Mongoose models
 var user_routes = require('./routes/user')
   , profile_routes = require('./routes/profile')
-  , jobOffers_routes = require('./routes/jobOffers');
+  , jobOffers_routes = require('./routes/jobOffers')
+  , backlog_routes = require('./routes/backlog.js');
 
 // configure Express
 app.configure(function() {
@@ -76,8 +77,9 @@ app.post('/register', user_routes.register);
  * Profile pages
  */
 app.get('/profile', pass.ensureAuthenticated, profile_routes.profile);
-app.get('/profileUpdate', pass.ensureAuthenticated, profile_routes.profileUpdate);
-app.post('/profileUpdate', pass.ensureAuthenticated, profile_routes.update);
+app.get('/dashboard', pass.ensureAuthenticated, profile_routes.dashboard);
+app.get('/profUpdate', pass.ensureAuthenticated, profile_routes.profileUpdate);
+app.post('/profUpdate', pass.ensureAuthenticated, profile_routes.update);
 app.get('/offers', pass.ensureAuthenticated, profile_routes.offers);
 app.get('/jobs', pass.ensureAuthenticated, profile_routes.jobs);
 app.get('/submissions', pass.ensureAuthenticated, profile_routes.submissions);
@@ -93,6 +95,11 @@ app.post('/api/myJobs', pass.ensureAuthenticated, jobOffers_routes.create);
 app.del('/api/myJobs/:jobId', pass.ensureAuthenticated, jobOffers_routes.remove);
 app.get('/api/lastSevenJobs', jobOffers_routes.sevenLastJobs);
 app.get('/api/jobs', pass.ensureAuthenticated, jobOffers_routes.all);
+app.get('/api/count', pass.ensureAuthenticated, jobOffers_routes.countAll);
+
+app.get('/api/backlog', pass.ensureAuthenticated, backlog_routes.all);
+app.post('/api/backlog', pass.ensureAuthenticated, backlog_routes.create);
+app.del('/api/backlog/:Id', pass.ensureAuthenticated, backlog_routes.remove);
 
 app.listen(port, function() {
   console.log('Express server listening on port: ' + port);

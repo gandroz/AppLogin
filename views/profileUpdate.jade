@@ -27,6 +27,6 @@ div.row-fluid
                      div.controls
                         input.input-block-level.span10#zipcode(type='text', name='zipcode', ng-model="data.profile.zipcode")                    
                   div.btn-toolbar
-                     button.btn.btn-small.btn-primary(ng-click="update()") Save
+                     button.btn.btn-small.btn-primary(ng-click="updateProfile()") Save
                      button.btn.btn-small(type='button', onClick="window.location='/';") Cancel
                      {{data.updateStatus}}

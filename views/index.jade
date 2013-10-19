@@ -9,45 +9,31 @@ block content
                   li.well.nav-header Sidebar
                   li.active 
                      a(href="#") Link
-                  li 
-                     a(href="#") Link
-                  li 
-                     a(href="#") Link
-                  li.well.nav-header Sidebar
-                  li 
-                     a(href="#") Link
-                  li 
-                     a(href="#") Link
-           div.span9              
-              script(src="/js/lib/angular.min.js")
-              script(src="/js/lib/angular-resource.min.js")
-              script(src="/js/app/appWelcome.js")
-              script(src="/js/controllers/lastJobOffersCtrl.js") 
-              div.row-fluid(ng-app="appWelcome", ng-controller="lastJobOffersCtrl")
-                 #myCarousel.carousel.slide
-                    div.carousel-inner
-                       div.item(ng-repeat="item in data.items", ng-class="{'active': $index == 0}")
-                          div.container.carousel-jobItem
-                             div.jobDescription
-                                h1 {{item.title}}
-                                p.lead {{item.description}}
-                                p.lead.pull-right {{item.author}}
-                             a.btn.btn-large.btn-primary(href='#') Apply
-                    a.left.carousel-control(href='#myCarousel', data-slide='prev')&lsaquo;
-                    a.right.carousel-control(href='#myCarousel', data-slide='next')&rsaquo;
-                    div
-                       ol.carousel-indicators
-                          li(ng-repeat="item in data.items", data-target='#myCarousel', data-slice-to="{{$index}}", ng-class="{'active': $index == 0}")
-                 script(src='/js/lib/carouselController.js');
-              ul
-                 li Merge de home et profile ?
-                 li Ajout d'une vue dans le profile pour  ne pas avoir l'update du profile tout de suite, mais plutôt cette page-ci ou la liste des offres postées
-                 li Ajouter dans le home la possibilité de chercher dans la BD selon divers critères et afficher les résultats par pages de 10-25-50...
-                 li Ajouter au modèle de profile : applications
-                 li Ajouter un modèle d'applications (ou submissions comme je l'ai appelé pour l'instant)
-                 li Franciser TOUT
-                 li Pour l'ajout d'une nouvelle offre, plutôt que de le faire dans une page différente, le faire dans la même page avec une animation de fade down ou de quoi du genre. 
-                 li Voir quoi faire avec le menu ici...?
-                 li Revoir le design des offres (size text, champs présents...)
-                 li Bug d'affichage des offres. Quand on clique sur une offre, elle ne s'affiche pas tout de suite, il faut cliquer une seconde fois. Cf: l'URL change.
-                    
+           div.span9(ng-app="appBacklog", ng-controller="backlogCtrl", ng-init="init()")
+              script(type='text/javascript').
+                 function showPanel(){$(".backlogPanel").slideToggle();}
+              button.btn.btn-primary.pull-left(onclick="showPanel();") Nouvelle tâche
+              div.backlogPanel
+                  div.span8.offset1
+                    form
+                       textarea.input-block-level(rows = 10, placeholder='Description de tâche', ng-model="entry.description")
+                       select.input-block-level.optional(name='job.category', ng-model="entry.importance")
+                          option(value="", disabled, selected) Importance
+                          option 1
+                          option 2
+                          option 3
+                          option 4
+                    div.btn-toolbar
+                       button.btn.btn-primary(onclick="showPanel();", ng-click="create()") Create
+                       button.btn(onclick="showPanel();",ng-click="cancel()") Cancel
+
+              div.span12   
+                 div.accordion.acordionLog.span8.offset1#accordion2
+                    div.accordion-group.accordion-groupLog(ng-repeat="item in data.entries")
+                       button.btn.btn-mini.btn-danger.pull-right.buttonLog(ng:click="remove(item)") X
+                       div.accordion-heading.accordion-headingLog
+                          div.limitWidth
+                             a.accordion-toogle(data-toggle="collapse", data-parent="#accordion2", href="#collapse{{$index + 1}}") ({{item.importance}}) {{item.description}}                             
+                       div.accordion-body.collapse(id="collapse{{$index + 1}}")
+                          div.accordion-inner
+                             p {{item.description}}

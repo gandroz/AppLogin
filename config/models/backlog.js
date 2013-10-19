@@ -6,6 +6,7 @@ var mongoose = require('mongoose')
 
 //Profile schema
 var backlogSchema = new Schema({
+	title: { type: String, required: true },
 	importance: { type: Number, required: true },
 	description: { type: String, required: true }
 });

@@ -15,6 +15,9 @@ backlog.factory('logEntries',['$resource', function($resource) {
 				create: {
 				    	method: 'POST'
 				    },
+				update: {
+				    	method: 'POST'
+				    },    
 				remove: {
 				    	method: 'DELETE'
 				    }

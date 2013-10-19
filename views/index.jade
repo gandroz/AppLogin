@@ -9,13 +9,13 @@ block content
                   li.well.nav-header Sidebar
                   li.active 
                      a(href="#") Link
-           div.span9(ng-app="appBacklog", ng-controller="backlogCtrl", ng-init="init()")
-              script(type='text/javascript').
-                 function showPanel(){$(".backlogPanel").slideToggle();}
-              button.btn.btn-primary.pull-left(onclick="showPanel();") Nouvelle tâche
+           div.span9(ng-app="appBacklog", ng-controller="backlogCtrl", ng-init="init()")              
+              div.row-fluid   
+                 button.btn.btn-primary(ng-click="showPanel()") Nouvelle tâche              
               div.backlogPanel
                   div.span8.offset1
-                    form
+                    form.formLog
+                       input.input-block-level(type='text', placeholder='Title', ng-model="entry.title")
                        textarea.input-block-level(rows = 10, placeholder='Description de tâche', ng-model="entry.description")
                        select.input-block-level.optional(name='job.category', ng-model="entry.importance")
                           option(value="", disabled, selected) Importance
@@ -23,17 +23,22 @@ block content
                           option 2
                           option 3
                           option 4
-                    div.btn-toolbar
-                       button.btn.btn-primary(onclick="showPanel();", ng-click="create()") Create
-                       button.btn(onclick="showPanel();",ng-click="cancel()") Cancel
-
+                       div.btn-toolbar
+                          button.btn.btn-primary#actionButton(ng-click="action()") Create
+                          button.btn(ng-click="cancel()") Cancel
+              div.searchInput
+                 form.form-search
+                    span Tri par importance : 
+                    input.input-mini.search-query(type="text", ng-model="search.importance") 
               div.span12   
-                 div.accordion.acordionLog.span8.offset1#accordion2
-                    div.accordion-group.accordion-groupLog(ng-repeat="item in data.entries")
+                 div.acordionLog.span8.offset1#accordion2
+                    div.accordion-group.accordion-groupLog(ng-repeat="item in data.entries | filter:search")
                        button.btn.btn-mini.btn-danger.pull-right.buttonLog(ng:click="remove(item)") X
-                       div.accordion-heading.accordion-headingLog
+                       button.btn.btn-mini.btn-info.pull-right.buttonLog(ng:click="edit(item)") ...
+                       div.accordion-heading.accordion-headingLog(ng-style="{backgroundColor: styles[item.importance-1].bkcolor}")
                           div.limitWidth
-                             a.accordion-toogle(data-toggle="collapse", data-parent="#accordion2", href="#collapse{{$index + 1}}") ({{item.importance}}) {{item.description}}                             
+                             a.accordion-toogle(ng-style="{color: styles[item.importance-1].color}", data-toggle="collapse", data-parent="#accordion2", href="#collapse{{$index + 1}}") ({{item.importance}}) {{item.title}}                             
                        div.accordion-body.collapse(id="collapse{{$index + 1}}")
                           div.accordion-inner
                              p {{item.description}}
+           

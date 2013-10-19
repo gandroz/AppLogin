@@ -19,9 +19,7 @@ exports.all = function(req, res) {
 };
 
 exports.create = function(req, res) {
-	var logEntry = new BacklogEntry({  
-		   importance: req.body.importance,
-		   description: req.body.description});
+	var logEntry = new BacklogEntry(req.body);
 	logEntry.save(function(err) {
 		if(err) {
 			console.log(err);
@@ -31,6 +29,23 @@ exports.create = function(req, res) {
 			console.log('New backlog entry has been posted.');	
 			res.send(JSON.stringify(logEntry));
 		}
+	});
+};
+
+exports.update = function(req, res) {
+	var Id = req.params.Id;
+	var entry = req.body;
+	delete entry._id;
+	BacklogEntry.update({_id: Id}, entry, {safe:true, upsert: true}, function(err, result){
+		if(err) {
+			console.log('Error updating profile. ' + err);
+			res.redirect('/home');
+		}
+		else{
+			console.log(result + ' backlog entry updated');
+			entry._id = Id;
+			res.send(JSON.stringify(entry));
+		}			
 	});
 };
 

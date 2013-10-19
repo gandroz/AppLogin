@@ -62,6 +62,7 @@ exports.submissions = function(req, res) {
 
 exports.update = function(req, res){
 	var profile = req.body;
+	delete profile._id;
 	Profile.update({'username':profile.username},profile,{safe:true}, function(err, result){
 		if(err) {
 			console.log('Error updating profile. ' + err);

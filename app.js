@@ -18,8 +18,8 @@ var express = require('express')
   , port = process.env.PORT || 8080;
 
 //Database connect
-var usernameHQ = process.env.UserNameMongoHQ;
-var pwd = process.env.PassWordMongoHQ;
+var usernameHQ = process.env.UserNameMongoHQ || 'zygonie';
+var pwd = process.env.PassWordMongoHQ || '5s5tc79GA';
 var uristring = 'mongodb://' + usernameHQ + ':' + pwd + '@emma.mongohq.com:10090/AppJobDB';
 
 var mongoOptions = { db: { safe: true }};
@@ -100,6 +100,7 @@ app.get('/api/count', pass.ensureAuthenticated, jobOffers_routes.countAll);
 app.get('/api/backlog', pass.ensureAuthenticated, backlog_routes.all);
 app.post('/api/backlog', pass.ensureAuthenticated, backlog_routes.create);
 app.del('/api/backlog/:Id', pass.ensureAuthenticated, backlog_routes.remove);
+app.post('/api/backlog/:Id', pass.ensureAuthenticated, backlog_routes.update);
 
 app.listen(port, function() {
   console.log('Express server listening on port: ' + port);

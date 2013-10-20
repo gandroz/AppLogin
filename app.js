@@ -18,9 +18,7 @@ var express = require('express')
   , port = process.env.PORT || 8080;
 
 //Database connect
-var usernameHQ = process.env.UserNameMongoHQ;
-var pwd = process.env.PassWordMongoHQ;
-var uristring = 'mongodb://' + usernameHQ + ':' + pwd + '@emma.mongohq.com:10090/AppJobDB';
+var uristring = process.env.MONGOHQ_URL;
 
 var mongoOptions = { db: { safe: true }};
 

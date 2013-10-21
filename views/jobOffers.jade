@@ -2,14 +2,12 @@ div.row-fluid(style="margin-bottom:20px")
       a.btn.btn-primary.btn-large(href="/jobs") Post New Offer
    div.row-fluid 
       div(ng-init="init()")  
-         div.accordion.span8.offset1#accordion2
-            div.accordion-group(ng-repeat="item in data.myJobs")
-               div.accordion-heading
-                  a.accordion-toogle(data-toggle="collapse", data-parent="#accordion2", href="#collapse{{$index + 1}}") {{item.title}}
+         accordion.span8.offset1(close-others="true")
+            accordion-group(ng-repeat="item in data.myJobs", heading="{{item.title}}")
+               accordion-heading
+                  {{item.title}}
                   button.btn.btn-danger.pull-right(ng:click="remove(item)") X
-               div.accordion-body.collapse(id="collapse{{$index + 1}}")
-                  div.accordion-inner
-                     p {{item.description}}
-                     hr
-                     p {{item.author}}         
-                     p {{item.dueDate | date:'d MMMM yyyy'}}
+               p {{item.description}}
+               hr
+               p {{item.author}}         
+               p {{item.dueDate | date:'d MMMM yyyy'}}

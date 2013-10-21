@@ -1,10 +1,8 @@
-function backlogCtrl($scope, $log, $location, $window, $element, $route,  logEntries) {
-		function togglePanel(value){
-			$element.find('.backlogPanel').slideToggle('fast');
-			$element.find('#actionButton').text(value);
-		};
+function backlogCtrl($scope, $log, $location, $window, $element, $route,  logEntries) {	
 	    
 	    $scope.data = {};
+	    $scope.isCollapsed = {};
+	    $scope.buttonText = 'Create';
 	    
 	    $scope.styles = [{'bkcolor': '#D61828', 'color': 'white'},
 	                     {'bkcolor': '#B018D6', 'color': 'white'},
@@ -13,40 +11,38 @@ function backlogCtrl($scope, $log, $location, $window, $element, $route,  logEnt
 	                     ];
 		
 		$scope.init = function(){
+			$scope.isCollapsed = true;
 			logEntries.query(function(res){
 				$scope.data.entries = res;
 			});
 		};
 	    
 	    function create() {
-	    	togglePanel(function(){
-	    	   var newEntry = new logEntries($scope.entry);
-	    	   newEntry.$create(function(entry) {
-	    		   if(!entry)
-	    			   $log.log('Impossible to create new backlog entry');
-	    		   else {
-	    			   $window.location.href = '/home';
-	    		   }
-	    	   }); 
+	    	$scope.isCollapsed = true;
+	    	var newEntry = new logEntries($scope.entry);
+	    	newEntry.$create(function(entry) {
+	    	   if(!entry)
+	    		   $log.log('Impossible to create new backlog entry');
+	    	   else {
+	    		   $window.location.href = '/home';
+	    	   }
 	    	});
 	    };
 	    
 	    function update(entry) {
-	    	togglePanel(function(){
-	    	   var id = entry._id;
-	    	   entry.$update({Id: id},function(entry) {
-     	           if(!entry)
-	    			   $log.log('Impossible to update bakclog entry');
-	    		   else {
-    	    			$window.location.href = '/home';
-	         		}
-	        	});    	
-	    	});
+	    	$scope.isCollapsed = true;
+	    	var id = entry._id;
+	    	entry.$update({Id: id},function(entry) {
+     	       if(!entry)
+	    		   $log.log('Impossible to update bakclog entry');
+	    	   else {
+    	   			window.location.href = '/home';
+	           }
+	       	});    	
 	    };
 	    
 	    $scope.action = function(){
-	    	var text = $element.find('#actionButton').text();
-	    	if(text == 'Create')
+	    	if($scope.buttonText == 'Create')	    		
 	    		create();
 	    	else
 	    		update($scope.entry);
@@ -54,9 +50,8 @@ function backlogCtrl($scope, $log, $location, $window, $element, $route,  logEnt
 	    
 	    
 	    $scope.cancel = function() {
-	    	togglePanel(function(){
-	    	   $location.path('/home');
-	    	});
+	    	$scope.isCollapsed = true;
+	    	$location.path('/home');
 	    };
 	    
 	    $scope.remove = function(entry) {
@@ -66,12 +61,19 @@ function backlogCtrl($scope, $log, $location, $window, $element, $route,  logEnt
 	    	});
 	    };
 	    
-	    $scope.edit = function(entry) {
+	    $scope.edit = function(entry, e) {
+	    	if(e){
+	    		e.preventDefault(); //pour empecher que le content soit développé
+	    		e.stopPropagation();
+	    	}
 	    	$scope.entry = entry;
-	    	togglePanel('Update');
+	    	$scope.buttonText = 'Update';
+	    	$scope.isCollapsed = false;
 	    };
 	    
 	    $scope.showPanel = function() {
-	    	togglePanel('Create');
+	    	$scope.entry = {};
+	    	$scope.buttonText = 'Create';
+	    	$scope.isCollapsed = false;
 	    };
 }

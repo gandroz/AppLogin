@@ -2,7 +2,7 @@
 /*
  * Définition du module d'application
  */
-var myApp = angular.module('appProfile', ['ngResource']);
+var myApp = angular.module('appProfile', ['ngResource', 'ui.bootstrap']);
 
 /*
  * Config

@@ -31,23 +31,17 @@ html
                     div.span6
                        script(src="/js/lib/angular.min.js")
                        script(src="/js/lib/angular-resource.min.js")
+                       script(src="/js/lib/ui-bootstrap-tpls.js")
                        script(src="/js/app/appWelcome.js")
                        script(src="/js/controllers/lastJobOffersCtrl.js") 
-                       div.row-fluid(ng-app="appWelcome", ng-controller="lastJobOffersCtrl")
-                          #myCarousel.carousel.slide
-                             div.carousel-inner
-                                div.item(ng-repeat="item in data.items", ng-class="{'active': $index == 0}")
-                                   div.container.carousel-jobItem
-                                      div.jobDescription
-                                         h1 {{item.title}}
-                                         p.lead {{item.description}}
-                                         p.lead {{item.user.username}}
-                                      if user
-                                         a.btn.btn-primary(href='#') Apply
-                             a.left.carousel-control(href='#myCarousel', data-slide='prev')&lsaquo;
-                             a.right.carousel-control(href='#myCarousel', data-slide='next')&rsaquo;
-                             div
-                                ol.carousel-indicators
-                                   li(ng-repeat="item in data.items", data-target='#myCarousel', data-slice-to="{{$index}}", ng-class="{'active': $index == 0}")
-                          script(src='/js/lib/carouselController.js');
+                       div.row-fluid(ng-app="appWelcome", ng-controller="lastJobOffersCtrl")                       
+                          carousel(interval="3000")
+                             slide(ng-repeat="item in data.items", active="item.active")
+                                div.container.carousel-jobItem
+                                   div.jobDescription
+                                      h1 {{item.title}}
+                                      p.lead {{item.description}}
+                                      p.lead.pull-right {{item.author}}
+                                   if user
+                                      a.btn.btn-large.btn-primary Apply
                        img(src="/images/job-seeking.png")

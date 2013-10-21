@@ -2,7 +2,7 @@
 /*
  * Définition du module d'application
  */
-var backlog = angular.module('appBacklog', ['ngResource']);
+var backlog = angular.module('appBacklog', ['ngResource','ui.bootstrap']);
 
 backlog.factory('logEntries',['$resource', function($resource) {
 	return $resource('/api/backlog/:Id',

@@ -1,3 +1,3 @@
 'use strict';
 
-var myApp = angular.module('appWelcome', ['ngResource']);
+var myApp = angular.module('appWelcome', ['ngResource','ui.bootstrap']);

@@ -1,0 +1,54 @@
+.accordion{
+   margin-top: 10px;
+   display: block;
+   -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+   -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.accordion-heading {
+   font-size: 14px;
+   line-height: 16px;
+   padding: 5px 15px;
+}
+
+.accordion-group {
+   margin-bottom: 0px;
+   background-color: #C0C0C0;
+   border: 0px;
+   border-bottom: 1px solid;
+   border-bottom-color: white;
+   border-radius: 0px;
+}
+
+.accordion-heading a {
+   color: #5f5f5f;
+}
+
+.accordion-inner {
+   border-top: 0px;
+}
+
+.accordion-body {
+   background-color: #D9D9D9;
+}
+
+.accordion-body p {
+   font-size: 14px;
+   line-height: 18px;
+   padding-left: 15px;
+   padding-right: 120px;
+}
+
+.buttonLog {
+   margin-top: 4px;
+   margin-right: 4px;
+   font-size: 8px;
+   line-height: 18px;
+}
+
+.searchInput {
+   clear: both;
+   margin-top: 10px;
+   margin-left: 0px;
+}

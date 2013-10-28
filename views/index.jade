@@ -1,6 +1,7 @@
 extends layout
 
-block content
+block content   
+   link(type='text/css', rel='stylesheet', href='/css/backlog.css') 
    div.container-fluid
         div.row-fluid
            div.span3
@@ -9,7 +10,7 @@ block content
                   li.well.nav-header Sidebar
                   li.active 
                      a(href="#") Link
-           div.span9(ng-app="appBacklog", ng-controller="backlogCtrl", ng-init="init()")              
+           div.span9(ng-app="appBacklog", ng-controller="backlogCtrl", ng-init="init()")     
               div.row-fluid   
                  button.btn.btn-primary(ng-click="showPanel();") Nouvelle tâche              
               div(collapse="isCollapsed")
@@ -30,11 +31,13 @@ block content
                  form.form-search
                     span Tri par importance : 
                     input.input-mini.search-query(type="text", ng-model="search.importance") 
-              div.span12   
-                 accordion.acordionLog.span8.offset1
-                    accordion-group.accordion-groupLog(ng-repeat="item in data.entries | filter:search")                       
-                       accordion-heading.accordion-headingLog(ng-style="{backgroundColor: styles[item.importance-1].bkcolor, color: styles[item.importance-1].color}")                          
-                             {{item.title}}   ({{item.importance}}) 
-                             btn.btn-mini.btn-danger.pull-right.buttonLog(ng:click="remove(item)") X
-                             btn.btn-mini.btn-info.pull-right.buttonLog(ng:click="edit(item,$event)") ...                       
-                       p {{item.description}}
+              div.span12                    
+                 div.accordion.span8.offset1#accordionLog
+                    div.accordion-group(ng-repeat="item in data.entries | filter:search")
+                       a.btn.btn-mini.btn-danger.pull-right.buttonLog(ng:click="remove(item)") X
+                       a.btn.btn-mini.btn-info.pull-right.buttonLog(ng:click="edit(item,$event)") ...                       
+                       div.accordion-heading(ng-style="{backgroundColor: styles[item.importance-1].bkcolor, color: styles[item.importance-1].color}")                          
+                          a.accordion-toogle(ng-style="{backgroundColor: styles[item.importance-1].bkcolor, color: styles[item.importance-1].color}", data-toggle="collapse", data-parent="#accordionLog", href="#collapse{{$index + 1}}") ({{item.importance}}) {{item.title}}                      
+                       div.accordion-body.collapse(id="collapse{{$index+1}}")
+                          div.accordion-inner                             
+                             p {{item.description}}     

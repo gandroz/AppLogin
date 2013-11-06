@@ -51,7 +51,7 @@ exports.remove = function(req,res) {
 
 exports.jobById = function(req, res) {
 	var id = req.params.jobId;
-	Job.find({ _id: id }, function(err, job) {
+	Job.findById(id, function(err, job) {
 	    if (err) { 
 	    	res.redirect('/home'); 
 	    }	    

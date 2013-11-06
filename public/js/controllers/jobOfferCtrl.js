@@ -1,30 +1,26 @@
-function myJobOfferListCtrl($scope, $log, $location, $window, $route,  myJobs, Jobs, CountJob, LastSevenJobs, Profile) {
+function myJobOfferListCtrl($scope, $log, $location, $window, $route, $modal, Api) {
 	$scope.data = {};
 	
 	$scope.init = function(){
-		myJobs.query(function(res){
+		Api.myJobs.query(function(res){
 			$scope.data.myJobs = res;
 		});
 		
-		CountJob.getCount(function(res){
+		Api.CountJob.getCount(function(res){
 			$scope.count = res.count;
 		});
 		
-		/*Jobs.query(function(res){
-		   $scope.data.items = res;
-	    });*/
-		
-		LastSevenJobs.query(function(res){
+		Api.LastSevenJobs.query(function(res){
 		   $scope.data.lastJobs = res;
 	    });
 		
-		Profile.query(function(res){
+		Api.Profile.query(function(res){
 			$scope.data.profile = res;
 		});
 	};
-    
+	
     $scope.create = function() {
-    	var newJob = new myJobs($scope.job);
+    	var newJob = new Api.myJobs($scope.job);
     	newJob.$create(function(job) {
     		if(!job)
     			$log.log('Impossible to create new job');
@@ -54,4 +50,40 @@ function myJobOfferListCtrl($scope, $log, $location, $window, $route,  myJobs, J
 				$route.reload();
 		});
 	};
+	
+	$scope.apply = function(job) {
+		Api.tempJobApplied = job;
+		
+		var modalInstance = $modal.open({
+		   templateUrl: 'application',
+		   controller: ModalInstanceCtrl,
+		   resolve: {}
+		});
+
+		modalInstance.result.then(function (newapplication) {
+		  	var application = new Api.Application(newapplication);
+			application.$create(function(applik) {
+		  		if(!applik)
+		   			$log.log('Impossible to create new application');
+		   		else {
+		   			$location.path('/offers');
+		   		}
+		   	});
+		});		
+	};	
 }
+
+var ModalInstanceCtrl = function ($scope, $modalInstance, Api) {
+
+	$scope.application = new Api.Application();
+	$scope.application.jobData = Api.tempJobApplied;
+	Api.tempJobApplied = {};
+	
+	  $scope.submitApplication = function () {
+	    $modalInstance.close($scope.application);
+	  };
+
+	  $scope.cancelApplication = function () {
+	    $modalInstance.dismiss('cancel');
+	  };
+	};

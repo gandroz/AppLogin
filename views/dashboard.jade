@@ -1,4 +1,15 @@
 div.row-fluid(ng-init="init()")
+   script(type="text/ng-template", id="myModalContent.html").
+        <div>
+            <h3> I'm a modal! </h3>
+        </div>
+        <div>
+            coucou
+        </div>
+        <div>
+            <button class="btn btn-primary" ng-click="submitApplication()"> OK </button>
+            <button class="btn btn-warning" -click="cancelApplication()"> Cancel </button>
+        </div>
    carousel(interval="4000")
       slide(ng-repeat="item in data.lastJobs", active="item.active")
          div.container.carousel-jobItem
@@ -6,7 +17,7 @@ div.row-fluid(ng-init="init()")
                h1 {{item.title}}
                p.lead {{item.description}}
             p.lead.pull-right {{item.author}}
-            a.btn.btn-large.btn-primary Apply
+            a.btn.btn-large.btn-primary(ng:click="apply(item)") Apply
    accordion.span8.offset1
       accordion-group(ng-repeat="item in data.myJobs", heading="{{item.title}}")
          accordion-heading
@@ -16,3 +27,4 @@ div.row-fluid(ng-init="init()")
                hr
                p {{item.author}}         
                p {{item.dueDate | date:'d MMMM yyyy'}}
+              

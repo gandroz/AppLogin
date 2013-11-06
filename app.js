@@ -18,7 +18,8 @@ var express = require('express')
   , port = process.env.PORT || 8080;
 
 //Database connect
-var uristring = process.env.MONGOHQ_URL;
+var uristring = process.env.MONGOHQ_URL ||
+   'mongodb://zygonie:5s5tc79GA@emma.mongohq.com:10090/AppJobDB';
 
 var mongoOptions = { db: { safe: true }};
 
@@ -34,7 +35,8 @@ mongoose.connect(uristring, mongoOptions, function (err, res) {
 var user_routes = require('./routes/user')
   , profile_routes = require('./routes/profile')
   , jobOffers_routes = require('./routes/jobOffers')
-  , backlog_routes = require('./routes/backlog.js');
+  , backlog_routes = require('./routes/backlog.js')
+  , application_routes = require('./routes/application.js');
 
 // configure Express
 app.configure(function() {
@@ -81,6 +83,9 @@ app.post('/profUpdate', pass.ensureAuthenticated, profile_routes.update);
 app.get('/offers', pass.ensureAuthenticated, profile_routes.offers);
 app.get('/jobs', pass.ensureAuthenticated, profile_routes.jobs);
 app.get('/submissions', pass.ensureAuthenticated, profile_routes.submissions);
+app.get('/application',  pass.ensureAuthenticated, profile_routes.application);
+
+
 app.get('/api/profile', pass.ensureAuthenticated, profile_routes.profileAPI);
 app.post('/api/profile', pass.ensureAuthenticated, profile_routes.updateAPI);
 
@@ -99,6 +104,10 @@ app.get('/api/backlog', pass.ensureAuthenticated, backlog_routes.all);
 app.post('/api/backlog', pass.ensureAuthenticated, backlog_routes.create);
 app.del('/api/backlog/:Id', pass.ensureAuthenticated, backlog_routes.remove);
 app.post('/api/backlog/:Id', pass.ensureAuthenticated, backlog_routes.update);
+
+app.get('/api/myApplications/:applicationId', pass.ensureAuthenticated, application_routes.applicationById);
+app.post('/api/myApplications', pass.ensureAuthenticated, application_routes.create);
+
 
 app.listen(port, function() {
   console.log('Express server listening on port: ' + port);

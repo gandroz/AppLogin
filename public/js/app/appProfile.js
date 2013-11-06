@@ -33,6 +33,10 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
 		   controller: 'myJobOfferListCtrl',
 		   templateUrl: '/submissions'
 	   })
+	   .when('/application', {
+		   controller: 'myJobOfferListCtrl',
+		   templateUrl: '/application'
+	   })
 	   .otherwise({redirectTo: '/'});
 	$locationProvider.html5Mode(true);
 }]);
@@ -40,71 +44,67 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
 /*
  * Services
  */
-myApp.factory('myJobs',['$resource', function($resource) {
-	return $resource('/api/myJobs/:jobId',
-			{ jobId: '@jobId' },
-			{
-				/*
-				 * By default, angular adds this methods :
-				 * { 'get':    {method:'GET'},
-				 *   'save':   {method:'POST'},
-				 *   'query':  {method:'GET', isArray:true},
-				 *   'remove': {method:'DELETE'},
-				 *   'delete': {method:'DELETE'} };
-				 */
-				/*query:{
-					method: 'GET', 
-					isArray: true},*/ //
-				create: {
-			    	method: 'POST'
-			    },
-			    remove: {
-			    	method: 'DELETE'
-			    }
-			});
+myApp.factory('Api',['$resource', function($resource) {
+	return {
+		myJobs : $resource('/api/myJobs/:jobId',
+						{ jobId: '@jobId' },
+						{
+							get:{
+								method: 'GET',
+								isArray: false},
+							create: { method: 'POST' },
+							remove: { method: 'DELETE' }
+				     }),
+	    Jobs : $resource('/api/jobs',
+					{},
+					{
+						query:{
+							method: 'GET',
+							isArray: true}
+					}),
+		Application : $resource('/api/myApplications/:applicationId',
+				{ applicationId: '@applicationId' },
+				{
+					get:{
+						method: 'GET', 
+						isArray: false
+					},
+					create: {
+				    	method: 'POST'
+				    },
+				    remove: {
+				    	method: 'DELETE'
+				    }
+				}),
+		Profile : $resource('/api/profile',
+				{},
+				{
+					query:{
+						method: 'GET',
+						isArray: false}
+				}),
+		CountJob:$resource('/api/count',
+				{},
+				{
+					getCount:{
+						method: 'GET',
+						isArray: false}
+				}),
+		LastSevenJobs : $resource('/api/lastSevenJobs',
+				{},
+				{
+					query:{
+						method: 'GET',
+						isArray: true}
+				}),
+		'tempJobApplied' : {}
+	};
 }]);
 
-myApp.factory('Jobs',['$resource', function($resource) {
-	return $resource('/api/jobs',
-			{},
-			{
-				query:{
-					method: 'GET', 
-					params: {}, 
-					isArray: true}
-			});
-}]);
 
-myApp.factory('Profile',['$resource', function($resource) {
-	return $resource('/api/profile',
-			{},
-			{
-				query:{
-					method: 'GET',
-					isArray: false}
-			});
-}]);
-
-myApp.factory('CountJob',['$resource', function($resource) {
-	return $resource('/api/count',
-			{},
-			{
-				getCount:{
-					method: 'GET',
-					isArray: false}
-			});
-}]);
-
-myApp.factory('LastSevenJobs',['$resource', function($resource) {
-	return $resource('/api/lastSevenJobs',
-			{},
-			{
-				query:{
-					method: 'GET',
-					isArray: true}
-			});
-}]);
-
+/*
+ * Directive Datepicker
+ */
 myApp.directive('datepicker', function() {
 	  return {
 		restrict: 'C',   

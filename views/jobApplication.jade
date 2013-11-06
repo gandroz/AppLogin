@@ -1,0 +1,9 @@
+form.form-signin.form-job
+   h2.form-signin-heading Soumission
+   input.input-block-level(type='text', ng-disabled="true", value="{{application.jobData.title}} (ref. {{application.jobData._id}})")
+   textarea.input-block-level(rows = 10, placeholder='Description de la proposition', ng-model="application.proposal")
+   input.input-block-level(type='text', placeholder='Salaire demandé', ng-model="application.salary")
+   input.input-block-level.datepicker(type='text', placeholder='Date de livraison', ng-model="application.dueDate")
+   div.btn-toolbar
+      button.btn.btn-primary(ng-click="submitApplication()") Apply
+      button.btn(ng-click="cancelApplication()") Cancel  

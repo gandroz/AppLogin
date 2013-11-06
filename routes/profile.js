@@ -109,6 +109,21 @@ exports.dashboard = function(req, res) {
 	});  
 };
 
+exports.application = function(req, res) {
+	var user = req.user;
+	Profile.findOne({ username: user.username }, function(err, profile) {
+	    if (err) { 
+	    	res.redirect('/home'); 
+	    }	    
+	    res.render("jobApplication", {
+	  	  title: 'Dashboard',
+	  	  id: 'profile',
+	  	  profile: profile,
+	  	  user: req.user
+	    });
+	});  
+};
+
 
 /*
  * REST API

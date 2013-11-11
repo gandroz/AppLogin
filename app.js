@@ -82,9 +82,8 @@ app.get('/profUpdate', pass.ensureAuthenticated, profile_routes.profileUpdate);
 app.post('/profUpdate', pass.ensureAuthenticated, profile_routes.update);
 app.get('/offers', pass.ensureAuthenticated, profile_routes.offers);
 app.get('/jobs', pass.ensureAuthenticated, profile_routes.jobs);
-app.get('/submissions', pass.ensureAuthenticated, profile_routes.submissions);
-app.get('/application',  pass.ensureAuthenticated, profile_routes.application);
-
+app.get('/newApplication',  pass.ensureAuthenticated, profile_routes.newApplication);
+app.get('/jobApplications',  pass.ensureAuthenticated, profile_routes.applications);
 
 app.get('/api/profile', pass.ensureAuthenticated, profile_routes.profileAPI);
 app.post('/api/profile', pass.ensureAuthenticated, profile_routes.updateAPI);
@@ -107,7 +106,7 @@ app.post('/api/backlog/:Id', pass.ensureAuthenticated, backlog_routes.update);
 
 app.get('/api/myApplications/:applicationId', pass.ensureAuthenticated, application_routes.applicationById);
 app.post('/api/myApplications', pass.ensureAuthenticated, application_routes.create);
-
+app.get('/api/myApplications', pass.ensureAuthenticated, application_routes.allMyApplications);
 
 app.listen(port, function() {
   console.log('Express server listening on port: ' + port);

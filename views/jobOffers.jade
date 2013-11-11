@@ -1,7 +1,7 @@
 div.row-fluid(style="margin-bottom:20px")
       a.btn.btn-primary.btn-large(href="/jobs") Post New Offer
    div.row-fluid 
-      div(ng-init="init()")  
+      div(ng-init="initMyOffers()")  
          accordion.span8.offset1(close-others="true")
             accordion-group(ng-repeat="item in data.myJobs", heading="{{item.title}}")
                accordion-heading

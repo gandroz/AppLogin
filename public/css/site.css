@@ -116,7 +116,7 @@ color: #ccccff;
 
     .carousel {
       margin-bottom: 0px;
-      margin-top: -20px;
+      margin-top: 0px;
     }
 
     .carousel .container {
@@ -142,16 +142,25 @@ color: #ccccff;
     }
 
     .carousel .item {
-      height: 300px;
+      height: 200px;
     }
     
+    .carousel h1 {
+       font-size: 20px;
+    }
+    
+    .carousel p {
+       font-size: 12px;
+    }
+        
     .carousel-inner {
       background-color: #c6d2d6;
+      height: 200px;
     }
     .carousel-jobItem {
       position: static;
       max-width: 80%;
-      padding: 40px 5%;
+      padding: 20px 5%;
     }
     .carousel-jobItem h1,
     .carousel-jobItem .lead {
@@ -161,11 +170,17 @@ color: #ccccff;
     }
     .carousel-jobItem .btn {
       position: absolute;
-      top: 220px;
+      top: 160px;
     }
     .carousel-indicators {
-       top: 280px;       
+       top: 180px;       
     }
+    
+    .carousel .jobDescription {
+       max-height: 110px;
+       overflow: hidden;
+    }
+    
     .carousel-indicators .active {
        background-color: #769CDF;
     }
@@ -328,4 +343,10 @@ hr {
    clear: both;
    margin-top: 10px;
    margin-left: 0px;
+}
+
+.gridStyle {
+    width: 100%; 
+    height: 300px;
+    margin-top: 20px;
 }

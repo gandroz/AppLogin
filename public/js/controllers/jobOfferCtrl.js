@@ -1,19 +1,45 @@
 function myJobOfferListCtrl($scope, $log, $location, $window, $route, $modal, Api) {
 	$scope.data = {};
 	
-	$scope.init = function(){
+	$scope.initMyApplications = function(){
+		Api.Application.query(function(res){
+			$scope.data.myApplications = res;
+			
+		});
+	};
+	
+	$scope.initMyOffers = function(){
 		Api.myJobs.query(function(res){
 			$scope.data.myJobs = res;
 		});
-		
-		Api.CountJob.getCount(function(res){
-			$scope.count = res.count;
+	};
+	
+	$scope.initUpdateProfile = function(){
+        Api.Profile.query(function(res){
+			$scope.data.profile = res;
 		});
+	};
+	
+	$scope.initDashboard = function(){
+		$scope.gridOptions = {
+		       data: 'data.allJobs',
+			   jqueryUITheme: true,
+			   columnDefs: [
+			        {field:'title', displayName:'Offre'},
+			        {field:'category', displayName:'Category', width: 200},
+			        {field:'postedDate', displayName:'Date', width: 200, cellFilter:"date:\'dd/MM/yyyy\'" }
+			   ]
+		};
+	
 		
 		Api.LastSevenJobs.query(function(res){
 		   $scope.data.lastJobs = res;
 	    });
 		
+		Api.Jobs.query(function(res){
+			   $scope.data.allJobs = res;}
+		);
+				
 		Api.Profile.query(function(res){
 			$scope.data.profile = res;
 		});
@@ -55,7 +81,7 @@ function myJobOfferListCtrl($scope, $log, $location, $window, $route, $modal, Ap
 		Api.tempJobApplied = job;
 		
 		var modalInstance = $modal.open({
-		   templateUrl: 'application',
+		   templateUrl: 'newApplication',
 		   controller: ModalInstanceCtrl,
 		   resolve: {}
 		});

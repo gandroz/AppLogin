@@ -2,7 +2,7 @@
 /*
  * Définition du module d'application
  */
-var myApp = angular.module('appProfile', ['ngResource', 'ui.bootstrap']);
+var myApp = angular.module('appProfile', ['ngResource', 'ngGrid', 'ui.bootstrap']);
 
 /*
  * Config
@@ -33,9 +33,13 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
 		   controller: 'myJobOfferListCtrl',
 		   templateUrl: '/submissions'
 	   })
+	   .when('/newApplication', {
+		   controller: 'myJobOfferListCtrl',
+		   templateUrl: '/newApplication'
+	   })
 	   .when('/application', {
 		   controller: 'myJobOfferListCtrl',
-		   templateUrl: '/application'
+		   templateUrl: '/jobApplications'
 	   })
 	   .otherwise({redirectTo: '/'});
 	$locationProvider.html5Mode(true);
@@ -74,7 +78,11 @@ myApp.factory('Api',['$resource', function($resource) {
 				    },
 				    remove: {
 				    	method: 'DELETE'
-				    }
+				    },
+				    query:{
+						method: 'GET',
+						isArray: true
+					}
 				}),
 		Profile : $resource('/api/profile',
 				{},

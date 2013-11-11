@@ -1,0 +1,17 @@
+div.row-fluid 
+   div(ng-init="initMyApplications()")  
+      accordion.span8.offset1(close-others="true")
+         accordion-group(ng-repeat="item in data.myApplications", heading="{{item.job.title}}")
+            accordion-heading
+               {{item.job.title}}
+               button.btn.btn-danger.pull-right(ng:click="remove(item)") X
+            p {{item.job.description}}
+            hr
+            p {{item.proposal}}
+            hr
+            p {{item.salary}}
+            hr
+            p Ma date proposée {{item.dueDate | date:'d MMMM yyyy'}}
+            hr
+            p {{item.job.author}}         
+            p Date proposée du job {{item.job.dueDate | date:'d MMMM yyyy'}}

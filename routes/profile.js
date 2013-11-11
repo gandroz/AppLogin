@@ -44,22 +44,6 @@ exports.offers = function(req, res) {
 	});  
 };
 
-exports.submissions = function(req, res) {
-	var user = req.user;
-	Profile.findOne({ username: user.username }, function(err, profile) {
-	    if (err) { 
-	    	res.redirect('/home'); 
-	    }	    
-	    res.render("jobSubmissions", {
-	  	  title: 'Dashboard',
-	  	  id: 'profile',
-	  	  profile: profile,
-	  	  user: req.user
-	    });
-	});  
-};
-
-
 exports.update = function(req, res){
 	var profile = req.body;
 	delete profile._id;
@@ -109,13 +93,28 @@ exports.dashboard = function(req, res) {
 	});  
 };
 
-exports.application = function(req, res) {
+exports.newApplication = function(req, res) {
 	var user = req.user;
 	Profile.findOne({ username: user.username }, function(err, profile) {
 	    if (err) { 
 	    	res.redirect('/home'); 
 	    }	    
-	    res.render("jobApplication", {
+	    res.render("newApplication", {
+	  	  title: 'Dashboard',
+	  	  id: 'profile',
+	  	  profile: profile,
+	  	  user: req.user
+	    });
+	});  
+};
+
+exports.applications = function(req, res) {
+	var user = req.user;
+	Profile.findOne({ username: user.username }, function(err, profile) {
+	    if (err) { 
+	    	res.redirect('/home'); 
+	    }	    
+	    res.render("jobApplications", {
 	  	  title: 'Dashboard',
 	  	  id: 'profile',
 	  	  profile: profile,

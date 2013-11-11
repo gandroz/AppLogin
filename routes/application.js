@@ -28,7 +28,6 @@ exports.create = function(req, res) {
 	application.save(function(err) {
 		if(err) {
 			console.log(err);
-			res.redirect('/home');
 	    } 
 		else {
 			console.log(user.username + " just applied to job " + job._id + "(" + job.title + ")");	
@@ -43,7 +42,6 @@ exports.remove = function(req,res) {
 	Application.findByIdAndRemove(jobId, function(err, job) {
 	    if (err) {
 	    	console.log('An error hase occured while trying to delete job with Id: ' + applicationId);
-	    	res.redirect('/home'); 
 	    }
 	    else {
 	        //res.redirect('/offers');
@@ -57,8 +55,27 @@ exports.applicationById = function(req, res) {
 	var id = req.params.applicationId;
 	Application.findById(id, function(err, application) {
 	    if (err) { 
-	    	res.redirect('/home'); 
+	    	console.log(err);
 	    }	    
 	    res.send(JSON.stringify(application));
 	});
 };
+
+exports.allMyApplications = function(req, res) {
+	var user = req.user;    
+	Application.find({ user: user }).populate('job').exec( function(err, applications) {
+	    if (err) { 
+	    	console.log(err);
+	    }	    
+	    res.send(JSON.stringify(applications));
+	});
+};
+
+
+
+
+
+
+
+
+

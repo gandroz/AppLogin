@@ -24,7 +24,6 @@ exports.create = function(req, res) {
 	job.save(function(err) {
 		if(err) {
 			console.log(err);
-			res.redirect('/home');
 	    } 
 		else {
 			console.log('New job for user: ' + user.username + " has been posted.");	
@@ -39,7 +38,6 @@ exports.remove = function(req,res) {
 	Job.findByIdAndRemove(jobId, function(err, job) {
 	    if (err) {
 	    	console.log('An error hase occured while trying to delete job with Id: ' + jobId);
-	    	res.redirect('/home'); 
 	    }
 	    else {
 	        //res.redirect('/offers');
@@ -53,7 +51,7 @@ exports.jobById = function(req, res) {
 	var id = req.params.jobId;
 	Job.findById(id, function(err, job) {
 	    if (err) { 
-	    	res.redirect('/home'); 
+	    	console.log(err);
 	    }	    
 	    res.send(JSON.stringify(job));
 	});
@@ -63,7 +61,7 @@ exports.allMyJobs = function(req, res) {
 	var user = req.user;    
 	Job.find({ user: user }, function(err, jobs) {
 	    if (err) { 
-	    	res.redirect('/home'); 
+	    	console.log(err);
 	    }	    
 	    res.send(JSON.stringify(jobs));
 	});

@@ -32,12 +32,24 @@ block content
                     span Tri par importance : 
                     input.input-mini.search-query(type="text", ng-model="search.importance") 
               div.span12                    
-                 div.accordion.span8.offset1#accordionLog
-                    div.accordion-group(ng-repeat="item in data.entries | filter:search")
+                 div.accordion.span8.offset1
+                    div.accordion-group(ng-repeat="item in data.entries | filter:{done:false}")
+                       img.backlogCheckBox.pull-right(ng-src="{{item.done && '/images/OkGreen.png' || '/images/OkBlack.png'}}", ng-click="chgState(item)", ng-model="item.done")
                        a.btn.btn-mini.btn-danger.pull-right.buttonLog(ng:click="remove(item)") X
                        a.btn.btn-mini.btn-info.pull-right.buttonLog(ng:click="edit(item,$event)") ...                       
                        div.accordion-heading(ng-style="{backgroundColor: styles[item.importance-1].bkcolor, color: styles[item.importance-1].color}")                          
                           a.accordion-toogle(ng-style="{backgroundColor: styles[item.importance-1].bkcolor, color: styles[item.importance-1].color}", data-toggle="collapse", data-parent="#accordionLog", href="#collapse{{$index + 1}}") ({{item.importance}}) {{item.title}}                      
                        div.accordion-body.collapse(id="collapse{{$index+1}}")
                           div.accordion-inner                             
-                             p {{item.description}}     
+                             p {{item.description}}
+              div.span12 
+                 div.accordion.span8.offset1
+                    div.accordion-group(ng-repeat="item in data.entries | filter:{done:true}")
+                       img.backlogCheckBox.pull-right(ng-src="{{item.done && '/images/OkGreen.png' || '/images/OkBlack.png'}}", ng-click="chgState(item)")
+                       a.btn.btn-mini.btn-danger.pull-right.buttonLog(ng:click="remove(item)") X
+                       a.btn.btn-mini.btn-info.pull-right.buttonLog(ng:click="edit(item,$event)") ...                       
+                       div.accordion-heading                          
+                          a.accordion-toogle(data-toggle="collapse", data-parent="#accordionLog", href="#collapse{{$index + 1}}") ({{item.importance}}) {{item.title}}                      
+                       div.accordion-body.collapse(id="collapse{{$index+1}}")
+                          div.accordion-inner                             
+                             p {{item.description}}                

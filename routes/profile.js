@@ -123,6 +123,32 @@ exports.applications = function(req, res) {
 	});  
 };
 
+exports.offerDetails = function(req, res) {
+	var user = req.user;
+	Profile.findOne({ username: user.username }, function(err, profile) {
+	    if (err) { 
+	    	res.redirect('/home'); 
+	    }	    
+	    res.render("offerDetails", {
+	  	  title: 'Dashboard',
+	  	  id: 'profile',
+	  	  profile: profile,
+	  	  user: req.user
+	    });
+	});  
+};
+
+exports.gridFooterTemplate = function (req, res) {
+	res.render("gridFooterTemplate");
+};
+
+exports.gridCellTemplate = function (req, res) {
+	res.render("gridCellTemplate");
+};
+
+exports.gridRowTemplate = function (req, res) {
+	res.render("gridRowTemplate");
+};
 
 /*
  * REST API

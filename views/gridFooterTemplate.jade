@@ -1,0 +1,24 @@
+div.ngFooterPanel(ng-show="showFooter", ng-class="{'ui-widget-content': jqueryUITheme, 'ui-corner-bottom': jqueryUITheme}", ng-style="footerStyle()")
+    div.ngTotalSelectContainer
+       form.form-search
+          span Filter : 
+          input.input-mini.search-query(type="text", ng-model="filterOptions.filterText") 
+    div.ngPagerContainer(style="float: right; margin-top: 10px;", ng-show="enablePaging", ng-class="{'ngNoMultiSelect': !multiSelect}")
+        div.ngRowCountPicker(style="float:left; margin-right: 10px;")
+            span.ngLabel(style="float: left; margin-top: 3px;") {{i18n.ngPageSizeLabel}}
+            select(style="float: left;height: 27px; width: 100px", ng-model="pagingOptions.pageSize")
+                option(ng-repeat="size in pagingOptions.pageSizes") {{size}}
+        div.ngPagerControl(style="float:left; margin-right: 10px; line-height:25px;", style="float: left; min-width: 135px;")
+            button.ngPagerButton(type="button", ng-click="pageToFirst()", ng-disabled="cantPageBackward()", title="{{i18n.ngPagerFirstTitle}}")
+               div.ngPagerFirstTriangle
+                  div.ngPagerFirstBar
+            button.ngPagerButton(type="button", ng-click="pageBackward()", ng-disabled="cantPageBackward()", title="{{i18n.ngPagerPrevTitle}}")
+               div.ngPagerFirstTriangle
+                  div.ngPagerPrevTriangle
+            input.ngPagerCurrent(min="1", max="{{currentMaxPages}}", style="width:50px; height: 24px; margin-top: 1px; padding: 0 4px;", ng-model="pagingOptions.currentPage")
+            button.ngPagerButton(type="button", ng-click="pageForward()", ng-disabled="cantPageForward()", title="{{i18n.ngPagerNextTitle}}")
+               div.ngPagerLastTriangle
+                  div.ngPagerNextTriangle
+            button.ngPagerButton(type="button", ng-click="pageToLast()", ng-disabled="cantPageToLast()", title="{{i18n.ngPagerLastTitle}}")
+               div.ngPagerLastTriangle
+                  div.ngPagerLastBar

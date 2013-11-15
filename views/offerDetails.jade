@@ -1,0 +1,32 @@
+div.row-fluid(ng-init="initOfferDetails()")
+   div.offset1.span8.encadre
+      div
+         div
+            i.icon-folder-open.icon
+            | Categorie d'emploi: {{data.job.category}}
+         div
+            i.icon-calendar.icon
+            | Date de livraison: {{data.job.dueDate | date:'d MMMM yyyy'}}
+         div
+            i.icon-gift.icon
+            | Salaire propose: {{data.job.salary}}
+      hr
+      h1 {{data.job.title}}
+      p {{data.job.description}}      
+      p Nombre d'application : {{data.applications.length}}
+      hr
+      div.footer
+         div.jobId.pull-left Job ID: {{data.job._id}}
+         div.pull-right 
+            i.icon-user 
+            {{data.job.author}}
+div.row-fluid
+   div.offset1.span8
+      div.totalProposal Total des proposition ({{data.applications.length}})
+div.row-fluid.applicationWrapper
+   div.offset1.span8
+      div.application(ng-repeat="item in data.applications")
+         div.applicant {{item.applicant}}
+         div Salaire demande: {{item.salary}}
+         div Date proposee: {{item.dueDate | date:'d MMMM yyyy'}}
+         div.proposal {{item.proposal}}

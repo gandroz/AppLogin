@@ -8,7 +8,8 @@ var mongoose = require('mongoose')
 var backlogSchema = new Schema({
 	title: { type: String, required: true },
 	importance: { type: Number, required: true },
-	description: { type: String, required: true }
+	description: { type: String, required: true },
+	done: {type: Boolean, default: false}
 });
 
 // Export profile model

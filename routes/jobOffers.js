@@ -84,7 +84,9 @@ exports.sevenLastJobs = function(req, res) {
 };
 
 exports.all = function(req, res) {
-	Job.find({}).sort({postedDate: -1}).exec(function(err, jobs) { 
+	var offset = req.query.offset ? req.query.offset : 0,
+	    limit = req.query.limit ? req.query.limit : 0;
+	Job.find({}).limit(limit).skip(offset).sort({postedDate: -1}).exec(function(err, jobs) { 
 		if(err) {
 			console.log('Unable to retrieve last seven job offers.');
 		}

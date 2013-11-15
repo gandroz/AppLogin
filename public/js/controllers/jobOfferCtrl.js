@@ -1,8 +1,8 @@
-function myJobOfferListCtrl($scope, $log, $location, $window, $route, $modal, Api) {
+function myJobOfferListCtrl($scope, $log, $routeParams, $location, $window, $route, $modal, Api) {
 	$scope.data = {};
 	
 	$scope.initMyApplications = function(){
-		Api.Application.query(function(res){
+		Api.myApplication.query(function(res){
 			$scope.data.myApplications = res;
 			
 		});
@@ -20,25 +20,79 @@ function myJobOfferListCtrl($scope, $log, $location, $window, $route, $modal, Ap
 		});
 	};
 	
+	$scope.initOfferDetails = function(){
+		var jobId = $routeParams.jobId;
+		Api.myJobs.get({jobId: jobId}, function(res){
+			$scope.data.job = res;
+		});
+		Api.Application.get({jobId: jobId}, function(res){
+			$scope.data.applications = res;
+		});
+	};
+	
 	$scope.initDashboard = function(){
+		$scope.filterOptions = {
+		        filterText: "",
+		        useExternalFilter: true
+		    };
+		
+		$scope.totalServerItems = 0;
+		    
+		$scope.pagingOptions = {
+				pageSizes: [1, 2, 10, 20, 50, 100],
+				pageSize: 10,
+				currentPage: 1
+		};
+		
+	    $scope.getPagedDataAsync = function (pageSize, page, searchText) {
+	        //setTimeout(function () {
+	            Api.Jobs.query({offset: (page - 1) * pageSize, limit: pageSize},function(res){
+	            	$scope.myData = {};
+	            	$scope.myData = res; 
+	 			});
+	        //}, 100);
+	    };
+		
+	    $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
+		
+	    $scope.$watch('pagingOptions', function (newVal, oldVal) {
+	        if (newVal !== oldVal || newVal.currentPage !== oldVal.currentPage) {
+	        	//s'assurer que la current page newVal est coherente avec le nombre max de pages possibles.
+	          $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+	        }
+	    }, true);
+	    
+	    $scope.$watch('filterOptions', function (newVal, oldVal) {
+	        if (newVal !== oldVal) {
+	          $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+	        }
+	    }, true);
+		
 		$scope.gridOptions = {
-		       data: 'data.allJobs',
+		       data: 'myData',
 			   jqueryUITheme: true,
+			   enablePaging: true,
+			   showFooter: true,
+			   showFilter: true,
+			   totalServerItems:'totalServerItems',
+			   footerTemplate: 'gridFooterTemplate',
+			   rowTemplate: 'gridRowTemplate',
+			   pagingOptions: $scope.pagingOptions,
+			   filterOptions: $scope.filterOptions,
 			   columnDefs: [
-			        {field:'title', displayName:'Offre'},
-			        {field:'category', displayName:'Category', width: 200},
+			        {field:'title', displayName:'Offre', cellTemplate: 'gridCellTemplate'},
+			        {field:'category', displayName:'Category', width: 200, cellTemplate: 'gridCellTemplate'},
 			        {field:'postedDate', displayName:'Date', width: 200, cellFilter:"date:\'dd/MM/yyyy\'" }
 			   ]
 		};
-	
-		
+				
 		Api.LastSevenJobs.query(function(res){
 		   $scope.data.lastJobs = res;
 	    });
 		
-		Api.Jobs.query(function(res){
+		/*Api.Jobs.query(function(res){
 			   $scope.data.allJobs = res;}
-		);
+		);*/
 				
 		Api.Profile.query(function(res){
 			$scope.data.profile = res;
@@ -92,7 +146,7 @@ function myJobOfferListCtrl($scope, $log, $location, $window, $route, $modal, Ap
 		  		if(!applik)
 		   			$log.log('Impossible to create new application');
 		   		else {
-		   			$location.path('/offers');
+		   			$location.path('/dashboard');
 		   		}
 		   	});
 		});		
@@ -101,7 +155,7 @@ function myJobOfferListCtrl($scope, $log, $location, $window, $route, $modal, Ap
 
 var ModalInstanceCtrl = function ($scope, $modalInstance, Api) {
 
-	$scope.application = new Api.Application();
+	$scope.application = new Api.myApplication();
 	$scope.application.jobData = Api.tempJobApplied;
 	Api.tempJobApplied = {};
 	

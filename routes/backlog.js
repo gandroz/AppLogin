@@ -23,7 +23,6 @@ exports.create = function(req, res) {
 	logEntry.save(function(err) {
 		if(err) {
 			console.log(err);
-			res.redirect('/home');
 	    } 
 		else {
 			console.log('New backlog entry has been posted.');	
@@ -39,7 +38,6 @@ exports.update = function(req, res) {
 	BacklogEntry.update({_id: Id}, entry, {safe:true, upsert: true}, function(err, result){
 		if(err) {
 			console.log('Error updating profile. ' + err);
-			res.redirect('/home');
 		}
 		else{
 			console.log(result + ' backlog entry updated');
@@ -54,7 +52,6 @@ exports.remove = function(req,res) {
 	BacklogEntry.findByIdAndRemove(Id, function(err, entry) {
 	    if (err) {
 	    	console.log('An error hase occured while trying to delete backlog entry with Id: ' + Id);
-	    	res.redirect('/home'); 
 	    }
 	    else {
 	        //res.redirect('/offers');

@@ -34,7 +34,7 @@ block content
               div.span12                    
                  div.accordion.span8.offset1
                     div.accordion-group(ng-repeat="item in data.entries | filter:{done:false}")
-                       img.backlogCheckBox.pull-right(ng-src="{{item.done && '/images/OkGreen.png' || '/images/OkBlack.png'}}", ng-click="chgState(item)", ng-model="item.done")
+                       img.backlogCheckBox.pull-right(ng-src="{{item.done && '/img/OkGreen.png' || '/img/OkBlack.png'}}", ng-click="chgState(item)", ng-model="item.done")
                        a.btn.btn-mini.btn-danger.pull-right.buttonLog(ng:click="remove(item)") X
                        a.btn.btn-mini.btn-info.pull-right.buttonLog(ng:click="edit(item,$event)") ...                       
                        div.accordion-heading(ng-style="{backgroundColor: styles[item.importance-1].bkcolor, color: styles[item.importance-1].color}")                          
@@ -45,7 +45,7 @@ block content
               div.span12 
                  div.accordion.span8.offset1
                     div.accordion-group(ng-repeat="item in data.entries | filter:{done:true}")
-                       img.backlogCheckBox.pull-right(ng-src="{{item.done && '/images/OkGreen.png' || '/images/OkBlack.png'}}", ng-click="chgState(item)")
+                       img.backlogCheckBox.pull-right(ng-src="{{item.done && '/img/OkGreen.png' || '/img/OkBlack.png'}}", ng-click="chgState(item)")
                        a.btn.btn-mini.btn-danger.pull-right.buttonLog(ng:click="remove(item)") X
                        a.btn.btn-mini.btn-info.pull-right.buttonLog(ng:click="edit(item,$event)") ...                       
                        div.accordion-heading                          

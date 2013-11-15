@@ -10,11 +10,29 @@ function backlogCtrl($scope, $log, $location, $window, $element, $route,  logEnt
 	                     {'bkcolor': '#36D618', 'color': 'white'}
 	                     ];
 		
+	    function isDefined(x) {
+	        var undefined;
+	        return x !== undefined;
+	    }
+	    
 		$scope.init = function(){
 			$scope.isCollapsed = true;
 			logEntries.query(function(res){
 				$scope.data.entries = res;
-			});
+				for(var idx in $scope.data.entries)
+				{
+					var item = $scope.data.entries[idx];
+					if(!isDefined(item.done))
+					{
+						item.done = false;
+						var id = item._id;
+						item.$update({Id: id}, function(entry) {
+				     	       if(!entry)
+					    		   $log.log('Impossible to update bakclog entry');
+						});
+					}
+				}
+			});			
 		};
 	    
 	    function create() {
@@ -75,5 +93,16 @@ function backlogCtrl($scope, $log, $location, $window, $element, $route,  logEnt
 	    	$scope.entry = {};
 	    	$scope.buttonText = 'Create';
 	    	$scope.isCollapsed = false;
+	    };
+	    
+	    $scope.chgState = function(item) {
+	    	var id = item._id;
+	    	item.done = !item.done;
+			item.$update({Id: id}, function(entry) {
+	     	       if(!entry)
+		    		   $log.log('Impossible to update bakclog entry');
+			});
+	    	//$scope.data.entries[index].done = !$scope.data.entries[index].done;
+	    	//$scope.data.entries.splice(index, 1);	    	
 	    };
 }

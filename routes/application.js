@@ -71,6 +71,16 @@ exports.allMyApplications = function(req, res) {
 	});
 };
 
+exports.applicationsForJobId = function(req,res) {
+	var ObjectId = mongoose.Types.ObjectId;
+	var id = ObjectId.fromString(req.params.jobId);
+	Application.find({job: id}).populate('job').exec( function(err, applications) {
+	    if (err) { 
+	    	console.log(err);
+	    }	    
+	    res.send(JSON.stringify(applications));
+	});
+};
 
 
 

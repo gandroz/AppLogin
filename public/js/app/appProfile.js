@@ -41,7 +41,11 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
 		   controller: 'myJobOfferListCtrl',
 		   templateUrl: '/jobApplications'
 	   })
-	   .otherwise({redirectTo: '/'});
+	   .when('/offerDetails/:jobId', {
+		   controller: 'myJobOfferListCtrl',
+		   templateUrl: '/offerDetails'
+	   })
+	   .otherwise({redirectTo: '/dashboard'});
 	$locationProvider.html5Mode(true);
 }]);
 
@@ -66,7 +70,7 @@ myApp.factory('Api',['$resource', function($resource) {
 							method: 'GET',
 							isArray: true}
 					}),
-		Application : $resource('/api/myApplications/:applicationId',
+		myApplication : $resource('/api/myApplications/:applicationId',
 				{ applicationId: '@applicationId' },
 				{
 					get:{
@@ -84,6 +88,14 @@ myApp.factory('Api',['$resource', function($resource) {
 						isArray: true
 					}
 				}),
+		Application : $resource('/api/applicationsForJobId/:jobId',
+						{ jobId: '@jobId' },
+						{
+							get:{
+								method: 'GET', 
+								isArray: true
+							}
+						}),		
 		Profile : $resource('/api/profile',
 				{},
 				{

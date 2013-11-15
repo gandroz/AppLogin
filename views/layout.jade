@@ -42,10 +42,10 @@ html
                  each val, key in obj
                     if (id == key)
                       li.active
-                        a(href='#{key}') #{val}
+                        a(href='/#{key}') #{val}
                     else            
                       li
-                        a(href='#{key}') #{val}
+                        a(href='/#{key}') #{val}
             if !user        
                div.btn-toolbar.pull-right
                   a.btn.btn-primary(href='login', type='button') Log in

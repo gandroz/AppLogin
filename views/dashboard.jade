@@ -1,15 +1,4 @@
 div.row-fluid(ng-init="initDashboard()")
-   script(type="text/ng-template", id="myModalContent.html").
-        <div>
-            <h3> I'm a modal! </h3>
-        </div>
-        <div>
-            coucou
-        </div>
-        <div>
-            <button class="btn btn-primary" ng-click="submitApplication()"> OK </button>
-            <button class="btn btn-warning" -click="cancelApplication()"> Cancel </button>
-        </div>
    carousel.offset1.span9(interval="4000")
       slide(ng-repeat="item in data.lastJobs", active="item.active")
          div.container.carousel-jobItem

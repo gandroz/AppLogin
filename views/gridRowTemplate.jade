@@ -1,4 +1,4 @@
-a(href="offerDetails/{{row.getProperty('_id')}}", style="height: 100%")
+a(href="/profile/offerDetails/{{row.getProperty('_id')}}", style="height: 100%")
    div.ngCell(ng-style="{ 'cursor': row.cursor }", ng-repeat="col in renderedColumns", ng-class="col.colIndex()", class="{{col.cellClass}}")
       div.ngVerticalBar(ng-style="{height: rowHeight}", ng-class="{ ngVerticalBarVisible: !$last }")&nbsp;
       div(ng-cell)

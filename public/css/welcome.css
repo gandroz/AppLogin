@@ -25,6 +25,17 @@ h1 {
    color: rgba(255,255,255,0.3);
 }
 
+.footer {
+   padding-bottom: 100px;
+   background-color: #E6E6E6;   
+}
+
+.credentials {
+   font-size: 9px;
+   color: rgba(0,0,0,0.3);
+   padding: 15px;
+}
+
 .controlButtons {
    padding: 20px 200px 0px; //top&bottom + right&left
 }

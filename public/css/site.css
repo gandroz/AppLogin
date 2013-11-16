@@ -80,19 +80,6 @@ text-align: justify;
 padding: 2.5% 0%
 }
 
-.footer {
-color: #cccccc;
-text-align: center;
-}
-
-.footer p {
-font-size: 11px;
-}
-
-.footer a {
-color: #ccccff;
-}
-
   .nav-header {
      font-size : 14px;
      line-height: 10px;
@@ -245,15 +232,18 @@ margin-left: 120px;
    padding: 5px 50px 20px;
 }
 
+/*
+ * ACCORDION
+ */
 .accordion{
-   margin-top: 30px;
+   margin-top: 0px;
    display: block;
 }
 
 .accordion-heading {
-   font-size: 24px;
-   line-height: 32px;
-   padding: 5px 15px;
+   font-size: 18px;
+   line-height: 20px;
+   padding: 0px 10px;
    background-color: #B3B3B3;
 }
 
@@ -272,15 +262,37 @@ margin-left: 120px;
 }
 
 .accordion-inner {
-   border-top: 1px solid #6F62FF;
+   border-top: 1px solid #D8D8D8;
+}
+
+.accordion .removeButton {
+   margin-right: -15px;
+}
+
+.accordion p {
+  font-size: 13px;
+  line-height: 17px;
+}
+
+.accordion .footer {
+   margin-bottom: 25px;
+}
+
+.accordion .calendar {
+   margin-right: 5px;
+}
+
+.accordion h1 {
+  font-size: 20px;
+  line-height: 25px;
 }
 
 hr {
-  margin: 10px 0;
-  height: 2px;
+  margin: 10px -15px;
+  height: 1px;
   padding: 0;
   border: 0;
-  background-color: #6F62FF;
+  background-color: #D8D8D8;
 }
 
 .jobDescription {

@@ -61,7 +61,6 @@ app.configure(function() {
 
 // Basic pages
 app.get('/', node_routes.welcome);
-app.get('/index', pass.ensureAuthenticated, node_routes.index);
 app.get('/home', pass.ensureAuthenticated, node_routes.home);
 
 /*

@@ -18,31 +18,33 @@ html
      div.preambule
         div.container
            div.row                 
-                    div.span6
-                       h1 Facile Rapide
-                       h2 Le site pour te trouver une jobine!
-                       if !user
-                          div.row.controlButtons.login
-                             a.btn.btn-large(href='login', type='button') Log In
-                          div.row.controlButtons
-                             a.btn.btn-primary.btn-large.signup(href='register', type='button') Sign Up
-                       else
-                          div.row.controlButtons.login
-                             a.btn.btn-large(href='home', type='button') Enter
-                    div.span6
-                       script(src="/js/lib/angular.min.js")
-                       script(src="/js/lib/angular-resource.min.js")
-                       script(src="/js/lib/ui-bootstrap-tpls.js")
-                       script(src="/js/app/appWelcome.js")
-                       script(src="/js/controllers/lastJobOffersCtrl.js") 
-                       div.row-fluid(ng-app="appWelcome", ng-controller="lastJobOffersCtrl")                       
-                          carousel(interval="3000")
-                             slide(ng-repeat="item in data.items", active="item.active")
-                                div.container.carousel-jobItem
-                                   div.jobDescription
-                                      h1 {{item.title}}
-                                      p.lead {{item.description}}
-                                      p.lead.pull-right {{item.author}}
-                                   if user
-                                      a.btn.btn-large.btn-primary Apply
-                       img(src="/img/job-seeking.png")
+              div.span6
+                 h1 Facile Rapide
+                 h2 Le site pour te trouver une jobine!
+                 if !user
+                    div.row.controlButtons.login
+                       a.btn.btn-large(href='login', type='button') Log In
+                    div.row.controlButtons
+                       a.btn.btn-primary.btn-large.signup(href='register', type='button') Sign Up
+                 else
+                    div.row.controlButtons.login
+                       a.btn.btn-large(href='home', type='button') Enter
+              div.span6
+                 script(src="/js/lib/angular.min.js")
+                 script(src="/js/lib/angular-resource.min.js")
+                 script(src="/js/lib/ui-bootstrap-tpls.js")
+                 script(src="/js/app/appWelcome.js")
+                 script(src="/js/controllers/lastJobOffersCtrl.js") 
+                 div.row-fluid(ng-app="appWelcome", ng-controller="lastJobOffersCtrl")                       
+                    carousel(interval="3000")
+                       slide(ng-repeat="item in data.items", active="item.active")
+                          div.container.carousel-jobItem
+                             div.jobDescription
+                                h1 {{item.title}}
+                                p.lead {{item.description}}
+                                p.lead.pull-right {{item.author}}
+                             if user
+                                a.btn.btn-primary Apply
+                 img(src="/img/job-seeking.png")
+     div.footer
+        div.credentials.pull-right by Guillaume Androz            

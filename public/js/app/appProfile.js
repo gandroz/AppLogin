@@ -9,7 +9,7 @@ var myApp = angular.module('appProfile', ['ngResource', 'ngGrid', 'ui.bootstrap'
  */
 myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$locationProvider){
 	$routeProvider
-	   .when('/profUpdate', {
+	   .when('/profile/update', {
 		   controller: 'myJobOfferListCtrl',
 		   templateUrl: '/profUpdate'
 	   })
@@ -17,35 +17,31 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
 		   controller: 'myJobOfferListCtrl',
 		   templateUrl: '/dashboard'
 	   })
-	   .when('/dashboard', {
+	   .when('/profile/dashboard', {
 		   controller: 'myJobOfferListCtrl',
 		   templateUrl: '/dashboard'
 	   })
-	   .when('/offers', {
+	   .when('/profile/offers', {
 		   controller: 'myJobOfferListCtrl',
 		   templateUrl: '/offers'
 	   })
-	   .when('/jobs', {
+	   .when('/profile/jobs', {
 		   controller: 'myJobOfferListCtrl',
 		   templateUrl: '/jobs'
 	   })
-	   .when('/submissions', {
-		   controller: 'myJobOfferListCtrl',
-		   templateUrl: '/submissions'
-	   })
-	   .when('/newApplication', {
+	   .when('/profile/newApplication', {
 		   controller: 'myJobOfferListCtrl',
 		   templateUrl: '/newApplication'
 	   })
-	   .when('/application', {
+	   .when('/profile/application', {
 		   controller: 'myJobOfferListCtrl',
 		   templateUrl: '/jobApplications'
 	   })
-	   .when('/offerDetails/:jobId', {
+	   .when('/profile/offerDetails/:jobId', {
 		   controller: 'myJobOfferListCtrl',
 		   templateUrl: '/offerDetails'
 	   })
-	   .otherwise({redirectTo: '/dashboard'});
+	   .otherwise({redirectTo: '/profile/dashboard'});
 	$locationProvider.html5Mode(true);
 }]);
 

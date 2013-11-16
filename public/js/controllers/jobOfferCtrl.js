@@ -1,6 +1,12 @@
 function myJobOfferListCtrl($scope, $log, $routeParams, $location, $window, $route, $modal, Api) {
 	$scope.data = {};
 	
+	$scope.initProfile = function() {
+		Api.Profile.query(function(res){
+			$scope.data.profile = res;
+		});
+	};
+	
 	$scope.initMyApplications = function(){
 		Api.myApplication.query(function(res){
 			$scope.data.myApplications = res;
@@ -80,8 +86,8 @@ function myJobOfferListCtrl($scope, $log, $routeParams, $location, $window, $rou
 			   pagingOptions: $scope.pagingOptions,
 			   filterOptions: $scope.filterOptions,
 			   columnDefs: [
-			        {field:'title', displayName:'Offre', cellTemplate: 'gridCellTemplate'},
-			        {field:'category', displayName:'Category', width: 200, cellTemplate: 'gridCellTemplate'},
+			        {field:'title', displayName:'Offre', cellTemplate: '/gridCellTemplate'},
+			        {field:'category', displayName:'Category', width: 200, cellTemplate: '/gridCellTemplate'},
 			        {field:'postedDate', displayName:'Date', width: 200, cellFilter:"date:\'dd/MM/yyyy\'" }
 			   ]
 		};
@@ -90,10 +96,6 @@ function myJobOfferListCtrl($scope, $log, $routeParams, $location, $window, $rou
 		   $scope.data.lastJobs = res;
 	    });
 		
-		/*Api.Jobs.query(function(res){
-			   $scope.data.allJobs = res;}
-		);*/
-				
 		Api.Profile.query(function(res){
 			$scope.data.profile = res;
 		});
@@ -105,13 +107,13 @@ function myJobOfferListCtrl($scope, $log, $routeParams, $location, $window, $rou
     		if(!job)
     			$log.log('Impossible to create new job');
     		else {
-    			$location.path('/offers');
+    			$location.path('/profile/offers');
     		}
     	});    	
     };
     
     $scope.cancel = function() {
-    	$location.path('/offers');
+    	$location.path('/profile/offers');
     };
     
     $scope.remove = function(job) {
@@ -146,7 +148,7 @@ function myJobOfferListCtrl($scope, $log, $routeParams, $location, $window, $rou
 		  		if(!applik)
 		   			$log.log('Impossible to create new application');
 		   		else {
-		   			$location.path('/dashboard');
+		   			$location.path('/profile/dashboard');
 		   		}
 		   	});
 		});		

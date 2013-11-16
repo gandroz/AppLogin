@@ -1,6 +1,6 @@
-div.row-fluid(ng-init="initDashboard()")
-   carousel.offset1.span9(interval="4000")
-      slide(ng-repeat="item in data.lastJobs", active="item.active")
+div.row-fluid(ng-cloak, ng-init="initDashboard()")
+   carousel.offset1.span9(ng-cloak, interval="4000")
+      slide(ng-cloak, ng-repeat="item in data.lastJobs", active="item.active")
          div.container.carousel-jobItem
             div.jobDescription
                h1 {{item.title}}

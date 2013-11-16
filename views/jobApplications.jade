@@ -4,14 +4,16 @@ div.row-fluid
          accordion-group(ng-repeat="item in data.myApplications", heading="{{item.job.title}}")
             accordion-heading
                {{item.job.title}}
-               button.btn.btn-danger.pull-right(ng:click="remove(item)") X
+               i.pull-right.icon-remove-circle.removeButton(ng:click="remove(item)")
             p {{item.job.description}}
             hr
+            h1 Ma proposition 
             p {{item.proposal}}
             hr
-            p {{item.salary}}
-            hr
-            p Ma date proposée {{item.dueDate | date:'d MMMM yyyy'}}
-            hr
-            p {{item.job.author}}         
-            p Date proposée du job {{item.job.dueDate | date:'d MMMM yyyy'}}
+            p Salaire demande: {{item.salary}}
+            div
+               i.icon-calendar.calendar
+               | Ma date proposée {{item.dueDate | date:'d MMMM yyyy'}}
+            div
+               i.icon-calendar.calendar       
+               | Date proposée du job {{item.job.dueDate | date:'d MMMM yyyy'}}

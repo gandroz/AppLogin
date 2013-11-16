@@ -4,13 +4,7 @@ block content
    link(type='text/css', rel='stylesheet', href='/css/backlog.css') 
    div.container-fluid
         div.row-fluid
-           div.span3
-              div.well.sidebar-nav
-                ul.nav.nav-list
-                  li.well.nav-header Sidebar
-                  li.active 
-                     a(href="#") Link
-           div.span9(ng-app="appBacklog", ng-controller="backlogCtrl", ng-init="init()")     
+           div.offset2.span9(ng-app="appBacklog", ng-controller="backlogCtrl", ng-init="init()")     
               div.row-fluid   
                  button.btn.btn-primary(ng-click="showPanel();") Nouvelle tâche              
               div(collapse="isCollapsed")

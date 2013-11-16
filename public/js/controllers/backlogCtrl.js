@@ -1,8 +1,28 @@
-function backlogCtrl($scope, $log, $location, $window, $element, $route,  logEntries) {	
+function backlogCtrl($scope, $log, $location, $filter, $window, $element, $route,  logEntries) {	
 	    
 	    $scope.data = {};
 	    $scope.isCollapsed = {};
 	    $scope.buttonText = 'Create';
+	    $scope.query="";
+	    
+	    $scope.searchNotDone = function(item) {
+	    	return  $scope.search(item, false);
+	    };
+	    $scope.searchDone = function(item) {
+	    	return  $scope.search(item, true);
+	    };
+	    $scope.search = function(item,isDone) {
+	    	if(item.done == isDone){
+	    		if($scope.query == "") {
+	    			return true;
+	    		}
+	    		if(item.importance == $scope.query){
+	    			return true;
+	    		}
+	    		return false;
+	    	}
+	    	return false;
+	    };
 	    
 	    $scope.styles = [{'bkcolor': '#D61828', 'color': 'white'},
 	                     {'bkcolor': '#B018D6', 'color': 'white'},
@@ -41,8 +61,9 @@ function backlogCtrl($scope, $log, $location, $window, $element, $route,  logEnt
 	    	newEntry.$create(function(entry) {
 	    	   if(!entry)
 	    		   $log.log('Impossible to create new backlog entry');
-	    	   else {
-	    		   $window.location.href = '/home';
+	    	   else{
+	    		   $scope.data.entries.push(entry);
+	    		   $scope.data.entries = $filter('orderBy')($scope.data.entries, 'importance');
 	    	   }
 	    	});
 	    };
@@ -53,9 +74,6 @@ function backlogCtrl($scope, $log, $location, $window, $element, $route,  logEnt
 	    	entry.$update({Id: id},function(entry) {
      	       if(!entry)
 	    		   $log.log('Impossible to update bakclog entry');
-	    	   else {
-    	   			window.location.href = '/home';
-	           }
 	       	});    	
 	    };
 	    
@@ -74,9 +92,13 @@ function backlogCtrl($scope, $log, $location, $window, $element, $route,  logEnt
 	    
 	    $scope.remove = function(entry) {
 	    	var id = entry._id;
-	    	entry.$remove({Id: id}, function(){
-	    		$window.location.href = '/home';
-	    	});
+	    	entry.$remove({Id: id}, function(entry) {
+	    		for(idx in $scope.data.entries){
+		    		if($scope.data.entries[idx] == entry) {
+		    			$scope.data.entries.splice(idx, 1);
+		    		}
+		    	}	
+	    	});	    	    	
 	    };
 	    
 	    $scope.edit = function(entry, e) {

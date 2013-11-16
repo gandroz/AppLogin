@@ -24,10 +24,10 @@ block content
               div.searchInput
                  form.form-search
                     span Tri par importance : 
-                    input.input-mini.search-query(type="text", ng-model="search.importance") 
+                    input.input-mini.search-query(type="text", ng-model="query") 
               div.span12                    
-                 div.accordion.span8.offset1
-                    div.accordion-group(ng-repeat="item in data.entries | filter:{done:false}")
+                 div.accordion.span8.offset1#accordionLog
+                    div.accordion-group(ng-repeat="item in data.entries | filter:searchNotDone | orderBy:importance")
                        img.backlogCheckBox.pull-right(ng-src="{{item.done && '/img/OkGreen.png' || '/img/OkBlack.png'}}", ng-click="chgState(item)", ng-model="item.done")
                        a.btn.btn-mini.btn-danger.pull-right.buttonLog(ng:click="remove(item)") X
                        a.btn.btn-mini.btn-info.pull-right.buttonLog(ng:click="edit(item,$event)") ...                       
@@ -37,13 +37,13 @@ block content
                           div.accordion-inner                             
                              p {{item.description}}
               div.span12 
-                 div.accordion.span8.offset1
-                    div.accordion-group(ng-repeat="item in data.entries | filter:{done:true}")
+                 div.accordion.span8.offset1#accordionLog2
+                    div.accordion-group(ng-repeat="item in data.entries | filter:searchDone | orderBy:importance")
                        img.backlogCheckBox.pull-right(ng-src="{{item.done && '/img/OkGreen.png' || '/img/OkBlack.png'}}", ng-click="chgState(item)")
                        a.btn.btn-mini.btn-danger.pull-right.buttonLog(ng:click="remove(item)") X
                        a.btn.btn-mini.btn-info.pull-right.buttonLog(ng:click="edit(item,$event)") ...                       
                        div.accordion-heading                          
-                          a.accordion-toogle(data-toggle="collapse", data-parent="#accordionLog", href="#collapse{{$index + 1}}") ({{item.importance}}) {{item.title}}                      
+                          a.accordion-toogle(data-toggle="collapse", data-parent="#accordionLog2", href="#collapse{{$index + 1}}") ({{item.importance}}) {{item.title}}                      
                        div.accordion-body.collapse(id="collapse{{$index+1}}")
                           div.accordion-inner                             
                              p {{item.description}}                

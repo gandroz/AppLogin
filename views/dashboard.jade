@@ -1,12 +1,14 @@
 div.row-fluid(ng-cloak, ng-init="initDashboard()")
-   carousel.offset1.span9(ng-cloak, interval="4000")
-      slide(ng-cloak, ng-repeat="item in data.lastJobs", active="item.active")
-         div.container.carousel-jobItem
-            div.jobDescription
-               h1 {{item.title}}
-               p.lead {{item.description}}
-            p.lead.pull-right {{item.author}}
-            a.btn.btn.btn-primary(ng:click="apply(item)") Apply
+   div.container-fluid.spinnerWrapper#spinner(ng-hide="loaded")
+   div.container-fluid(ng-show="loaded")
+      carousel.offset1.span9(ng-cloak, interval="4000")
+         slide(ng-cloak, ng-repeat="item in data.lastJobs", active="item.active")
+            div.container.carousel-jobItem
+               div.jobDescription
+                  h1 {{item.title}}
+                  p.lead {{item.description}}
+               p.lead.pull-right {{item.author}}
+               a.btn.btn.btn-primary(ng:click="apply(item)") Apply
    div.span11.gridStyle(ng-grid="gridOptions")
    
               

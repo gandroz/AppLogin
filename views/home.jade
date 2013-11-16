@@ -1,10 +1,11 @@
 extends layout
 
 block content   
-   link(type='text/css', rel='stylesheet', href='/css/backlog.css') 
-   div.container-fluid
-        div.row-fluid
-           div.offset2.span9(ng-app="appBacklog", ng-controller="backlogCtrl", ng-init="init()")     
+   link(type='text/css', rel='stylesheet', href='/css/backlog.css')    
+   div.container-fluid(ng-app="appBacklog", ng-controller="backlogCtrl", ng-init="init()")
+        div.container-fluid.spinnerWrapper#spinner(ng-hide="loaded")
+        div.row-fluid(ng-show="loaded")          
+           div.offset2.span9
               div.row-fluid   
                  button.btn.btn-primary(ng-click="showPanel();") Nouvelle tâche              
               div(collapse="isCollapsed")

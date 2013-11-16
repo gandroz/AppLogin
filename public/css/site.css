@@ -450,7 +450,9 @@ hr {
 
 } 
 
-
+.spinnerWrapper {
+   height: 180px;
+}
  
  
  

@@ -36,13 +36,12 @@ h1 {
    padding: 15px;
 }
 
-.controlButtons {
-   padding: 20px 200px 0px; //top&bottom + right&left
+.pull-center {
+   text-align: center;
 }
 
-.controlButtons a {
-   width: 150px;   
-   font-size: 24px;
+.btn {
+margin-bottom: 5px;
 }
 
 .login {
@@ -68,6 +67,7 @@ h1 {
 
 .signup {
    font-weight: bold;
+   margin-top: 20px;
 }
 
 /* carousel */

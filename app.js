@@ -71,6 +71,12 @@ app.post('/login', user_routes.login);
 app.get('/logout', user_routes.logout);
 app.get('/register', node_routes.register);
 app.post('/register', user_routes.register);
+app.get('/auth/facebook', user_routes.facebookLogin);
+app.get('/auth/facebook/callback', user_routes.facebookCallback);
+/*app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/home');
+  });*/
 
 /*
  * Profile pages

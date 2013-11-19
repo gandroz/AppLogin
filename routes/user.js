@@ -6,7 +6,7 @@ var mongoose = require('mongoose')
   , dbUser = require('../config/models/user')
   , User = dbUser.userModel
   , dbProfile = require('../config/models/profile')
-  , Profile = dbProfile.profileModel;//mongoose.model('User');
+  , Profile = dbProfile.profileModel;
 
 //POST /login
 //Use passport.authenticate() as route middleware to authenticate the
@@ -50,7 +50,7 @@ exports.logout = function(req, res) {
 };
 
 exports.register = function(req, res) {
-	var user = new User({ username: req.body.username, email: req.body.email, password: req.body.password });
+	var user = new User({ username: req.body.username, email: req.body.email, password: req.body.password, strategy: 'local' });
 	var profile = new Profile({ username: req.body.username, 
 		                        email: req.body.email, 
 		                        age: null, 
@@ -79,3 +79,11 @@ exports.register = function(req, res) {
 		}
 	});
 };
+
+/*
+ * Facebook
+ */
+//http://stackoverflow.com/questions/19507941/facebook-authentication-with-passport-and-expressjs-why-is-verify-callback-not?rq=1
+//http://stackoverflow.com/questions/11006318/using-passportjs-with-connect-for-nodejs-to-authenticate-facebook-users
+exports.facebookLogin = passport.authenticate('facebook', { scope: [ 'email', 'user_location', 'user_birthday', 'user_photos' ] });
+exports.facebookCallback = passport.authenticate('facebook', { successRedirect: '/home', failureRedirect: '/login' });

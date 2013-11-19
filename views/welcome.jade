@@ -6,29 +6,39 @@ html
     link(rel='stylesheet', href='/css/bootstrap.css')
     link(rel='stylesheet', href='/css/bootstrap-responsive.css')
     link(rel="shortcut icon", href="https://github.com/twitter/bootstrap/tree/master/docs/assets/ico/favicon.png")
-    link(type='text/css', rel='stylesheet', href='/css/welcome.css')       
+    link(rel='stylesheet', href='/css/welcome.css')    
+    link(rel='stylesheet', href='/css/social-buttons.css')    
+    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css")   
     script(src='/js/lib/jquery-2.0.3.js'); 
     script(src='/js/lib/bootstrap.js');
     
   body
      div.navbar.navbar-static-top
        div.navbar-inner
-         div.container
+         div.container-fluid
             a.brand(href='/') P'tites Jobs
      div.preambule
-        div.container
-           div.row                 
+        div.container-fluid
+           div.row-fluid                 
               div.span6
                  h1 Facile Rapide
                  h2 Le site pour te trouver une jobine!
+           div.row-fluid      
+              div.span6.pull-center.login   
                  if !user
-                    div.row.controlButtons.login
-                       a.btn.btn-large(href='login', type='button') Log In
-                    div.row.controlButtons
-                       a.btn.btn-primary.btn-large.signup(href='register', type='button') Sign Up
+                    a.btn.btn-large(href='login', type='button') Log In
+                    br
+                    button.btn.btn-facebook.btn-large(onclick="window.location.href='/auth/facebook';return false;")
+                       i.icon-facebook
+                       || Connect with Facebook
+                    br   
+                    button.btn.btn-google-plus.btn-large(onclick="window.location.href='/login';return false;")
+                       i.icon-google-plus.pull-left                           
+                       || Connect with Google+
+                    br                             
+                    a.btn.btn-primary.btn-large.signup(href='register', type='button') Sign Up
                  else
-                    div.row.controlButtons.login
-                       a.btn.btn-large(href='home', type='button') Enter
+                    a.btn.btn-large(href='home', type='button') Enter
               div.span6
                  script(src="/js/lib/angular.min.js")
                  script(src="/js/lib/angular-resource.min.js")

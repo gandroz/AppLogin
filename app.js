@@ -38,9 +38,11 @@ var user_routes = require('./routes/user')
   , backlog_routes = require('./routes/backlog.js')
   , application_routes = require('./routes/application.js');
 
+var path = require ('path');
+
 // configure Express
 app.configure(function() {
-	this.set('views', __dirname + '/views');
+	this.set('views', path.join(__dirname + '/views'));
 	this.set('view engine', 'jade');	
 	this.use(express.logger('dev'));
 	this.use(express.cookieParser());
@@ -73,26 +75,24 @@ app.get('/register', node_routes.register);
 app.post('/register', user_routes.register);
 app.get('/auth/facebook', user_routes.facebookLogin);
 app.get('/auth/facebook/callback', user_routes.facebookCallback);
-/*app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function(req, res) {
-    res.redirect('/home');
-  });*/
+app.get('/auth/google', user_routes.googleLogin);
+app.get('/auth/google/return', user_routes.googleReturn);
 
 /*
  * Profile pages
  */
 app.get('/profile', pass.ensureAuthenticated, profile_routes.profile);
-app.get('/dashboard', pass.ensureAuthenticated, profile_routes.dashboard);
-app.get('/profUpdate', pass.ensureAuthenticated, profile_routes.profileUpdate);
-app.post('/profUpdate', pass.ensureAuthenticated, profile_routes.update);
-app.get('/offers', pass.ensureAuthenticated, profile_routes.offers);
-app.get('/jobs', pass.ensureAuthenticated, profile_routes.jobs);
-app.get('/newApplication', pass.ensureAuthenticated, profile_routes.newApplication);
-app.get('/jobApplications', pass.ensureAuthenticated, profile_routes.applications);
-app.get('/offerDetails', pass.ensureAuthenticated, profile_routes.offerDetails);
-app.get('/gridFooterTemplate', profile_routes.gridFooterTemplate);
-app.get('/gridCellTemplate', profile_routes.gridCellTemplate);
-app.get('/gridRowTemplate', profile_routes.gridRowTemplate);
+app.get('/profile/dashboard', pass.ensureAuthenticated, profile_routes.dashboard);
+app.get('/profile/update', pass.ensureAuthenticated, profile_routes.profileUpdate);
+app.post('/profile/update', pass.ensureAuthenticated, profile_routes.update);
+app.get('/profile/offers', pass.ensureAuthenticated, profile_routes.offers);
+app.get('/profile/jobs', pass.ensureAuthenticated, profile_routes.jobs);
+app.get('/profile/newApplication', pass.ensureAuthenticated, profile_routes.newApplication);
+app.get('/profile/jobApplications', pass.ensureAuthenticated, profile_routes.applications);
+app.get('/profile/offerDetails', pass.ensureAuthenticated, profile_routes.offerDetails);
+app.get('/profile/gridFooterTemplate', profile_routes.gridFooterTemplate);
+app.get('/profile/gridCellTemplate', profile_routes.gridCellTemplate);
+app.get('/profile/gridRowTemplate', profile_routes.gridRowTemplate);
 
 app.get('/api/profile', pass.ensureAuthenticated, profile_routes.profileAPI);
 app.post('/api/profile', pass.ensureAuthenticated, profile_routes.updateAPI);

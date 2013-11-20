@@ -1,0 +1,19 @@
+div.row-fluid(style="margin-bottom:20px")
+      a.btn.btn-primary(href="/profile/jobs") Post New Offer
+   div.row-fluid 
+      div(ng-init="initMyOffers()")  
+         accordion.span8.offset1(close-others="true")
+            accordion-group(ng-repeat="item in data.myJobs", heading="{{item.title}}")
+               accordion-heading
+                  {{item.title}}
+                  i.pull-right.icon-remove-circle.removeButton(ng:click="remove(item)") 
+               p {{item.description}}
+               hr
+               div.footer
+                  div.pull-left 
+                     i.icon-calendar.calendar
+                     {{item.dueDate | date:'d MMMM yyyy'}}
+                  div.pull-right 
+                     i.icon-user 
+                     {{item.author}}         
+               

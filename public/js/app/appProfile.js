@@ -11,35 +11,35 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
 	$routeProvider
 	   .when('/profile/update', {
 		   controller: 'myJobOfferListCtrl',
-		   templateUrl: '/profUpdate'
+		   templateUrl: '/profile/update'
 	   })
 	   .when('/profile', {
 		   controller: 'myJobOfferListCtrl',
-		   templateUrl: '/dashboard'
+		   templateUrl: '/profile/dashboard'
 	   })
 	   .when('/profile/dashboard', {
 		   controller: 'myJobOfferListCtrl',
-		   templateUrl: '/dashboard'
+		   templateUrl: '/profile/dashboard'
 	   })
 	   .when('/profile/offers', {
 		   controller: 'myJobOfferListCtrl',
-		   templateUrl: '/offers'
+		   templateUrl: '/profile/offers'
 	   })
 	   .when('/profile/jobs', {
 		   controller: 'myJobOfferListCtrl',
-		   templateUrl: '/jobs'
+		   templateUrl: '/profile/jobs'
 	   })
 	   .when('/profile/newApplication', {
 		   controller: 'myJobOfferListCtrl',
-		   templateUrl: '/newApplication'
+		   templateUrl: '/profile/newApplication'
 	   })
 	   .when('/profile/application', {
 		   controller: 'myJobOfferListCtrl',
-		   templateUrl: '/jobApplications'
+		   templateUrl: '/profile/jobApplications'
 	   })
 	   .when('/profile/offerDetails/:jobId', {
 		   controller: 'myJobOfferListCtrl',
-		   templateUrl: '/offerDetails'
+		   templateUrl: '/profile/offerDetails'
 	   })
 	   .otherwise({redirectTo: '/profile/dashboard'});
 	$locationProvider.html5Mode(true);

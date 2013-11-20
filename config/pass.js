@@ -3,6 +3,7 @@ var passport = require('passport')
   , mongoose = require('mongoose')
   , LocalStrategy = require('passport-local').Strategy
   , FacebookStrategy = require('passport-facebook').Strategy
+  , GoogleStrategy = require('passport-google').Strategy
   , dbProfile = require('../config/models/profile')
   , Profile = dbProfile.profileModel
   , dbUser = require('./models/user')
@@ -83,6 +84,17 @@ passport.use(new FacebookStrategy({
 	  });
   })
 );
+
+passport.use(new GoogleStrategy({
+    returnURL: 'http://localhost:8080/auth/google/return',
+    realm: 'http://localhost:8080/'
+  },
+  function(identifier, profile, done) {
+    User.findOrCreate({ openId: identifier }, function(err, user) {
+      done(err, user);
+    });
+  }
+));
 
 // Simple route middleware to ensure user is authenticated.  Otherwise send to login page.
 exports.ensureAuthenticated = function ensureAuthenticated(req, res, next) {

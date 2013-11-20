@@ -107,13 +107,13 @@ function myJobOfferListCtrl($scope, $log, $routeParams, $location, $window, $rou
 			   showFooter: true,
 			   showFilter: true,
 			   totalServerItems:'totalServerItems',
-			   footerTemplate: 'gridFooterTemplate',
-			   rowTemplate: 'gridRowTemplate',
+			   footerTemplate: '/profile/gridFooterTemplate',
+			   rowTemplate: '/profile/gridRowTemplate',
 			   pagingOptions: $scope.pagingOptions,
 			   filterOptions: $scope.filterOptions,
 			   columnDefs: [
-			        {field:'title', displayName:'Offre', cellTemplate: '/gridCellTemplate'},
-			        {field:'category', displayName:'Category', width: 200, cellTemplate: '/gridCellTemplate'},
+			        {field:'title', displayName:'Offre', cellTemplate: '/profile/gridCellTemplate'},
+			        {field:'category', displayName:'Category', width: 200, cellTemplate: '/profile/gridCellTemplate'},
 			        {field:'postedDate', displayName:'Date', width: 200, cellFilter:"date:\'dd/MM/yyyy\'" }
 			   ]
 		};

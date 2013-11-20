@@ -4,7 +4,8 @@
 
 var mongoose = require('mongoose')
   , db = require('../config/models/profile')
-  , Profile = db.profileModel;
+  , Profile = db.profileModel
+  , path = require ('path');
 
 /*
  * Main page
@@ -20,7 +21,7 @@ exports.jobs = function (req, res) {
 	    if (err) { 
 	    	res.redirect('/home'); 
 	    }	    
-	    res.render("jobs", {
+	    res.render(path.join(__dirname + '/../views/profile/jobs'), {
 	  	  title: 'Dashboard',
 	  	  id: 'profile',
 	  	  profile: profile,
@@ -35,7 +36,7 @@ exports.offers = function(req, res) {
 	    if (err) { 
 	    	res.redirect('/home'); 
 	    }	    
-	    res.render("jobOffers", {
+	    res.render(path.join(__dirname + '/../views/profile/jobOffers'), {
 	  	  title: 'Dashboard',
 	  	  id: 'profile',
 	  	  profile: profile,
@@ -75,7 +76,7 @@ exports.profile = function(req, res) {
 };
 
 exports.profileUpdate = function(req, res) {		    
-	    res.render("profileUpdate");
+	    res.render(path.join(__dirname + '/../views/profile/profileUpdate'));
 };
 
 exports.dashboard = function(req, res) {
@@ -84,7 +85,7 @@ exports.dashboard = function(req, res) {
 	    if (err) { 
 	    	res.redirect('/home'); 
 	    }	    
-	    res.render("dashboard", {
+	    res.render(path.join(__dirname + '/../views/profile/dashboard'), {
 	  	  title: 'Dashboard',
 	  	  id: 'profile',
 	  	  profile: profile,
@@ -99,7 +100,7 @@ exports.newApplication = function(req, res) {
 	    if (err) { 
 	    	res.redirect('/home'); 
 	    }	    
-	    res.render("newApplication", {
+	    res.render(path.join(__dirname + '/../views/profile/newApplication'), {
 	  	  title: 'Dashboard',
 	  	  id: 'profile',
 	  	  profile: profile,
@@ -114,7 +115,7 @@ exports.applications = function(req, res) {
 	    if (err) { 
 	    	res.redirect('/home'); 
 	    }	    
-	    res.render("jobApplications", {
+	    res.render(path.join(__dirname + '/../views/profile/jobApplications'), {
 	  	  title: 'Dashboard',
 	  	  id: 'profile',
 	  	  profile: profile,
@@ -129,7 +130,7 @@ exports.offerDetails = function(req, res) {
 	    if (err) { 
 	    	res.redirect('/home'); 
 	    }	    
-	    res.render("offerDetails", {
+	    res.render(path.join(__dirname + '/../views/profile/offerDetails'), {
 	  	  title: 'Dashboard',
 	  	  id: 'profile',
 	  	  profile: profile,
@@ -139,15 +140,15 @@ exports.offerDetails = function(req, res) {
 };
 
 exports.gridFooterTemplate = function (req, res) {
-	res.render("gridFooterTemplate");
+	res.render(path.join(__dirname + '/../views/profile/gridFooterTemplate'));
 };
 
 exports.gridCellTemplate = function (req, res) {
-	res.render("gridCellTemplate");
+	res.render(path.join(__dirname + '/../views/profile/gridCellTemplate'));
 };
 
 exports.gridRowTemplate = function (req, res) {
-	res.render("gridRowTemplate");
+	res.render(path.join(__dirname + '/../views/profile/gridRowTemplate'));
 };
 
 /*
@@ -157,7 +158,8 @@ exports.profileAPI = function(req, res) {
 	var user = req.user;
 	Profile.findOne({ username: user.username }, function(err, profile) {
 	    if (err) { 
-	    	res.redirect('/home'); 
+	    	console.log('Error finding profile. ' + err); 
+	    	res.send(JSON.stringify([]));
 	    }	
 	    res.send(JSON.stringify(profile));
 	});  

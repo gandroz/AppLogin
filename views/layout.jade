@@ -37,16 +37,16 @@ html
             div.nav-collapse.collapse
               ul.nav
                  if !user
-                    -var obj = { 'home':'Home' }
+                    -var menu = {'items': [{'title':'Home', 'route':'home'}]}
                  else
-                    -var obj = { 'home':'Home', 'profile':'Dashboard' }
-                 each val, key in obj
-                    if (id == key)
+                    -var menu = {'items': [{'title':'Home', 'route':'home'}, {'title':'Dashboard', 'route':'profile'}]}
+                 each menuItem in menu.items
+                    if (id == menuItem.Title)
                       li.active
-                        a(href='/#{key}') #{val}
+                        a(href='/#{menuItem.route}') #{menuItem.title}
                     else            
                       li
-                        a(href='/#{key}') #{val}
+                        a(href='/#{menuItem.route}') #{menuItem.title}
             if !user        
                div.btn-toolbar.pull-right
                   a.btn.btn-primary(href='login', type='button') Log in

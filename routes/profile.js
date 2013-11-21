@@ -10,12 +10,54 @@ var mongoose = require('mongoose')
 /*
  * Main page
  */
+exports.profile = function(req, res) {
+	var user = req.user;
+	Profile.findOne({ username: user.username }, function(err, profile) {
+	    if (err) { 
+	    	res.redirect('/home'); 
+	    }	    
+	    res.render("profile", {
+	  	  id: 'Dashboard',
+	  	  profile: profile,
+	  	  user: req.user
+	    });
+	});  
+};
 
 /*
  * Partials
  */
+exports.partials = function(req, res) {
+    var name = req.params.name;
+    var user = req.user;
+	Profile.findOne({ username: user.username }, function(err, profile) {
+	    if (err) { 
+	    	res.redirect('/home'); 
+	    }	    
+	    res.render(path.join(__dirname + '/../views/profile/' + name), {
+	  	  id: 'Dashboard',
+	  	  profile: profile,
+	  	  user: req.user
+	    });
+	});
+};
 
-exports.jobs = function (req, res) {
+exports.update = function(req, res){
+	var profile = req.body;
+	delete profile._id;
+	Profile.update({'username':profile.username},profile,{safe:true}, function(err, result){
+		if(err) {
+			console.log('Error updating profile. ' + err);
+			res.redirect('/profile');
+		}
+		else{
+			console.log('' + result + ' profile updated for user: ' + profile.username);
+			res.redirect('/profile');
+		}			
+	});
+};
+
+/*exports.jobs = function (req, res) {
 	var user = req.user;
 	Profile.findOne({ username: user.username }, function(err, profile) {
 	    if (err) { 
@@ -36,37 +78,7 @@ exports.offers = function(req, res) {
 	    if (err) { 
 	    	res.redirect('/home'); 
 	    }	    
-	    res.render(path.join(__dirname + '/../views/profile/jobOffers'), {
-	  	  title: 'Dashboard',
-	  	  id: 'profile',
-	  	  profile: profile,
-	  	  user: req.user
-	    });
-	});  
-};
-
-exports.update = function(req, res){
-	var profile = req.body;
-	delete profile._id;
-	Profile.update({'username':profile.username},profile,{safe:true}, function(err, result){
-		if(err) {
-			console.log('Error updating profile. ' + err);
-			res.redirect('/profile');
-		}
-		else{
-			console.log('' + result + ' profile updated for user: ' + profile.username);
-			res.redirect('/profile');
-		}			
-	});
-};
-
-exports.profile = function(req, res) {
-	var user = req.user;
-	Profile.findOne({ username: user.username }, function(err, profile) {
-	    if (err) { 
-	    	res.redirect('/home'); 
-	    }	    
-	    res.render("profile", {
+	    res.render(path.join(__dirname + '/../views/profile/offers'), {
 	  	  title: 'Dashboard',
 	  	  id: 'profile',
 	  	  profile: profile,
@@ -76,7 +88,7 @@ exports.profile = function(req, res) {
 };
 
 exports.profileUpdate = function(req, res) {		    
-	    res.render(path.join(__dirname + '/../views/profile/profileUpdate'));
+	    res.render(path.join(__dirname + '/../views/profile/update'));
 };
 
 exports.dashboard = function(req, res) {
@@ -149,7 +161,7 @@ exports.gridCellTemplate = function (req, res) {
 
 exports.gridRowTemplate = function (req, res) {
 	res.render(path.join(__dirname + '/../views/profile/gridRowTemplate'));
-};
+};*/
 
 /*
  * REST API

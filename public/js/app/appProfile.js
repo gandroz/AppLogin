@@ -11,7 +11,8 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
 	$routeProvider
 	   .when('/profile/update', {
 		   controller: 'myJobOfferListCtrl',
-		   templateUrl: '/profile/update'
+		   templateUrl: '/profile/update',
+		   reloadOnSearch: false
 	   })
 	   .when('/profile', {
 		   controller: 'myJobOfferListCtrl',
@@ -19,19 +20,23 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
 	   })
 	   .when('/profile/dashboard', {
 		   controller: 'myJobOfferListCtrl',
-		   templateUrl: '/profile/dashboard'
+		   templateUrl: '/profile/dashboard',
+		   reloadOnSearch: false
 	   })
 	   .when('/profile/offers', {
 		   controller: 'myJobOfferListCtrl',
-		   templateUrl: '/profile/offers'
+		   templateUrl: '/profile/offers',
+		   reloadOnSearch: false
 	   })
 	   .when('/profile/jobs', {
 		   controller: 'myJobOfferListCtrl',
-		   templateUrl: '/profile/jobs'
+		   templateUrl: '/profile/jobs',
+		   reloadOnSearch: false
 	   })
 	   .when('/profile/newApplication', {
 		   controller: 'myJobOfferListCtrl',
-		   templateUrl: '/profile/newApplication'
+		   templateUrl: '/profile/newApplication',
+		   reloadOnSearch: false
 	   })
 	   .when('/profile/application', {
 		   controller: 'myJobOfferListCtrl',
@@ -39,7 +44,8 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
 	   })
 	   .when('/profile/offerDetails/:jobId', {
 		   controller: 'myJobOfferListCtrl',
-		   templateUrl: '/profile/offerDetails'
+		   templateUrl: '/profile/offerDetails',
+		   reloadOnSearch: false
 	   })
 	   .otherwise({redirectTo: '/profile/dashboard'});
 	$locationProvider.html5Mode(true);

@@ -2,6 +2,10 @@ function myJobOfferListCtrl($scope, $log, $routeParams, $location, $window, $rou
 	$scope.data = {};
 	$scope.loaded = false;
 	
+	$scope.$on('$routeUpdate', function(){
+		$scope.rien = false;
+		});
+	
 	$scope.initProfile = function() {
 		Api.Profile.query(function(res){
 			$scope.data.profile = res;

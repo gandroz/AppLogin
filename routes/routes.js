@@ -6,8 +6,7 @@ exports.welcome = function(req, res) {
 
 exports.home = function(req, res) {
 	  res.render("home", {
-	  	  title: 'Home',
-	  	  id: 'home',
+	  	  id: 'Home',
 	  	  user: req.user
 	    });
 	};

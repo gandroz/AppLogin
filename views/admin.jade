@@ -1,0 +1,21 @@
+extends layout
+
+block content   
+   script(src="/js/app/appAdmin.js")
+   script(src="/js/controllers/adminCtrl.js")
+   div.container-fluid(ng-app="appAdmin")
+      div.row-fluid
+         div.span3(ng-controller="navBarCtrl")
+           div.well.sidebar-nav
+             ul.nav.nav-list
+               li.well.nav-header
+                  a(href="/admin") Admin Mode
+               li(ng-class="{ active: isActive('Jobs')}") 
+                  a(href="/admin/Jobs") Jobs   
+               li(ng-class="{ active: isActive('Applications')}") 
+                  a(href="/admin/Applications") Applications
+               li(ng-class="{ active: isActive('Users')}") 
+                  a(href="/admin/Users") Users
+               li(ng-class="{ active: isActive('Profiles')}") 
+                  a(href="/admin/Profiles") Profiles
+         div.span9(ng-view, ng-cloak)  

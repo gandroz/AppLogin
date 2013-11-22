@@ -18,8 +18,7 @@ var express = require('express')
   , port = process.env.PORT || 8080;
 
 //Database connect
-var uristring = process.env.MONGOHQ_URL ||
-   'mongodb://zygonie:5s5tc79GA@emma.mongohq.com:10090/AppJobDB';
+var uristring = process.env.MONGOHQ_URL;
 
 var mongoOptions = { db: { safe: true }};
 
@@ -120,6 +119,23 @@ app.post('/api/myApplications', pass.ensureAuthenticated, application_routes.cre
 app.get('/api/myApplications', pass.ensureAuthenticated, application_routes.allMyApplications);
 
 app.get('/api/applicationsForJobId/:jobId', pass.ensureAuthenticated, application_routes.applicationsForJobId);
+
+/*
+ * Admin 
+ */
+var admin_routes = require('./routes/admin');
+app.get('/api/admin/jobs', admin_routes.jobList);
+app.get('/api/admin/applications', admin_routes.applicationList);
+app.get('/api/admin/profiles', admin_routes.profileList);
+app.get('/api/admin/users', admin_routes.userList);
+app.del('/api/admin/jobs/:jobId', admin_routes.jobRemove);
+app.del('/api/admin/applications/:applicationId', admin_routes.applicationRemove);
+app.del('/api/admin/profiles/:profileId', admin_routes.profileRemove);
+app.del('/api/admin/users/:userId', admin_routes.userRemove);
+
+app.get('/admin', admin_routes.admin);
+app.get('/admin/:name', admin_routes.partials);
+
 
 app.listen(port, function() {
   console.log('Express server listening on port: ' + port);

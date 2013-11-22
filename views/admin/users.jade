@@ -1,0 +1,8 @@
+div.row-fluid 
+   div(ng-init="initUsers()")  
+      accordion.span8.offset1(close-others="false")
+         accordion-group(ng-repeat="item in data.users", heading="{{$index}}")
+            accordion-heading
+               {{$index}}
+               i.pull-right.icon-remove-circle.removeButton(ng:click="removeUser(item)") 
+            {{item}}

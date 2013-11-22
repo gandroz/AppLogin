@@ -1,0 +1,8 @@
+div.row-fluid 
+   div(ng-init="initProfiles()")  
+      accordion.span8.offset1(close-others="false")
+         accordion-group(ng-repeat="item in data.profiles", heading="{{$index}}")
+            accordion-heading
+               {{$index}}
+               i.pull-right.icon-remove-circle.removeButton(ng:click="removeProfile(item)") 
+            {{item}}

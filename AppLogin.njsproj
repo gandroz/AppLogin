@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <SchemaVersion>2.0</SchemaVersion>
+        <ProjectGuid>{89bd7f05-5516-4d8e-a517-02bffa4d7989}</ProjectGuid>
+        <ProjectHome />
+        <ProjectView>ShowAllFiles</ProjectView>
+        <StartupFile>app.js</StartupFile>
+        <WorkingDirectory>.</WorkingDirectory>
+        <OutputPath>.</OutputPath>
+        <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+        <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+        <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+    <ItemGroup>
+        <Content Include="package.json" />
+        <Compile Include="app.js" />
+        <Content Include=".git\ms-persist.xml" />
+        <Compile Include="config\pass.js" />
+        <Compile Include="routes\application.js" />
+        <Compile Include="routes\backlog.js" />
+        <Compile Include="routes\jobOffers.js" />
+        <Compile Include="routes\profile.js" />
+        <Compile Include="routes\routes.js" />
+        <Compile Include="routes\user.js" />
+        <Content Include="views\about.jade" />
+        <Content Include="views\contact.jade" />
+        <Content Include="views\dashboard.jade" />
+        <Content Include="views\index.jade" />
+        <Content Include="views\jobApplications.jade" />
+        <Content Include="views\jobOffers.jade" />
+        <Content Include="views\jobs.jade" />
+        <Content Include="views\layout.jade" />
+        <Content Include="views\login.jade" />
+        <Content Include="views\newApplication.jade" />
+        <Content Include="views\profile.jade" />
+        <Content Include="views\profileUpdate.jade" />
+        <Content Include="views\register.jade" />
+        <Content Include="views\welcome.jade" />
+        <Compile Include="config\models\application.js" />
+        <Compile Include="config\models\backlog.js" />
+        <Compile Include="config\models\jobOffers.js" />
+        <Compile Include="config\models\profile.js" />
+        <Compile Include="config\models\user.js" />
+        <Content Include="public\css\backlog.css" />
+        <Content Include="public\css\bootstrap-responsive.css" />
+        <Content Include="public\css\bootstrap.css" />
+        <Content Include="public\css\bootstrap.min.css" />
+        <Content Include="public\css\jquery-ui-1.10.3.custom.css" />
+        <Content Include="public\css\jquery-ui-1.10.3.custom.min.css" />
+        <Content Include="public\css\ng-grid.css" />
+        <Content Include="public\css\ng-grid.min.css" />
+        <Content Include="public\css\site.css" />
+        <Content Include="public\css\welcome.css" />
+        <Content Include="public\images\job-seeking.png" />
+        <Content Include="public\images\job-seeking.jpg" />
+        <Content Include="public\css\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+        <Content Include="public\css\images\ui-bg_flat_15_cd0a0a_40x100.png" />
+        <Content Include="public\css\images\ui-bg_glass_100_e4f1fb_1x400.png" />
+        <Content Include="public\css\images\ui-bg_glass_50_3baae3_1x400.png" />
+        <Content Include="public\css\images\ui-bg_glass_80_d7ebf9_1x400.png" />
+        <Content Include="public\css\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+        <Content Include="public\css\images\ui-bg_highlight-hard_70_000000_1x100.png" />
+        <Content Include="public\css\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+        <Content Include="public\css\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+        <Content Include="public\css\images\ui-icons_2694e8_256x240.png" />
+        <Content Include="public\css\images\ui-icons_2e83ff_256x240.png" />
+        <Content Include="public\css\images\ui-icons_3d80b3_256x240.png" />
+        <Content Include="public\css\images\ui-icons_72a7cf_256x240.png" />
+        <Content Include="public\css\images\ui-icons_ffffff_256x240.png" />
+        <Content Include="public\css\images\animated-overlay.gif" />
+        <Compile Include="public\js\app\appBacklog.js" />
+        <Compile Include="public\js\app\appProfile.js" />
+        <Compile Include="public\js\app\appWelcome.js" />
+        <Compile Include="public\js\controllers\backlogCtrl.js" />
+        <Compile Include="public\js\controllers\jobOfferCtrl.js" />
+        <Compile Include="public\js\controllers\lastJobOffersCtrl.js" />
+        <Compile Include="public\js\controllers\navBarCtrl.js" />
+        <Compile Include="public\js\lib\angular-resource.min.js" />
+        <Compile Include="public\js\lib\angular.min.js" />
+        <Compile Include="public\js\lib\bootstrap.js" />
+        <Compile Include="public\js\lib\jquery-2.0.3.js" />
+        <Compile Include="public\js\lib\jquery-ui-1.10.3.custom.js" />
+        <Compile Include="public\js\lib\jquery-ui-1.10.3.custom.min.js" />
+        <Compile Include="public\js\lib\jquery.dotdotdot.js" />
+        <Compile Include="public\js\lib\jquery.dotdotdot.min.js" />
+        <Compile Include="public\js\lib\ng-grid-2.0.7.min.js" />
+        <Compile Include="public\js\lib\ui-bootstrap-tpls.js" />
+        <Compile Include="public\js\lib\ui-bootstrap.js" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include=".git" />
+        <Folder Include="config" />
+        <Folder Include="config\models" />
+        <Folder Include="public\css" />
+        <Folder Include="public\css\images" />
+        <Folder Include="public\images" />
+        <Folder Include="public\js\app" />
+        <Folder Include="public\js\controllers" />
+        <Folder Include="public\js\lib" />
+        <Folder Include="routes" />
+        <Folder Include="views" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+    <ProjectExtensions>
+        <VisualStudio>
+          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+            <WebProjectProperties>
+              <UseIIS>False</UseIIS>
+              <AutoAssignPort>True</AutoAssignPort>
+              <DevelopmentServerPort>0</DevelopmentServerPort>
+              <DevelopmentServerVPath>/</DevelopmentServerVPath>
+              <IISUrl>http://localhost:48022/</IISUrl>
+              <NTLMAuthentication>False</NTLMAuthentication>
+              <UseCustomServer>True</UseCustomServer>
+              <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+              <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+            </WebProjectProperties>
+          </FlavorProperties>
+          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+            <WebProjectProperties>
+              <StartPageUrl>
+              </StartPageUrl>
+              <StartAction>CurrentPage</StartAction>
+              <AspNetDebugging>True</AspNetDebugging>
+              <SilverlightDebugging>False</SilverlightDebugging>
+              <NativeDebugging>False</NativeDebugging>
+              <SQLDebugging>False</SQLDebugging>
+              <ExternalProgram>
+              </ExternalProgram>
+              <StartExternalURL>
+              </StartExternalURL>
+              <StartCmdLineArguments>
+              </StartCmdLineArguments>
+              <StartWorkingDirectory>
+              </StartWorkingDirectory>
+              <EnableENC>False</EnableENC>
+              <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+            </WebProjectProperties>
+          </FlavorProperties>
+        </VisualStudio>
+    </ProjectExtensions>
+</Project>

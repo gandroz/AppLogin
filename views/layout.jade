@@ -19,9 +19,11 @@ html
     script(src="/js/lib/ui-bootstrap-tpls.js")
     script(src="/js/app/appProfile.js")
     script(src="/js/app/appWelcome.js")
-    script(src="/js/app/appBacklog.js")    
+    script(src="/js/app/appBacklog.js")
+    script(src="/js/app/appListMariage.js")    
     script(src="/js/controllers/navBarCtrl.js")
     script(src="/js/controllers/backlogCtrl.js")
+    script(src="/js/controllers/listMariageCtrl.js")
     script(src="/js/controllers/jobOfferCtrl.js")
     script(src="/js/controllers/lastJobOffersCtrl.js")               
     
@@ -39,7 +41,7 @@ html
                  if !user
                     -var menu = {'items': [{'title':'Home', 'route':'home'}]}
                  else
-                    -var menu = {'items': [{'title':'Home', 'route':'home'}, {'title':'Dashboard', 'route':'profile'}]}
+                    -var menu = {'items': [{'title':'Home', 'route':'home'}, {'title':'Dashboard', 'route':'profile'}, {'title':'Liste de Mariage', 'route':'mariage'}]}
                  each menuItem in menu.items
                     if (id == menuItem.Title)
                       li.active

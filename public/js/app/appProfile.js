@@ -2,7 +2,7 @@
 /*
  * Définition du module d'application
  */
-var myApp = angular.module('appProfile', ['ngResource', 'ngGrid', 'ui.bootstrap']);
+var myApp = angular.module('appProfile', ['ngRoute', 'ngResource', 'ngGrid', 'ui.bootstrap']);
 
 /*
  * Config

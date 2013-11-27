@@ -1,4 +1,4 @@
-function myJobOfferListCtrl($scope, $log, $routeParams, $location, $window, $route, $modal, Api) {
+function myJobOfferListCtrl($scope, $log, $routeParams, $location, $route, $window, $modal, Api) {
 	$scope.data = {};
 	$scope.loaded = false;
 	

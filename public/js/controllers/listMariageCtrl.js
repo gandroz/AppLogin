@@ -1,4 +1,4 @@
-﻿function listMariageCtrl($scope, $log, $location, $filter, $window, $element, $route, $timeout, mariageEntries) {
+﻿function listMariageCtrl($scope, $log, $location, mariageEntries) {
 
     $scope.data = {};
     $scope.isCollapsed = {};

@@ -1,4 +1,4 @@
-function backlogCtrl($scope, $log, $location, $filter, $window, $element, $route, $timeout, logEntries) {	
+function backlogCtrl($scope, $log, $location, $filter, logEntries) {	
 	    
 	    $scope.data = {};
 	    $scope.isCollapsed = {};
@@ -64,19 +64,6 @@ function backlogCtrl($scope, $log, $location, $filter, $window, $element, $route
 				$scope.data.entries = res;
 				$scope.loaded = true;
 				spinner.stop();
-				for(var idx in $scope.data.entries)
-				{
-					var item = $scope.data.entries[idx];
-					if(!isDefined(item.done))
-					{
-						item.done = false;
-						var id = item._id;
-						item.$update({Id: id}, function(entry) {
-				     	       if(!entry)
-					    		   $log.log('Impossible to update bakclog entry');
-						});
-					}
-				}
 			});			
 		};
 	    

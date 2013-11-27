@@ -3,7 +3,7 @@
  * Définition du module d'application
  */
 
-var mariageApp = angular.module('appListMariage', ['ngResource','ui.bootstrap']);
+var mariageApp = angular.module('appListMariage', ['ngResource','ui.bootstrap','ngSanitize']);
 
 mariageApp.factory('mariageEntries',['$resource', function($resource) {
 	return $resource('/api/listeMariage/:Id',

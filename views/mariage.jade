@@ -29,7 +29,7 @@ block content
                           a.accordion-toogle.mariageEntryToBeDone(data-toggle="collapse", data-parent="#accordionMariage", href="#collapse{{$index + 1}}") {{item.title}}                      
                        div.accordion-body.collapse(id="collapse{{$index+1}}")
                           div.accordion-inner                             
-                             p {{item.description}}
+                             p(ng-bind-html="item.description")
               div.span12(ng-hide="!isCollapsed") 
                  div.accordion.span8.offset1#accordionMariage2(ng-show="doneEntriesPresent") 
                     div.accordion-group(ng-repeat="item in data.entries | filter:searchDone | orderBy:importance")

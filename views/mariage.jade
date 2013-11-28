@@ -31,13 +31,13 @@ block content
                           div.accordion-inner                             
                              p(ng-bind-html="item.description")
               div.span12(ng-hide="!isCollapsed") 
-                 div.accordion.span8.offset1#accordionMariage2(ng-show="doneEntriesPresent") 
+                 div.accordion.span8.offset1#accordionMariage2(ng-hide="doneEntriesPresent") 
                     div.accordion-group(ng-repeat="item in data.entries | filter:searchDone | orderBy:importance")
                        img.checkBox.pull-right(ng-src="{{item.done && '/img/OkGreen.png' || '/img/OkBlack.png'}}", ng-click="chgState(item)")
                        a.btn.btn-mini.btn-danger.pull-right.buttonLog(ng:click="remove(item)") X
                        a.btn.btn-mini.btn-info.pull-right.buttonLog(ng:click="edit(item,$event)") ...                       
-                       div.accordion-heading                          
-                          a.accordion-toogle(data-toggle="collapse", data-parent="#accordionMariage2", href="#collapse{{$index + 1}}") {{item.title}}                      
+                       div.accordion-heading.headDone
+                          a.accordion-toogle.headDone(data-toggle="collapse", data-parent="#accordionMariage2", href="#collapse{{$index + 1}}") {{item.title}}                      
                        div.accordion-body.collapse(id="collapse{{$index+1}}")
                           div.accordion-inner                             
                              p {{item.description}}                

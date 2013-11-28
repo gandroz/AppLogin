@@ -1,14 +1,52 @@
-﻿.accordion{
-   margin-top: 10px;
-   display: block;
-   -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-   -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+﻿@media (max-width: 799px) {
+    .accordion-heading {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .buttonLog {
+        margin-top: 4px;
+        margin-right: 8px;
+        font-size: 26px;
+        line-height: 28px;
+    }
+
+    .accordion .checkBox {
+        margin-right: -45px;
+        margin-top: 5px;
+        height: 30px;
+    }
+}
+
+@media (min-width: 799px) {
+    .accordion-heading {
+        font-size: 14px;
+        line-height: 16px;
+    }
+
+    .buttonLog {
+        margin-top: 4px;
+        margin-right: 4px;
+        font-size: 8px;
+        line-height: 18px;
+    }
+    
+    .accordion .checkBox {
+        margin-right: -25px;
+        margin-top: 5px;
+        height: 20px;
+    }
+}
+
+.accordion {
+    margin-top: 10px;
+    display: block;
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .accordion-heading {
-    font-size: 14px;
-    line-height: 16px;
     padding: 5px 15px;
     background-color: #311c98;
     color: white;
@@ -28,14 +66,18 @@
     color: white;
 }
 
-.accordion-inner {
-   border-top: 0px;
+.headDone{
+    background-color: #C0C0C0;
+    color: #5F5F5F;
 }
 
-.accordion .checkBox {
-   margin-right: -25px;
-   margin-top: 5px;
-   height: 20px;
+.headDone a{
+    background-color: #C0C0C0;
+    color: #5F5F5F;
+}
+
+.accordion-inner {
+   border-top: 0px;
 }
 
 .accordion-body {
@@ -49,33 +91,8 @@
    padding-right: 120px;
 }
 
-.buttonLog {
-   margin-top: 4px;
-   margin-right: 4px;
-   font-size: 8px;
-   line-height: 18px;
-}
-
 .searchInput {
    clear: both;
    margin-top: 10px;
    margin-left: 0px;
-}
-
-.collapse {
-   position: relative;
-   height: 0;
-   overflow: hidden;
-   -webkit-transition: height 0.35s ease;
-   -moz-transition: height 0.35s ease;
-   -o-transition: height 0.35s ease;
-   transition: height 0.35s ease;
-   position: relative;
-   height: 0;
-   overflow: hidden;
-   -webkit-transition: height 0.35s ease;
-   -moz-transition: height 0.35s ease;
-   -o-transition: height 0.35s ease;
-   transition: height 0.35s ease;
-       display: block; // Be aware that this will override the default BS3 .collapse style, which has display:none. 
 }

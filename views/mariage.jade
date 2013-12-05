@@ -37,7 +37,7 @@ block content
                        a.btn.btn-mini.btn-danger.pull-right.buttonLog(ng:click="remove(item)") X
                        a.btn.btn-mini.btn-info.pull-right.buttonLog(ng:click="edit(item,$event)") ...                       
                        div.accordion-heading.headDone
-                          a.accordion-toogle.headDone(data-toggle="collapse", data-parent="#accordionMariage2", href="#collapse{{$index + 1}}") {{item.title}}                      
-                       div.accordion-body.collapse(id="collapse{{$index+1}}")
+                          a.accordion-toogle.headDone(data-toggle="collapse", data-parent="#accordionMariage2", href="#collapseBis{{$index + 1}}") {{item.title}}                      
+                       div.accordion-body.collapse(id="collapseBis{{$index+1}}")
                           div.accordion-inner                             
                              p {{item.description}}                
